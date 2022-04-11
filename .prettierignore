@@ -1,0 +1,16 @@
+dist
+compiled
+
+coverage
+.DS_Store
+.idea
+*.orig
+
+node_modules
+lib
+es
+bin
+coverage
+.cache
+tsdoc-metadata.json
+storybook-static

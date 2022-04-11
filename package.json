@@ -1,0 +1,39 @@
+{
+  "name": "tsdx-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^16.0.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/config-lerna-scopes": "^16.0.0",
+    "husky": "^7.0.1",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-style-renke": "^6.0.0",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.1.4",
+    "micromatch": "^4.0.4",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "typescript": "^4.5.4",
+    "utsdx": "^1.0.0",
+    "yarn-deduplicate": "^3.1.0"
+  },
+  "scripts": {
+    "update-version": "lerna version --conventional-commits",
+    "format": "prettier --write **/*.{js,jsx,ts,tsx,json,css,scss,md}",
+    "format:check": "prettier --check **/*.{js,jsx,ts,tsx,json,css,scss,md}",
+    "prepare": "husky install",
+    "import:sort": "import-sort --write **/*.{ts,tsx,js,jsx} !**/dist/**",
+    "import:check": "import-sort -l **/*.{ts,tsx,js,jsx} !**/dist/**",
+    "storybook": "yarn lerna run storybook --scope=stories --stream",
+    "prepublishOnly": "yarn format:check && yarn import:check && lerna run prepublishOnly --stream",
+    "test": "lerna run test --stream --parallel",
+    "dev": "lerna run start --stream --parallel",
+    "build": "lerna run build --stream --parallel",
+    "deduplicate": "yarn-deduplicate -s fewer yarn.lock",
+    "deduplicate:check": "yarn-deduplicate -s fewer yarn.lock --list --fail"
+  }
+}

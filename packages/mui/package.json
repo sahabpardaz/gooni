@@ -1,0 +1,63 @@
+{
+  "name": "@px/mui",
+  "version": "0.2.0",
+  "module": "dist/mui.esm.js",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "start": "utsdx watch",
+    "build": "utsdx build",
+    "test:no-jsdom": "utsdx test --passWithNoTests --testPathIgnorePatterns=\"/popover-input/|/overlay-scrollbar/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
+    "test:jsdom": "utsdx test --passWithNoTests --env=jsdom --testPathPattern=\"/popover-input/|/overlay-scrollbar/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
+    "test": "yarn test:jsdom && yarn test:no-jsdom",
+    "lint": "utsdx lint",
+    "prepublishOnly": "yarn lint && yarn test && yarn build",
+    "type:check": "yarn tsc"
+  },
+  "peerDependencies": {
+    "@mui/lab": "^5.0.0-alpha.64",
+    "@mui/material": "^5.3.1",
+    "popper.js": "1.16.0",
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/lab": "^5.0.0-alpha.64",
+    "@mui/material": "^5.3.1",
+    "@testing-library/dom": "^8.11.1",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "27.0.3",
+    "@types/moment-jalaali": "^0.7.4",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-resize-detector": "^6.1.0",
+    "jest-environment-jsdom": "^27.0.6",
+    "jest-mock-extended": "^2.0.4",
+    "popper.js": "1.16.1",
+    "resize-observer-polyfill": "^1.5.1",
+    "tslib": "^2.3.1"
+  },
+  "dependencies": {
+    "@date-io/jalaali": "^2.13.1",
+    "@date-io/moment": "^2.13.1",
+    "@px/utilities": "^0.2.0",
+    "moment": "^2.29.1",
+    "moment-jalaali": "^0.9.4",
+    "overlayscrollbars": "^1.13.1",
+    "react-resize-detector": "^6.7.7",
+    "tss-react": "^3.3.2"
+  }
+}

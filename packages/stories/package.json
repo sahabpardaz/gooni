@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "private": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "type:check": "yarn tsc"
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "name": "stories",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@mui/lab": "^5.0.0-alpha.64",
+    "@mui/material": "^5.3.1",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/addons": "^6.4.9",
+    "@storybook/builder-webpack5": "^6.4.9",
+    "@storybook/manager-webpack5": "^6.4.9",
+    "@storybook/preset-create-react-app": "^4.0.0",
+    "@storybook/react": "^6.4.9",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "babel-loader": "^8.2.2",
+    "jss": "^10.9.0",
+    "jss-rtl": "^0.3.0",
+    "moment": "^2.29.1",
+    "moment-jalaali": "^0.9.4",
+    "react": ">=17.0.0",
+    "react-is": ">=17.0.0",
+    "react-lorem-component": "^0.13.0",
+    "react-scripts": "^5.0.0",
+    "shabnam-font": "^5.0.0",
+    "stylis-plugin-rtl": "^2.1.1",
+    "tslib": "^2.3.1"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser"
+  }
+}
