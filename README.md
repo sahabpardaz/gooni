@@ -36,4 +36,4 @@ Build all packages
 yarn prepublishOnly
 ```
 
-💡 In order to watch changes to components on storybook while developing, `yarn start` in the the package to build as you develop.
+💡 In order to watch changes to components on storybook while developing, `yarn start` in the package to build as you develop.
