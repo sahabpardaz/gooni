@@ -5,22 +5,25 @@ name: CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js version 16
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-        cache: 'yarn'
-    - run: yarn install --frozen-lockfile
-    - run: yarn lerna bootstrap
-    - run: yarn prepublishOnly
+      - uses: actions/checkout@v3
+        with:
+          # we actually need "github.event.pull_request.commits + 1" commit
+          fetch-depth: 0
+      - name: Use Node.js version 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn run commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
+      - run: yarn lerna bootstrap
+      - run: yarn prepublishOnly
