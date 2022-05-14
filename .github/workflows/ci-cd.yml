@@ -27,4 +27,5 @@ jobs:
       - run: yarn run commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
       - run: yarn lerna bootstrap
       - run: yarn prepublishOnly
+      - run: yarn deduplicate:check
       - run: yarn lerna run type:check --stream
