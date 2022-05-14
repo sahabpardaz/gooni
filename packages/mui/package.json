@@ -19,7 +19,7 @@
     "test:jsdom": "utsdx test --passWithNoTests --env=jsdom --testPathPattern=\"/popover-input/|/overlay-scrollbar/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
     "test": "yarn test:jsdom && yarn test:no-jsdom",
     "lint": "utsdx lint",
-    "prepublishOnly": "yarn type:check && yarn lint && yarn test && yarn build",
+    "prepublishOnly": "yarn lint && yarn test && yarn build",
     "type:check": "yarn tsc"
   },
   "peerDependencies": {
