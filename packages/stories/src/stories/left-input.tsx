@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { OutlinedTextFieldProps, TextField } from '@mui/material';
-import { makeStyles } from '@px/mui';
+import { makeStyles } from '@sahab/mui';
 
 export const LeftInput = (props: OutlinedTextFieldProps) => {
   const { classes } = useStyles();

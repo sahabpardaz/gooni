@@ -19,7 +19,7 @@ type Props = OwnProps;
  * @example
  *
  * ```ts
- * import { PopoverInput, ClickAwayClose } from '@px/popover-input';
+ * import { PopoverInput, ClickAwayClose } from '@sahab/mui';
  *
  * export function MyComponent() {
  *     return (<PopoverInput>

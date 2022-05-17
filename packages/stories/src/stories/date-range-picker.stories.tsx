@@ -5,7 +5,7 @@ import {
   LanguageTypes,
   RangePickerI18nProvider,
   TimeRange,
-} from '@px/mui';
+} from '@sahab/mui';
 import { Meta } from '@storybook/react';
 import { Paper, Typography } from '@mui/material';
 

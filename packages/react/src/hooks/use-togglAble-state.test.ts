@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import { useToggleAbleState } from '..';
+import { useToggleAbleState } from './use-toggleAble-state';
 
 describe('useToggleAbleState', () => {
   it('should have empty array as initialValue', () => {

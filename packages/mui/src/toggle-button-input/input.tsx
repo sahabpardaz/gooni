@@ -7,7 +7,7 @@ import {
   Tooltip,
   TooltipProps,
 } from '@mui/material';
-import { useDelayedValue } from '@px/utilities';
+import { useDelayedValue } from '@sahab/react';
 import { useMergedClasses } from 'tss-react';
 
 import {

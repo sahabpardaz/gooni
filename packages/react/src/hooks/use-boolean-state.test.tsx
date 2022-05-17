@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { act, renderHook } from '@testing-library/react-hooks';
+import { product } from '@sahab/utils';
 
-import { product } from '../js/product';
 import { useBooleanState } from './use-boolean-state';
 
 describe('use boolean state', () => {

@@ -1,6 +1,6 @@
 import OverlayScrollbars from 'overlayscrollbars';
 import React, { useImperativeHandle, useLayoutEffect, useRef } from 'react';
-import { useDeepMemoize } from '@px/utilities';
+import { useDeepMemoize } from '@sahab/react';
 
 const defaultOptions: OverlayScrollbars.Options = {
   scrollbars: { autoHide: 'never', autoHideDelay: 100 },

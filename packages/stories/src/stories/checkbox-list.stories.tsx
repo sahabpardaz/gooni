@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box, Button } from '@mui/material';
-import { CheckboxList, PxCheckListFilter, SelectOption } from '@px/mui';
+import { CheckboxList, PxCheckListFilter, SelectOption } from '@sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
