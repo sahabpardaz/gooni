@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -15,17 +15,15 @@
     "prepublishOnly": "yarn lint && yarn test && yarn build",
     "type:check": "yarn tsc"
   },
-  "name": "@px/utilities",
-  "module": "dist/utilities.esm.js",
+  "name": "@sahab/react",
+  "module": "dist/react.esm.js",
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",
-    "@types/ramda": "^0.27.62",
-    "ramda": "^0.27.1",
+    "@sahab/utils": "^0.2.0",
     "react-test-renderer": "^17.0.2",
     "tslib": "^2.3.1"
   },
   "peerDependencies": {
-    "ramda": "^0.25.0",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
   },

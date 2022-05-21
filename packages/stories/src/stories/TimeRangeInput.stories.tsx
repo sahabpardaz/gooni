@@ -5,7 +5,7 @@ import {
   RangePickerI18nProvider,
   TimeRange,
   TimeRangeInput as PxTimeRangeInput,
-} from '@px/mui';
+} from '@sahab/mui';
 
 export default {
   title: 'Time Picker/Time Range Input',

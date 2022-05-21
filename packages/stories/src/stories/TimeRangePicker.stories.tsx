@@ -8,7 +8,7 @@ import {
   TimeRangePicker as PxTimeRangePicker,
   TimeRangePickerProps,
   defaultLocale,
-} from '@px/mui';
+} from '@sahab/mui';
 import { Meta, Story } from '@storybook/react';
 
 export default {

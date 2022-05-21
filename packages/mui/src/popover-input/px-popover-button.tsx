@@ -33,7 +33,7 @@ export type Props = React.PropsWithChildren<OwnProps> &
  * Here's an example:
  *
  * ```ts
- * import { PopoverButton } from '@px/popover-input'
+ * import { PopoverButton } from '@sahab/mui'
  *
  * export function MyComponent() {
  *      return <PopoverButton buttonContent='click me'>

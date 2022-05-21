@@ -5,7 +5,7 @@ import {
   PopoverButton as PxPopoverButton,
   PopoverInput as PxPopoverInput,
   usePopoverInputContext,
-} from '@px/mui';
+} from '@sahab/mui';
 import { Meta } from '@storybook/react';
 
 const Sample = () => {
