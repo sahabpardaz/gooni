@@ -1,12 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { Box, Button, Paper } from '@mui/material';
+import { Meta } from '@storybook/react';
+
 import {
   ClickAwayClose,
   PopoverButton as PxPopoverButton,
   PopoverInput as PxPopoverInput,
   usePopoverInputContext,
-} from '@sahab/mui';
-import { Meta } from '@storybook/react';
+} from '../..';
 
 const Sample = () => {
   const setOpen = usePopoverInputContext();

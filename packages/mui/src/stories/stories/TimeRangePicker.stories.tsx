@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Meta, Story } from '@storybook/react';
+
 import {
   CalendarTypes,
   LanguageTypes,
@@ -8,8 +10,7 @@ import {
   TimeRangePicker as PxTimeRangePicker,
   TimeRangePickerProps,
   defaultLocale,
-} from '@sahab/mui';
-import { Meta, Story } from '@storybook/react';
+} from '../..';
 
 export default {
   title: 'Time Picker/Time Range Picker',

@@ -88,7 +88,7 @@ export function PopoverButton(props: Props) {
   );
 }
 
-const useStyles = makeStyles({ name: 'PopoverButton' })((theme) => ({
+const useStyles = makeStyles({ name: 'PopoverButton' })(() => ({
   buttonRoot: {},
   buttonRootFullWidth: {
     minWidth: '100%',

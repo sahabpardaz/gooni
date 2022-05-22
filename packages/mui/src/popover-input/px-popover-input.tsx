@@ -71,7 +71,7 @@ export function PopoverInput(props: Props) {
   );
 }
 
-const useStyles = makeStyles({ name: 'PopoverInput' })((theme) => ({
+const useStyles = makeStyles({ name: 'PopoverInput' })(() => ({
   textFieldRoot: {},
   textFieldRootFullWidth: {
     minWidth: '100%',
