@@ -1,0 +1,28 @@
+name: 'Chromatic'
+
+# Event for the workflow
+on: push
+
+jobs:
+  chromatic-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Required to retrieve git history
+      - name: Use Node.js version 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn deduplicate:check
+      - run: yarn lerna bootstrap
+      - run: yarn prepublishOnly
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          # 👇 Runs Chromatic CLI in ./packages/mui
+          workingDir: packages/mui
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
