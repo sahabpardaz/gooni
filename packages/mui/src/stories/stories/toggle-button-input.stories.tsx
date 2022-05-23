@@ -6,14 +6,10 @@ import React, {
   useState,
 } from 'react';
 import { Box, Button, Divider, Grid, Typography } from '@mui/material';
-import {
-  CustomTextFieldProps,
-  ToggleButton,
-  ToggleButtonInput,
-} from '@sahab/mui';
 import { Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
+import { CustomTextFieldProps, ToggleButton, ToggleButtonInput } from '../..';
 import { LeftInput } from './left-input';
 import { RightInput } from './right-input';
 import { storyWrapperDecorator } from '../decorators';

@@ -29,7 +29,7 @@ export function CheckboxListItem(props: Props) {
   );
 }
 
-const useStyles = makeStyles({ name: 'CheckboxListItem' })((theme) => ({
+const useStyles = makeStyles({ name: 'CheckboxListItem' })(() => ({
   root: {},
   listItemIconRoot: {
     minWidth: 0,

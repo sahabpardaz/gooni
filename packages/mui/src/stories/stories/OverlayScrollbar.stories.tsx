@@ -1,8 +1,8 @@
 import Lorem from 'react-lorem-component';
 import React, { useRef } from 'react';
-import { ImperativeHandles, PxOverlayScrollbar } from '@sahab/mui';
 import { Meta, Story } from '@storybook/react';
 
+import { ImperativeHandles, PxOverlayScrollbar } from '../..';
 import { storyWrapperDecorator } from '../decorators';
 
 export default {

@@ -26,7 +26,7 @@ export const PxSelectPopoverButton = React.forwardRef<HTMLButtonElement, Props>(
   },
 );
 
-const useStyles = makeStyles({ name: 'PxSelectPopoverButton' })((theme) => ({
+const useStyles = makeStyles({ name: 'PxSelectPopoverButton' })(() => ({
   root: {
     color: 'rgba(0, 0, 0, 0.54)',
     width: '100%',

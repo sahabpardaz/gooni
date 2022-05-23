@@ -20,7 +20,9 @@
     "test": "yarn test:jsdom && yarn test:no-jsdom",
     "lint": "utsdx lint",
     "prepublishOnly": "yarn lint && yarn test && yarn build",
-    "type:check": "yarn tsc"
+    "type:check": "yarn tsc",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "@mui/lab": "^5.0.0-alpha.64",
@@ -34,6 +36,14 @@
     "@emotion/styled": "^11.6.0",
     "@mui/lab": "^5.0.0-alpha.64",
     "@mui/material": "^5.3.1",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/addons": "^6.4.9",
+    "@storybook/builder-webpack5": "^6.4.9",
+    "@storybook/manager-webpack5": "^6.4.9",
+    "@storybook/preset-create-react-app": "^4.0.0",
+    "@storybook/react": "^6.4.9",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -47,18 +57,26 @@
     "jest-environment-jsdom": "^27.0.6",
     "jest-mock-extended": "^2.0.4",
     "popper.js": "1.16.1",
+    "react-lorem-component": "^0.13.0",
+    "react-scripts": "5.0.0",
     "resize-observer-polyfill": "^1.5.1",
+    "stylis-plugin-rtl": "^2.1.1",
     "tslib": "^2.3.1"
   },
   "dependencies": {
     "@date-io/jalaali": "^2.13.1",
     "@date-io/moment": "^2.13.1",
-    "@sahab/utils": "^0.2.0",
     "@sahab/react": "^0.1.0",
+    "@sahab/utils": "^0.2.0",
     "moment": "^2.29.1",
     "moment-jalaali": "^0.9.4",
     "overlayscrollbars": "^1.13.1",
     "react-resize-detector": "^6.7.7",
     "tss-react": "^3.3.2"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "react-hooks"
+    ]
   }
 }

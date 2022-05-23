@@ -179,7 +179,7 @@ export function PxCheckListFilter<V extends string>(props: Props<V>) {
   );
 }
 
-const useStyles = makeStyles({ name: 'PxCheckListFilter' })((theme) => ({
+const useStyles = makeStyles({ name: 'PxCheckListFilter' })(() => ({
   checkboxListRoot: {},
   checkboxListItemRoot: {},
   buttonRoot: {},

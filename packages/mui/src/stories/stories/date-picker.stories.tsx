@@ -1,13 +1,13 @@
 import Moment from 'moment';
 import React, { useState } from 'react';
+import { Meta } from '@storybook/react';
+
 import {
   CalendarTypes,
   DatePicker,
   LanguageTypes,
   PickerI18nProvider,
-} from '@sahab/mui';
-import { Meta } from '@storybook/react';
-
+} from '../..';
 import { calendarDecorator, useCalendarContext } from '../decorators';
 
 export default {

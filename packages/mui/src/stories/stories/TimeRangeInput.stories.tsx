@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react';
+
 import {
   RangeInputI18nProvider,
   RangePickerI18nProvider,
   TimeRange,
   TimeRangeInput as PxTimeRangeInput,
-} from '@sahab/mui';
+} from '../..';
 
 export default {
   title: 'Time Picker/Time Range Input',

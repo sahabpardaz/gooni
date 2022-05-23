@@ -28,7 +28,7 @@ export function usePickerProps(props: { errorsText: PickerLabel['errors'] }) {
   const contextLabel = usePickerI18nContext();
 
   const [error, setError] = useState<RenderInputFactoryProps['error']>();
-  const onError: DateTimePickerProps['onError'] = (reason, value) => {
+  const onError: DateTimePickerProps['onError'] = (reason) => {
     setError(
       !reason
         ? undefined

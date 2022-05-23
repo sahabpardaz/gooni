@@ -1,8 +1,8 @@
 import jMoment from 'moment-jalaali';
 import React, { useCallback, useState } from 'react';
-import { DateRangeInput, RangeInputI18nProvider, TimeRange } from '@sahab/mui';
 import { Meta } from '@storybook/react';
 
+import { DateRangeInput, RangeInputI18nProvider, TimeRange } from '../..';
 import { storyWrapperDecorator } from '../decorators';
 
 const useDateRangeInput = () => {

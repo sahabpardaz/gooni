@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Moment } from 'moment';
-import { TimePicker as PxTimePicker, TimePickerProps } from '@sahab/mui';
+
+import { TimePicker as PxTimePicker, TimePickerProps } from '../..';
 
 export default {
   title: 'Time Picker',
