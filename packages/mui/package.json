@@ -22,7 +22,8 @@
     "prepublishOnly": "yarn lint && yarn test && yarn build",
     "type:check": "yarn tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "peerDependencies": {
     "@mui/lab": "^5.0.0-alpha.64",
@@ -54,6 +55,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-resize-detector": "^6.1.0",
+    "chromatic": "^6.5.4",
     "jest-environment-jsdom": "^27.0.6",
     "jest-mock-extended": "^2.0.4",
     "popper.js": "1.16.1",
