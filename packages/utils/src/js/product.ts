@@ -1,4 +1,4 @@
-import { Take, Tuple, liftN } from 'ramda';
+import { liftN, Take, Tuple } from 'ramda';
 
 /**
  * Returns product of given arrays

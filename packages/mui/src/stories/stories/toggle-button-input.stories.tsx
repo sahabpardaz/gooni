@@ -1,3 +1,6 @@
+import { Box, Button, Divider, Grid, Typography } from '@mui/material';
+import { action } from '@storybook/addon-actions';
+import { Meta } from '@storybook/react';
 import React, {
   Fragment,
   KeyboardEvent,
@@ -5,14 +8,11 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { Box, Button, Divider, Grid, Typography } from '@mui/material';
-import { Meta } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import { CustomTextFieldProps, ToggleButton, ToggleButtonInput } from '../..';
+import { storyWrapperDecorator } from '../decorators';
 import { LeftInput } from './left-input';
 import { RightInput } from './right-input';
-import { storyWrapperDecorator } from '../decorators';
 
 enum Type {
   'ITEM1' = 'ITEM1',

@@ -1,9 +1,9 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
 import { DecoratorFunction, StoryFn } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 
-import { StoryDummy } from './helpers';
 import { localeConfig } from '../_config/locale';
+import { StoryDummy } from './helpers';
 
 export type CalendarType = {
   language: string;

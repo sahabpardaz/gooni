@@ -1,4 +1,4 @@
-import { Pred, both, complement, curry, equals, isEmpty, isNil } from 'ramda';
+import { both, complement, curry, equals, isEmpty, isNil, Pred } from 'ramda';
 
 /**
  * Checks if the input value is not null or undefined.

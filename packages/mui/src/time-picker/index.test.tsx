@@ -1,9 +1,9 @@
-import React from 'react';
-import moment from 'moment';
 import { fireEvent, render, screen } from '@testing-library/react';
+import moment from 'moment';
+import React from 'react';
 
-import { CalendarTypes, LanguageTypes } from '../constant-types';
 import { TimePicker } from '.';
+import { CalendarTypes, LanguageTypes } from '../constant-types';
 import { Props as TimePickerProps } from './px-time-picker';
 
 const renderTimePicker = (

@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from 'react';
-import { Meta } from '@storybook/react';
 import { Paper, Typography } from '@mui/material';
+import { Meta } from '@storybook/react';
+import React, { Fragment, useState } from 'react';
 
 import {
   CalendarTypes,

@@ -1,10 +1,10 @@
-import * as React from 'react';
 import { render, screen } from '@testing-library/react';
+import * as React from 'react';
 
-import { RangeInputI18nProvider } from '../pickers-common';
 import { TimeRangeInput } from '.';
-import { Props as TimeRangeInputProps } from './px-time-range-input';
 import { moment } from '../date-time-utils';
+import { RangeInputI18nProvider } from '../pickers-common';
+import { Props as TimeRangeInputProps } from './px-time-range-input';
 
 type PartialSomeKeys<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 const renderer = (

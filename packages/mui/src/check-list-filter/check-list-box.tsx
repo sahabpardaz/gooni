@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   CheckboxProps,
   List,
@@ -6,13 +5,14 @@ import {
   ListItemTextProps,
   ListProps,
 } from '@mui/material';
-import { useMergedClasses } from 'tss-react';
 import { useToggleAbleState } from '@sahab/react';
+import * as React from 'react';
+import { useMergedClasses } from 'tss-react';
 
-import { CheckboxListItem } from './check-box-list-item';
-import { SelectOption } from './package-types';
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
+import { CheckboxListItem } from './check-box-list-item';
+import { SelectOption } from './package-types';
 
 interface OwnProps<V extends string = string> {
   items: SelectOption<V>[];

@@ -1,12 +1,12 @@
-import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { DecoratorFunction } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
+import React from 'react';
 
-import { GlobalStyles } from '../core/styles/GlobalStyles';
 import { RTLProvider } from '../core/rtl';
-import { StoryDummy } from './helpers';
+import { GlobalStyles } from '../core/styles/GlobalStyles';
 import { ltrTheme, rtlTheme } from '../core/theme';
+import { StoryDummy } from './helpers';
 
 export const themeDecorator: DecoratorFunction<StoryFnReactReturnType> = (
   storyFn,

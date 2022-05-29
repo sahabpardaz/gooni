@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   Box,
   Button,
@@ -9,19 +8,20 @@ import {
   Paper,
   PaperProps,
 } from '@mui/material';
-import { useMergedClasses } from 'tss-react';
 import { useToggleAbleState } from '@sahab/react';
+import * as React from 'react';
+import { useMergedClasses } from 'tss-react';
 
-import { CheckboxList } from './check-list-box';
+import { PxOverlayScrollbar } from '../overlay-scrollbar';
 import {
   ClickAwayClose,
   PopoverButton,
   PopoverButtonProps,
 } from '../popover-input';
-import { PxOverlayScrollbar } from '../overlay-scrollbar';
-import { SelectOption } from './package-types';
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
+import { CheckboxList } from './check-list-box';
+import { SelectOption } from './package-types';
 
 interface OwnProps<V extends string>
   extends Omit<PopoverButtonProps, 'onChange'> {

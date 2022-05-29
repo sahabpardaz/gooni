@@ -1,10 +1,10 @@
+import { render } from '@testing-library/react';
 import Moment from 'moment';
 import React from 'react';
-import { render } from '@testing-library/react';
 
-import { DateRangeInput } from './index';
+import { formatDateRange, TimeRange } from '../date-time-utils';
 import { RangeInputI18nProvider } from '../pickers-common';
-import { TimeRange, formatDateRange } from '../date-time-utils';
+import { DateRangeInput } from './index';
 
 const getWrapper = (props: { value: TimeRange }, onChange = () => {}) =>
   render(

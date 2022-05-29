@@ -1,6 +1,6 @@
+import { useTheme } from '@mui/material';
 import React, { useEffect } from 'react';
 import { GlobalStyles as TssGlobalStyles } from 'tss-react';
-import { useTheme } from '@mui/material';
 
 export function GlobalStyles() {
   const theme = useTheme();

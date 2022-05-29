@@ -1,6 +1,6 @@
-import Lorem from 'react-lorem-component';
-import React, { useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
+import React, { useRef } from 'react';
+import Lorem from 'react-lorem-component';
 
 import { ImperativeHandles, PxOverlayScrollbar } from '../..';
 import { storyWrapperDecorator } from '../decorators';

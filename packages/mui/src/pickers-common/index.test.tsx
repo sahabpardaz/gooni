@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { ThemeProvider, useTheme } from '@mui/material';
 import { renderHook } from '@testing-library/react-hooks';
+import * as React from 'react';
 
 import {
   PickerI18nProvider,
@@ -11,8 +11,8 @@ import {
   useRangeInputI18nContext,
   useRangePickerI18nContext,
 } from '.';
-import { PickerLabel } from './px-picker-i18n-provider';
 import { RangeInputLabels } from '../date-time-utils';
+import { PickerLabel } from './px-picker-i18n-provider';
 import { RangePickerLabel } from './px-range-picker-i18n-provider';
 
 function WrapperPickerI18nProvider(props: React.PropsWithChildren<{}>) {

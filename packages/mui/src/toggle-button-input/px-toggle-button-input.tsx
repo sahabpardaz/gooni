@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ButtonProps } from '@mui/material';
 import { isNil } from 'ramda';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Input, InputProps } from './input';
+import { useMergeRefs } from './mergeRefs.util';
 import { ToggleButtonContextProvider } from './toggle-button-context';
 import { TypeValue } from './type-value';
-import { useMergeRefs } from './mergeRefs.util';
 
 interface OwnProps<T extends string>
   extends Omit<InputProps, 'color' | 'variant' | 'value' | 'onChange'> {

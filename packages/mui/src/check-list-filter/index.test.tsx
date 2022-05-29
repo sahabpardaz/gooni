@@ -1,10 +1,10 @@
-import * as React from 'react';
-import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import * as React from 'react';
 
 import { CheckboxList } from './check-list-box';
-import { PxCheckListFilter } from './px-check-list-filter';
 import { SelectOption } from './package-types';
+import { PxCheckListFilter } from './px-check-list-filter';
 
 const ITEMS: SelectOption[] = [
   { value: '1', label: 'a' },

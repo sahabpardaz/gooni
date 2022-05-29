@@ -1,8 +1,8 @@
 import moment, { Moment } from 'moment-jalaali';
 
 import { CalendarTypes, defaultLocale } from '../constant-types';
-import { TimeRange } from './time-range-type';
 import { localizeFormat } from './moment-utils';
+import { TimeRange } from './time-range-type';
 
 /**
  *

@@ -1,11 +1,11 @@
+import { fireEvent, render } from '@testing-library/react';
 import Moment from 'moment';
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
 
 import { CalendarTypes, LanguageTypes } from '../constant-types';
-import { DateRangePicker, DateRangePickerProps } from './index';
-import { RangePickerI18nProvider } from '../pickers-common';
 import { TimeRange } from '../date-time-utils';
+import { RangePickerI18nProvider } from '../pickers-common';
+import { DateRangePicker, DateRangePickerProps } from './index';
 
 const calenderEnabledDaySelector =
   'button.MuiPickersDay-root:not(.MuiPickersDay-hiddenDaySpacingFiller):not(.Mui-disabled)';

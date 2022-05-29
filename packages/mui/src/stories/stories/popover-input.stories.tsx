@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
 import { Box, Button, Paper } from '@mui/material';
 import { Meta } from '@storybook/react';
+import React, { useCallback, useState } from 'react';
 
 import {
   ClickAwayClose,

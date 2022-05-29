@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ThemeProvider, useTheme } from '@mui/material';
+import * as React from 'react';
 
 interface OwnProps {
   color?: 'primary' | 'secondary';

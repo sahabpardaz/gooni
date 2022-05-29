@@ -1,8 +1,6 @@
 import { default as Moment, default as moment } from 'moment';
 
 import { CalendarTypes } from '../constant-types';
-import { RangeInputLabels } from './range-input-utils';
-import { TimeRange } from './time-range-type';
 import { formatDate } from './date-time-utils';
 import {
   formatDateRange,
@@ -11,6 +9,8 @@ import {
   getRangeInputValue,
 } from './index';
 import { localizeFormat } from './moment-utils';
+import { RangeInputLabels } from './range-input-utils';
+import { TimeRange } from './time-range-type';
 
 describe('DateTimeUtils', () => {
   describe('date-time-utils', () => {

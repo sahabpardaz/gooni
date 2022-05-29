@@ -1,12 +1,12 @@
-import React from 'react';
-import { Moment } from 'moment-jalaali';
 import { DatePicker as MuiDatePicker, DatePickerProps } from '@mui/lab';
+import { Moment } from 'moment-jalaali';
+import React from 'react';
 
-import { CalendarTypes, LanguageTypes, defaultLocale } from '../constant-types';
+import { CalendarTypes, defaultLocale, LanguageTypes } from '../constant-types';
 import {
   PickerLabel,
-  PickerThemeProvider,
   PickersUtilsProvider,
+  PickerThemeProvider,
   usePickerProps,
 } from '../pickers-common';
 

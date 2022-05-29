@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ClickAwayListener } from '@mui/material';
+import * as React from 'react';
 
 import { usePopoverInputContext } from './px-popover-input-context';
 
