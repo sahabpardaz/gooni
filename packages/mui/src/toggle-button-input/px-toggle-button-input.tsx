@@ -1,4 +1,3 @@
-import { ButtonProps } from '@mui/material';
 import { isNil } from 'ramda';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -8,8 +7,7 @@ import { ToggleButtonContextProvider } from './toggle-button-context';
 import { TypeValue } from './type-value';
 
 interface OwnProps<T extends string>
-  extends Omit<InputProps, 'color' | 'variant' | 'value' | 'onChange'> {
-  color?: ButtonProps['color'];
+  extends Omit<InputProps, 'variant' | 'value' | 'onChange'> {
   onChange: (value: TypeValue<T>) => void;
   value: TypeValue<T>;
 }

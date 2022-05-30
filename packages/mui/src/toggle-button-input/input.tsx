@@ -18,7 +18,7 @@ import {
 } from './OutlinedTextField';
 
 interface OwnProps extends Omit<CustomTextFieldProps, 'color'> {
-  color?: ButtonProps['color'];
+  color?: ButtonProps['color'] & CustomTextFieldProps['color'];
   inputDisabled?: boolean;
   tooltipProps?: Omit<TooltipProps, 'children'>;
   TextFieldComponent?: React.ComponentType<CustomTextFieldProps>;
@@ -126,6 +126,7 @@ export function Input(props: Props) {
             <TextFieldComponent
               value={value}
               error={error}
+              color={color}
               fullWidth={fullWidth}
               disabled={inputDisabled}
               margin={margin}
@@ -177,154 +178,166 @@ export function Input(props: Props) {
   );
 }
 
-const useStyles = makeStyles({ name: 'Input' })((theme) => ({
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: {
-    width: '100%',
-  },
-  /* Pseudo-class applied to the root element if `error={true}`. */
-  error: {},
-  /* Pseudo-class applied to the root element if `focused={true}`. */
-  focused: {},
-  /* Pseudo-class applied to the root element if `color="primary"`. */
-  colorPrimary: {},
-  /* Pseudo-class applied to the root element if `color="secondary"`. */
-  colorSecondary: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `inputDisabled={true}`. */
-  inputDisabled: {},
-  /* Pseudo-class applied to the root element if `margin="normal"`. */
-  marginNormal: {},
-  /* Pseudo-class applied to the root element if `margin="dense"`. */
-  marginDense: {},
-  /* Pseudo-class applied to the root element if `size="small"`. */
-  sizeSmall: {},
+type ChildClassName =
+  | 'disabled'
+  | 'focused'
+  | 'error'
+  | 'toggleButtonsContainer'
+  | 'inputs'
+  | 'muiOutlinedInputNotchedOutline'
+  | 'marginNormal'
+  | 'marginDense'
+  | 'colorPrimary'
+  | 'colorSecondary';
 
-  inputs: {
-    width: '100%',
-    display: 'inline-flex',
-    '&:hover $toggleButtonsContainer': {
-      borderColor: 'rgba(0, 0, 0, 0.87)',
+const useStyles = makeStyles<void, ChildClassName>({ name: 'Input' })(
+  (theme, _props, classes) => ({
+    /* Styles applied to the root element. */
+    root: {},
+    /* Styles applied to the root element if `fullWidth={true}`. */
+    fullWidth: {
+      width: '100%',
     },
-    '$disabled &:hover $toggleButtonsContainer': {
-      borderColor: 'rgba(0, 0, 0, 0.26)',
-    },
-    '$error &:hover $toggleButtonsContainer': {
-      borderColor: theme.palette.error.main,
-    },
-    '&:hover $muiOutlinedInputNotchedOutline': {
-      borderColor: 'rgba(0, 0, 0, 0.87)',
-    },
-    '$disabled &:hover $muiOutlinedInputNotchedOutline': {
-      borderColor: 'rgba(0, 0, 0, 0.26)',
-    },
-  },
+    /* Pseudo-class applied to the root element if `error={true}`. */
+    error: {},
+    /* Pseudo-class applied to the root element if `focused={true}`. */
+    focused: {},
+    /* Pseudo-class applied to the root element if `color="primary"`. */
+    colorPrimary: {},
+    /* Pseudo-class applied to the root element if `color="secondary"`. */
+    colorSecondary: {},
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled: {},
+    /* Pseudo-class applied to the root element if `inputDisabled={true}`. */
+    inputDisabled: {},
+    /* Pseudo-class applied to the root element if `margin="normal"`. */
+    marginNormal: {},
+    /* Pseudo-class applied to the root element if `margin="dense"`. */
+    marginDense: {},
+    /* Pseudo-class applied to the root element if `size="small"`. */
+    sizeSmall: {},
 
-  toggleButtonsContainer: {
-    display: 'inline-flex',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderRightWidth: 0,
-    borderTopLeftRadius: 4,
-    borderBottomLeftRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.23)',
-    transition: 'border-color .2s',
-    margin: 0,
-    '$focused &': {
-      borderWidth: 2,
+    inputs: {
+      width: '100%',
+      display: 'inline-flex',
+      [`&:hover .${classes.toggleButtonsContainer}`]: {
+        borderColor: 'rgba(0, 0, 0, 0.87)',
+      },
+      [`.${classes.disabled} &:hover .${classes.toggleButtonsContainer}`]: {
+        borderColor: 'rgba(0, 0, 0, 0.26)',
+      },
+      [`.${classes.error} &:hover .${classes.toggleButtonsContainer}`]: {
+        borderColor: theme.palette.error.main,
+      },
+      [`&:hover .${classes.muiOutlinedInputNotchedOutline}`]: {
+        borderColor: 'rgba(0, 0, 0, 0.87)',
+      },
+      [`.${classes.disabled} &:hover .${classes.muiOutlinedInputNotchedOutline}`]:
+        {
+          borderColor: 'rgba(0, 0, 0, 0.26)',
+        },
+    },
+
+    toggleButtonsContainer: {
+      display: 'inline-flex',
+      borderStyle: 'solid',
+      borderWidth: 1,
       borderRightWidth: 0,
+      borderTopLeftRadius: 4,
+      borderBottomLeftRadius: 4,
+      borderColor: 'rgba(0, 0, 0, 0.23)',
+      transition: 'border-color .2s',
+      margin: 0,
+      [`.${classes.focused} &`]: {
+        borderWidth: 2,
+        borderRightWidth: 0,
+      },
+      [`.${classes.focused}.${classes.colorPrimary} &`]: {
+        borderColor: theme.palette.primary.main,
+      },
+      [`.${classes.focused}.${classes.colorSecondary} &`]: {
+        borderColor: theme.palette.secondary.main,
+      },
+      [`.${classes.focused}.${classes.error} &`]: {
+        borderColor: theme.palette.error.main,
+      },
+      [`.${classes.error} &`]: {
+        borderColor: theme.palette.error.main,
+      },
+      [`.${classes.marginNormal} &`]: {
+        marginTop: 16,
+        marginBottom: 8,
+      },
+      [`.${classes.marginDense} &`]: {
+        marginTop: 8,
+        marginBottom: 4,
+      },
     },
-    '$focused$colorPrimary &': {
-      borderColor: theme.palette.primary.main,
-    },
-    '$focused$colorSecondary &': {
-      borderColor: theme.palette.secondary.main,
-    },
-    '$focused$error &': {
-      borderColor: theme.palette.error.main,
-    },
-    '$error &': {
-      borderColor: theme.palette.error.main,
-    },
-    '$marginNormal &': {
-      marginTop: 16,
-      marginBottom: 8,
-    },
-    '$marginDense &': {
-      marginTop: 8,
-      marginBottom: 4,
-    },
-  },
 
-  tooltip: {
-    borderColor: theme.palette.grey[500],
-  },
-  muiInputLabelShrink: {
-    '$colorDefault &': {
+    tooltip: {
       borderColor: theme.palette.grey[500],
     },
-    '$colorPrimary &': {
-      borderColor: theme.palette.primary.main,
+    muiInputLabelShrink: {
+      [`.${classes.colorPrimary} &`]: {
+        borderColor: theme.palette.primary.main,
+      },
+      [`.${classes.colorSecondary} &`]: {
+        borderColor: theme.palette.secondary.main,
+      },
     },
-    '$colorSecondary &': {
-      borderColor: theme.palette.secondary.main,
-    },
-  },
 
-  muiOutlinedInputNotchedOutline: {
-    borderLeft: 0,
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-    transition: `padding-left .2s cubic-bezier(0.0, 0, 0.2, 1) 0ms,
+    muiOutlinedInputNotchedOutline: {
+      borderLeft: 0,
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      transition: `padding-left .2s cubic-bezier(0.0, 0, 0.2, 1) 0ms,
                  border-color .2s cubic-bezier(0.0, 0, 0.2, 1) 0ms`,
-    '$focused &': {
-      borderWidth: '2px !important',
-      top: -4.5,
+      [`.${classes.focused} &`]: {
+        borderWidth: '2px !important',
+        top: -4.5,
+      },
+      [`.${classes.focused}.${classes.colorPrimary} &`]: {
+        borderColor: `${theme.palette.primary.main} !important`,
+      },
+      [`.${classes.focused}.${classes.colorSecondary} &`]: {
+        borderColor: `${theme.palette.secondary.main} !important`,
+      },
+      [`.${classes.error} &`]: {
+        borderColor: `${theme.palette.error.main} !important`,
+      },
+      [`.${classes.focused}.${classes.error} &`]: {
+        borderColor: `${theme.palette.error.main} !important`,
+      },
+      [`.${classes.focused}.${classes.marginDense} &`]: {
+        bottom: -0.5,
+      },
     },
-    '$focused$colorPrimary &': {
-      borderColor: `${theme.palette.primary.main} !important`,
-    },
-    '$focused$colorSecondary &': {
-      borderColor: `${theme.palette.secondary.main} !important`,
-    },
-    '$error &': {
-      borderColor: `${theme.palette.error.main} !important`,
-    },
-    '$focused$error &': {
-      borderColor: `${theme.palette.error.main} !important`,
-    },
-    '$focused$marginDense &': {
-      bottom: -0.5,
-    },
-  },
 
-  muiInputLabelFocused: {
-    '$colorPrimary &': {
-      color: theme.palette.primary.main,
+    muiInputLabelFocused: {
+      [`.${classes.colorPrimary} &`]: {
+        color: theme.palette.primary.main,
+      },
+      [`.${classes.colorSecondary} &`]: {
+        color: theme.palette.secondary.main,
+      },
+      [`.${classes.error} &`]: {
+        color: `${theme.palette.error.main} !important`,
+      },
     },
-    '$colorSecondary &': {
-      color: theme.palette.secondary.main,
-    },
-    '$error &': {
-      color: `${theme.palette.error.main} !important`,
-    },
-  },
 
-  muiInputLabelFormControl: {
-    '$disabled &': {
-      color: `rgba(0, 0, 0, 0.26)`,
+    muiInputLabelFormControl: {
+      [`.${classes.disabled} &`]: {
+        color: `rgba(0, 0, 0, 0.26)`,
+      },
     },
-  },
 
-  textFieldRoot: {},
+    textFieldRoot: {},
 
-  tooltipWrapper: {
-    flex: 1,
-  },
-}));
+    tooltipWrapper: {
+      flex: 1,
+    },
+  }),
+);
 type StyleProps = Styles<typeof useStyles>;
 
 export type InputProps = OwnProps;
