@@ -1,13 +1,13 @@
-import * as React from 'react';
 import { Button, Grid, GridProps } from '@mui/material';
 import { Moment } from 'moment-jalaali';
+import * as React from 'react';
 import { useMergedClasses } from 'tss-react';
 
-import { CalendarTypes, LanguageTypes, defaultLocale } from '../constant-types';
+import { CalendarTypes, defaultLocale, LanguageTypes } from '../constant-types';
+import { TimeRange } from '../date-time-utils';
 import { RangePickerLabel, useRangePickerI18nContext } from '../pickers-common';
 import { Styles } from '../react-types';
 import { TimePicker, TimePickerProps } from '../time-picker';
-import { TimeRange } from '../date-time-utils';
 import { makeStyles } from '../tss-mui';
 
 type PickerProps = Partial<Omit<TimePickerProps, 'value' | 'onChange'>>;

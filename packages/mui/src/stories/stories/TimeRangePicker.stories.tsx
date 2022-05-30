@@ -1,15 +1,15 @@
-import * as React from 'react';
 import { Meta, Story } from '@storybook/react';
+import * as React from 'react';
 
 import {
   CalendarTypes,
+  defaultLocale,
   LanguageTypes,
   RangePickerI18nProvider,
   RangePickerLabel,
   TimeRange,
   TimeRangePicker as PxTimeRangePicker,
   TimeRangePickerProps,
-  defaultLocale,
 } from '../..';
 
 export default {

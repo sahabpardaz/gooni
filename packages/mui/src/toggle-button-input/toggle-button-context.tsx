@@ -1,5 +1,5 @@
-import React, { createContext, useContext } from 'react';
 import { ButtonProps } from '@mui/material';
+import React, { createContext, useContext } from 'react';
 
 export interface ToggleButtonContextType<T extends string> {
   color: ButtonProps['color'];

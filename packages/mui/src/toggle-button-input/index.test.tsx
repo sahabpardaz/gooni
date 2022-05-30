@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import React, { ReactNode } from 'react';
 
-import { Input } from './input';
 import { ToggleButton } from './index';
-import { ToggleButtonContextProvider } from './toggle-button-context';
+import { Input } from './input';
 import { ToggleButtonInput } from './px-toggle-button-input';
+import { ToggleButtonContextProvider } from './toggle-button-context';
 
 const getSimpleButton = () => {
   return (

@@ -1,13 +1,13 @@
-import * as React from 'react';
 import { TextField } from '@mui/material';
 import { fireEvent, render, screen } from '@testing-library/react';
+import * as React from 'react';
 
+import { moment } from '../date-time-utils';
 import { RangePickerI18nProvider } from '../pickers-common';
 import {
   Props as TimeRangePickerProps,
   TimeRangePicker,
 } from './px-time-range-picker';
-import { moment } from '../date-time-utils';
 
 const renderer = (props: Partial<TimeRangePickerProps> = {}) => {
   const {

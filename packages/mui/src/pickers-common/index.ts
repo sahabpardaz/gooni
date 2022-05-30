@@ -1,5 +1,6 @@
 // read more about doc comment syntax in https://api-extractor.com/pages/tsdoc/doc_comment_syntax/
 
+export * from './picker-props';
 export {
   PickerI18nProvider,
   PickerLabel,
@@ -19,4 +20,3 @@ export {
   RangePickerLabel,
   useRangePickerI18nContext,
 } from './px-range-picker-i18n-provider';
-export * from './picker-props';

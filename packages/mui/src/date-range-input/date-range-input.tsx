@@ -1,10 +1,10 @@
-import React, { useCallback, useRef } from 'react';
 import { Paper, TextFieldProps } from '@mui/material';
+import React, { useCallback, useRef } from 'react';
 
-import { ClickAwayClose, PopoverInput } from '../popover-input';
 import { DateRangePicker, DateRangePickerProps } from '../date-range-picker';
-import { TimeRange, getRangeInputValue } from '../date-time-utils';
+import { getRangeInputValue, TimeRange } from '../date-time-utils';
 import { useRangeInputI18nContext } from '../pickers-common';
+import { ClickAwayClose, PopoverInput } from '../popover-input';
 
 interface OwnProps {
   value: TimeRange;

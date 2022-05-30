@@ -9,14 +9,12 @@
  * @packageDocumentation
  */
 
-export { useDelayedValue } from './hooks/use-delayed-value';
-export { useDeepMemoize } from './hooks/use-deep-memoize';
-export { useToggleAbleState } from './hooks/use-toggleAble-state';
 export { useBooleanState } from './hooks/use-boolean-state';
-export { useDialog } from './hooks/use-dialog';
-export { Options } from './hooks/use-delayed-value';
+export { useDeepMemoize } from './hooks/use-deep-memoize';
+export { Options, useDelayedValue } from './hooks/use-delayed-value';
+export { DialogHooksReturnType, useDialog } from './hooks/use-dialog';
 export {
   ToggleAbleStateOptions,
   ToggleAbleStateReturn,
+  useToggleAbleState,
 } from './hooks/use-toggleAble-state';
-export { DialogHooksReturnType } from './hooks/use-dialog';

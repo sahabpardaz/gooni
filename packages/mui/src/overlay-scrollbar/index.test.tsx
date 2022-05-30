@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
+import * as React from 'react';
 
-import { ImperativeHandles, useOverlayScrollbar } from './useOverlayScrollbar';
 import { PxOverlayScrollbar } from './px-overlay-scrollbar';
+import { ImperativeHandles, useOverlayScrollbar } from './useOverlayScrollbar';
 
 describe('useOverlayScrollbar', () => {
   it('should return px-overlay-scrollbar', () => {

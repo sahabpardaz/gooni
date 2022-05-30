@@ -1,5 +1,5 @@
-import { TimeRange } from './time-range-type';
 import { formatDateRange } from './date-time-utils';
+import { TimeRange } from './time-range-type';
 
 /**
  * Contract for range input label translation.

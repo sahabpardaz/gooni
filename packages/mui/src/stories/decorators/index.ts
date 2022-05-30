@@ -1,7 +1,7 @@
 export {
-  calendarDecorator,
   CalendarContext,
+  calendarDecorator,
   useCalendarContext,
 } from './calendarDecorator';
-export { themeDecorator } from './themeDecorator';
 export { storyWrapperDecorator } from './storyWrapperDecorator';
+export { themeDecorator } from './themeDecorator';

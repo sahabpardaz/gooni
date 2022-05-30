@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-import React, { useCallback, useState } from 'react';
 import {
   ButtonProps,
   FormHelperText,
@@ -8,14 +6,16 @@ import {
   TooltipProps,
 } from '@mui/material';
 import { useDelayedValue } from '@sahab/react';
+import clsx from 'clsx';
+import React, { useCallback, useState } from 'react';
 import { useMergedClasses } from 'tss-react';
 
+import { Styles } from '../react-types';
+import { makeStyles } from '../tss-mui';
 import {
   OutlinedTextField,
   Props as CustomTextFieldProps,
 } from './OutlinedTextField';
-import { Styles } from '../react-types';
-import { makeStyles } from '../tss-mui';
 
 interface OwnProps extends Omit<CustomTextFieldProps, 'color'> {
   color?: ButtonProps['color'];

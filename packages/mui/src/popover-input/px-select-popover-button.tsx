@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { Button, ButtonProps } from '@mui/material';
+import * as React from 'react';
 import { useMergedClasses } from 'tss-react';
 
 import { Styles } from '../react-types';

@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom/extend-expect';
 
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { mock } from 'jest-mock-extended';
+import React from 'react';
 
 import { PopoverButton } from './px-popover-button';
 import { PopoverInput } from './px-popover-input';

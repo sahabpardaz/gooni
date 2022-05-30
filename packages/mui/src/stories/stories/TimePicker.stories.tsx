@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Moment } from 'moment';
+import * as React from 'react';
 
 import { TimePicker as PxTimePicker, TimePickerProps } from '../..';
 

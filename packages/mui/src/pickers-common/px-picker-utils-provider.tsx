@@ -1,9 +1,9 @@
 import MomentUtils from '@date-io/moment';
-import React from 'react';
 import { LocalizationProvider } from '@mui/lab';
+import React from 'react';
 
-import JalaaliUtils from './px-jalali-utils';
 import { CalendarTypes, LanguageTypes } from '../constant-types';
+import JalaaliUtils from './px-jalali-utils';
 
 interface OwnProps {
   calendar: CalendarTypes;

@@ -1,4 +1,5 @@
-import ReactResizeDetector from 'react-resize-detector';
+import { Popper, PopperProps } from '@mui/material';
+import type { Instance as PopperJs } from '@popperjs/core';
 import clsx from 'clsx';
 import React, {
   Fragment,
@@ -7,13 +8,12 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { Popper, PopperProps } from '@mui/material';
-import type { Instance as PopperJs } from '@popperjs/core';
+import ReactResizeDetector from 'react-resize-detector';
 import { useMergedClasses } from 'tss-react';
 
-import { PopoverInputContextProvider } from './px-popover-input-context';
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
+import { PopoverInputContextProvider } from './px-popover-input-context';
 
 interface RendererParams {
   onOpen: () => void;

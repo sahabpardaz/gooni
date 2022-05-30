@@ -1,14 +1,14 @@
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
 import { useMergedClasses } from 'tss-react';
 
+import { Styles } from '../react-types';
+import { makeStyles } from '../tss-mui';
 import { Props as PxPopoverProps, PxPopover } from './px-popover';
 import {
   Props as PxSelectPopoverButtonProps,
   PxSelectPopoverButton,
 } from './px-select-popover-button';
-import { Styles } from '../react-types';
-import { makeStyles } from '../tss-mui';
 
 interface OwnProps extends Omit<PxPopoverProps, 'renderer' | 'classes'> {
   buttonContent?: React.ReactNode;

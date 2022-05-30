@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { useControlledState } from '@react-stately/utils';
+import * as React from 'react';
 
 export interface UseBooleanStateParams {
   initialValue?: boolean;

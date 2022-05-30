@@ -1,9 +1,9 @@
 import {
+  alpha,
+  createTheme,
   Direction,
   PaletteMode,
   ThemeOptions,
-  alpha,
-  createTheme,
 } from '@mui/material';
 import { grey, red } from '@mui/material/colors';
 
