@@ -26,6 +26,6 @@ export const product = <N extends number>(
   if (n === 0) {
     return [];
   }
-  const fn = (...items: any[]) => [...items];
+  const fn = (...items: any[]) => items;
   return liftN(n, fn)(...(args as Take<typeof n, any[]>));
 };

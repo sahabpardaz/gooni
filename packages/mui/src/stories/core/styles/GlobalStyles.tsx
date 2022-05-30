@@ -1,6 +1,6 @@
+import { Global as EmotionGlobalStyles } from '@emotion/react';
 import { useTheme } from '@mui/material';
-import React, { useEffect } from 'react';
-import { GlobalStyles as TssGlobalStyles } from 'tss-react';
+import { useEffect } from 'react';
 
 export function GlobalStyles() {
   const theme = useTheme();
@@ -14,10 +14,12 @@ export function GlobalStyles() {
   }, [direction]);
 
   return (
-    <TssGlobalStyles
+    <EmotionGlobalStyles
       styles={{
         html: {},
         body: {
+          fontSize: '0.875rem',
+          lineHeight: '1.43',
           direction: 'ltr', // automatically changes to `rtl` based on theme.
         },
       }}

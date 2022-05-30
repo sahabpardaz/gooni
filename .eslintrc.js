@@ -1,4 +1,10 @@
 module.exports = {
   extends: ['react-app'],
-  ignorePatterns: ['dist', 'build', 'node_modules', '.storybook'],
+  ignorePatterns: [
+    'dist',
+    'build',
+    'node_modules',
+    '.storybook',
+    'storybook-static',
+  ],
 };

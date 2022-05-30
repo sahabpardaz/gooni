@@ -1,5 +1,5 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { ToggleButton } from './index';
 import { Input } from './input';

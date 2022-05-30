@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import moment from 'moment';
-import React from 'react';
 
 import { TimePicker } from '.';
 import { CalendarTypes, LanguageTypes } from '../constant-types';

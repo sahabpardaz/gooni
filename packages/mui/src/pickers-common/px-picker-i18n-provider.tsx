@@ -1,5 +1,5 @@
 import { DateTimePickerProps } from '@mui/lab';
-import { DateTimeValidationError } from '@mui/lab/internal/pickers/date-time-utils';
+import { DateTimeValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateTimeValidation';
 import React, { createContext, ReactNode, useContext } from 'react';
 
 export type PickerLabel = Pick<

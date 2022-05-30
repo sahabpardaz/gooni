@@ -3,6 +3,6 @@
   "include": ["src", "types"],
   "compilerOptions": {
     "rootDir": "./src",
-    "noImplicitReturns": false
+    "jsx": "react-jsx"
   }
 }

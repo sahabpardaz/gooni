@@ -28,7 +28,7 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "lint": "eslint --max-warnings=0 \"**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install",
-    "storybook": "yarn lerna run storybook --scope=stories --stream",
+    "storybook": "yarn lerna run storybook --scope=@sahab/mui --stream",
     "prepublishOnly": "yarn format:check && yarn lint && lerna run prepublishOnly --stream",
     "test": "lerna run test --stream --parallel",
     "dev": "lerna run start --stream --parallel",

@@ -12,7 +12,6 @@ import { useToggleAbleState } from '@sahab/react';
 import * as React from 'react';
 import { useMergedClasses } from 'tss-react';
 
-import { PxOverlayScrollbar } from '../overlay-scrollbar';
 import {
   ClickAwayClose,
   PopoverButton,
@@ -152,7 +151,7 @@ export function PxCheckListFilter<V extends string>(props: Props<V>) {
                 </Grid>
               )}
               <Grid item xs={12} {...optionsGridProps}>
-                <Box component={PxOverlayScrollbar} width="100%">
+                <Box width="100%">
                   <CheckboxList
                     classes={{
                       root: classes.checkboxListRoot,

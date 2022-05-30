@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import Moment from 'moment';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import {
   CalendarTypes,
