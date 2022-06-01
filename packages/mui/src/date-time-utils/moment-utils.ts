@@ -1,26 +1,25 @@
 import momentBase from 'moment';
 import momentJalaali from 'moment-jalaali';
-
-import { CalendarTypes, defaultLocale } from '../constant-types';
+import { Locale } from '../constant-types';
 
 export const moment: Function =
-  defaultLocale.calendar === CalendarTypes.jalaali ? momentJalaali : momentBase;
+  Locale.defaultLocale === Locale.fa ? momentJalaali : momentBase;
 
 /**
  *
  * localize format string in Jalali or Gregorian.
  *
  * @param {string} format
- * @param {CalendarTypes} [locale=defaultLocale.calendar]
+ * @param {Locale} [locale=Locale.defaultLocale]
  * @returns {string}
  */
 export function localizeFormat(
   format: string,
-  locale: CalendarTypes = defaultLocale.calendar,
+  locale: Locale = Locale.defaultLocale,
 ) {
   format = format.replace(/[ij]/g, '');
   let prefix = '';
-  if (locale === 'jalaali') {
+  if (locale === Locale.fa) {
     format = format
       .replace(/jY+/g, `${prefix}$&`)
       .replace(/jM+/g, `${prefix}$&`)

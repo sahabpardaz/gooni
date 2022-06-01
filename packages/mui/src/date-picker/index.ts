@@ -9,4 +9,4 @@
  * @packageDocumentation
  */
 
-export { DatePicker, Props as DatePickerProps } from './px-date-picker';
+export { DatePicker, DatePickerProps } from './px-date-picker';

@@ -3,14 +3,13 @@ import { Moment } from 'moment-jalaali';
 import React, { useCallback } from 'react';
 import { useMergedClasses } from 'tss-react';
 
-import { CalendarTypes, defaultLocale, LanguageTypes } from '../constant-types';
 import { DatePicker, DatePickerProps } from '../date-picker';
 import { TimeRange } from '../date-time-utils';
 import { RangePickerLabel, useRangePickerI18nContext } from '../pickers-common';
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 
-type PickerProps = Partial<Omit<DatePickerProps, 'value' | 'onChange'>>;
+type PickerProps = Partial<Omit<DatePickerProps<Moment>, 'value' | 'onChange'>>;
 
 interface OwnProps {
   value: TimeRange;
@@ -19,10 +18,8 @@ interface OwnProps {
   datePickerProps?: PickerProps;
   fromDatePickerProps?: PickerProps;
   toDatePickerProps?: PickerProps;
-  localeCalendar?: CalendarTypes;
-  localeLanguage?: LanguageTypes;
   labels?: RangePickerLabel;
-  color?: DatePickerProps['color'];
+  color?: DatePickerProps<Moment>['color'];
 }
 
 /**
@@ -56,8 +53,6 @@ export function DateRangePicker(props: Props) {
     datePickerProps,
     fromDatePickerProps,
     toDatePickerProps,
-    localeCalendar = defaultLocale.calendar,
-    localeLanguage = defaultLocale.language,
     labels,
     color = 'secondary',
   } = props;
@@ -103,15 +98,12 @@ export function DateRangePicker(props: Props) {
 
         <Grid item xs={12}>
           <DatePicker
-            clearable
             variant="dialog"
             maxDate={to || undefined}
             label={labelsWithTranslate.fromLabel}
             color={color}
             {...datePickerProps}
             {...fromDatePickerProps}
-            localeLanguage={localeLanguage}
-            localeCalendar={localeCalendar}
             value={from}
             onChange={onChangeFrom}
           />
@@ -119,15 +111,12 @@ export function DateRangePicker(props: Props) {
 
         <Grid item xs={12}>
           <DatePicker
-            clearable
             variant="dialog"
             minDate={from || undefined}
             label={labelsWithTranslate.toLabel}
             color={color}
             {...datePickerProps}
             {...toDatePickerProps}
-            localeLanguage={localeLanguage}
-            localeCalendar={localeCalendar}
             value={to}
             onChange={onChangeTo}
           />

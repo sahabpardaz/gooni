@@ -1,11 +1,10 @@
 import { Paper, PaperProps } from '@mui/material';
-import { StoryFn } from '@storybook/addons';
+import { DecoratorFunction } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
 
-import { StoryDummy } from './helpers';
-
 export const storyWrapperDecorator =
-  (style?: PaperProps['style']) => (storyFn: StoryFn<StoryFnReactReturnType>) =>
+  (style?: PaperProps['style']): DecoratorFunction<StoryFnReactReturnType> =>
+  (Story) =>
     (
       <div
         style={{
@@ -23,7 +22,7 @@ export const storyWrapperDecorator =
             ...style,
           }}
         >
-          <StoryDummy storyFn={storyFn} />
+          <Story />
         </Paper>
       </div>
     );

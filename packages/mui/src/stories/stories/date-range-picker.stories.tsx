@@ -1,30 +1,22 @@
 import { Paper, Typography } from '@mui/material';
-import { Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
 
-import {
-  CalendarTypes,
-  DateRangePicker,
-  LanguageTypes,
-  RangePickerI18nProvider,
-  TimeRange,
-} from '../..';
-import { calendarDecorator, useCalendarContext } from '../decorators';
+import { DateRangePicker, TimeRange } from '../..';
+import { calendarDecorator } from '../decorators';
 
 export default {
-  title: 'DateRangePicker',
+  title: 'Date Picker/DateRangePicker',
   decorators: [calendarDecorator()],
 } as Meta;
 
-export const JalaaliCalendar = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
+const Template: Story = (args) => {
   const [value, onChange] = useState<TimeRange>({ to: null, from: null });
 
   return (
     <Fragment>
       <Paper style={{ width: 400, margin: 32 }}>
-        <DateRangePicker value={value} onChange={onChange} />
+        <DateRangePicker value={value} onChange={onChange} {...args} />
       </Paper>
 
       <Paper style={{ width: 400, margin: 32, padding: 16 }}>
@@ -42,85 +34,14 @@ export const JalaaliCalendar = () => {
   );
 };
 
-export const EnglishGregorianCalendar = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('en');
-  const [value, onChange] = useState<TimeRange>({ to: null, from: null });
-  return (
-    <Fragment>
-      <Paper style={{ width: 400, margin: 32 }}>
-        <DateRangePicker
-          value={value}
-          onChange={onChange}
-          localeCalendar={CalendarTypes.gregorian}
-          localeLanguage={LanguageTypes.en}
-        />
-      </Paper>
-      <Paper style={{ width: 400, margin: 32, padding: 16 }}>
-        <Typography variant="body1">From date:</Typography>
-        <Typography variant="body2">
-          {value.from ? value.from.toISOString() : <br />}
-        </Typography>
-        <br />
-        <Typography variant="body1">To date:</Typography>
-        <Typography variant="body2">
-          {value.to ? value.to.toISOString() : <br />}
-        </Typography>
-      </Paper>
-    </Fragment>
-  );
-};
+export const PersianJalaaliCalendar: Story = Template.bind({});
+PersianJalaaliCalendar.decorators = [calendarDecorator('fa')];
 
-export const JalaaliCalendarWithLabels = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, onChange] = useState<TimeRange>({ to: null, from: null });
+export const EnglishGregorianCalendar: Story = Template.bind({});
+EnglishGregorianCalendar.decorators = [calendarDecorator('en')];
 
-  return (
-    <RangePickerI18nProvider value={{ resetLabel: 'خالی کردن' }}>
-      <Paper style={{ width: 400, margin: 32 }}>
-        <DateRangePicker
-          value={value}
-          onChange={onChange}
-          labels={{ fromLabel: 'ابتدا' }}
-        />
-      </Paper>
+export const PrimaryColor: Story = Template.bind({});
+PrimaryColor.args = { color: 'primary' };
 
-      <Paper style={{ width: 400, margin: 32, padding: 16 }}>
-        <Typography variant="body1">From date:</Typography>
-        <Typography variant="body2">
-          {value.from ? value.from.toISOString() : <br />}
-        </Typography>
-        <br />
-        <Typography variant="body1">To date:</Typography>
-        <Typography variant="body2">
-          {value.to ? value.to.toISOString() : <br />}
-        </Typography>
-      </Paper>
-    </RangePickerI18nProvider>
-  );
-};
-
-export const PrimaryColor = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, onChange] = useState<TimeRange>({ to: null, from: null });
-
-  return (
-    <Paper style={{ width: 400, margin: 32 }}>
-      <DateRangePicker value={value} onChange={onChange} color="primary" />
-    </Paper>
-  );
-};
-
-export const SecondaryColor = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, onChange] = useState<TimeRange>({ to: null, from: null });
-
-  return (
-    <Paper style={{ width: 400, margin: 32 }}>
-      <DateRangePicker value={value} onChange={onChange} />
-    </Paper>
-  );
-};
+export const SecondaryColor: Story = Template.bind({});
+SecondaryColor.args = { color: 'secondary' };

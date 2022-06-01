@@ -3,14 +3,17 @@ import { Moment } from 'moment-jalaali';
 import * as React from 'react';
 import { useMergedClasses } from 'tss-react';
 
-import { CalendarTypes, defaultLocale, LanguageTypes } from '../constant-types';
 import { TimeRange } from '../date-time-utils';
-import { RangePickerLabel, useRangePickerI18nContext } from '../pickers-common';
+import {
+  RangePickerLabel,
+  ThemeColorSwapperProps,
+  useRangePickerI18nContext,
+} from '../pickers-common';
 import { Styles } from '../react-types';
 import { TimePicker, TimePickerProps } from '../time-picker';
 import { makeStyles } from '../tss-mui';
 
-type PickerProps = Partial<Omit<TimePickerProps, 'value' | 'onChange'>>;
+type PickerProps = Partial<Omit<TimePickerProps<Moment>, 'value' | 'onChange'>>;
 
 interface OwnProps {
   value: TimeRange;
@@ -19,9 +22,7 @@ interface OwnProps {
   fromTimePickerProps?: PickerProps;
   toTimePickerProps?: PickerProps;
   labels?: RangePickerLabel;
-  color?: TimePickerProps['color'];
-  localeLanguage?: LanguageTypes;
-  localeCalender?: CalendarTypes;
+  color?: ThemeColorSwapperProps['color'];
   gridContainerProps?: GridProps;
 }
 
@@ -59,8 +60,6 @@ export function TimeRangePicker(props: Props) {
     toTimePickerProps,
     labels,
     color = 'secondary',
-    localeLanguage = defaultLocale.language,
-    localeCalender = defaultLocale.calendar,
   } = props;
 
   const { from, to } = value;
@@ -109,7 +108,6 @@ export function TimeRangePicker(props: Props) {
 
         <Grid className={classes.fromTime} item xs={12}>
           <TimePicker
-            clearable
             variant="dialog"
             label={labelsWithTranslate.fromLabel}
             color={color}
@@ -117,14 +115,11 @@ export function TimeRangePicker(props: Props) {
             {...fromTimePickerProps}
             value={from}
             onChange={onChangeFrom}
-            localeCalendar={localeCalender}
-            localeLanguage={localeLanguage}
           />
         </Grid>
 
         <Grid className={classes.toTime} item xs={12}>
           <TimePicker
-            clearable
             variant="dialog"
             label={labelsWithTranslate.toLabel}
             color={color}
@@ -132,8 +127,6 @@ export function TimeRangePicker(props: Props) {
             {...toTimePickerProps}
             value={to}
             onChange={onChangeTo}
-            localeCalendar={localeCalender}
-            localeLanguage={localeLanguage}
           />
         </Grid>
       </Grid>

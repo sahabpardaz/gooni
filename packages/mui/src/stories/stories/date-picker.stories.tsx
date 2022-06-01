@@ -1,109 +1,31 @@
-import { Meta } from '@storybook/react';
-import Moment from 'moment';
+import { Meta, Story } from '@storybook/react';
+import { DateTime } from 'luxon';
 import { useState } from 'react';
-
-import {
-  CalendarTypes,
-  DatePicker,
-  LanguageTypes,
-  PickerI18nProvider,
-} from '../..';
-import { calendarDecorator, useCalendarContext } from '../decorators';
+import { DatePicker, DatePickerProps } from '../..';
+import { calendarDecorator } from '../decorators';
 
 export default {
-  title: 'Date Picker',
+  title: 'Date Picker/Date Picker',
   decorators: [calendarDecorator()],
 } as Meta;
 
-export const Simple = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
+const Template = (
+  args: Omit<DatePickerProps<DateTime>, 'value' | 'onChange'>,
+) => {
+  const [value, setDateValue] = useState<DateTime | null>(
+    DateTime.fromISO('2019/1/1'),
   );
-  return <DatePicker value={value} onChange={setDateValue} />;
+  return <DatePicker value={value} onChange={setDateValue} {...args} />;
 };
 
-export const ColorPrimary = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return <DatePicker value={value} onChange={setDateValue} color="primary" />;
-};
+export const ColorPrimary: Story = Template.bind({});
+ColorPrimary.args = { color: 'primary' };
 
-export const ColorSecondary = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return <DatePicker value={value} onChange={setDateValue} />;
-};
+export const ColorSecondary: Story = Template.bind({});
+ColorPrimary.args = { color: 'secondary' };
 
-export const SimpleGregorian = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('en');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return (
-    <DatePicker
-      value={value}
-      onChange={setDateValue}
-      localeLanguage={LanguageTypes.en}
-      localeCalendar={CalendarTypes.gregorian}
-    />
-  );
-};
+export const EnglishCalender: Story = Template.bind({});
+EnglishCalender.decorators = [calendarDecorator('en')];
 
-export const SimpleWithLabel = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return (
-    <DatePicker
-      value={value}
-      localeLanguage={LanguageTypes.fa}
-      localeCalendar={CalendarTypes.jalaali}
-      onChange={setDateValue}
-      {...{
-        cancelText: 'کنسل',
-        okText: 'انتخاب',
-        clearText: 'پاک کردن',
-        errorsText: {
-          invalidDate: 'تاریخ انتخابی اشتباه است.',
-          maxDate: 'تاریخ انتخابی نباید بیشتر از حد مشخص شده باشد.',
-          minDate: 'تاریخ انتخابی نباید کمتر از حد مشخص شده باشد.',
-        },
-      }}
-    />
-  );
-};
-
-export const SimpleWithLabelsPropsAndContext = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return (
-    <PickerI18nProvider value={{ cancelText: 'لغو کرن' }}>
-      <DatePicker
-        value={value}
-        localeLanguage={LanguageTypes.fa}
-        localeCalendar={CalendarTypes.jalaali}
-        onChange={setDateValue}
-        {...{
-          clearText: 'پاک کردن',
-          invalidDateMessage: 'تاریخ انتخابی اشتباه است.',
-          maxDateMessage: 'تاریخ انتخابی نباید بیشتر از حد مشخص شده باشد.',
-          minDateMessage: 'تاریخ انتخابی نباید کمتر از حد مشخص شده باشد.',
-        }}
-      />
-    </PickerI18nProvider>
-  );
-};
+export const PersianCalender: Story = Template.bind({});
+PersianCalender.decorators = [calendarDecorator('fa')];

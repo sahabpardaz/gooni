@@ -1,6 +1,6 @@
 import { default as Moment, default as moment } from 'moment';
+import { Locale } from '../constant-types';
 
-import { CalendarTypes } from '../constant-types';
 import { formatDate } from './date-time-utils';
 import {
   formatDateRange,
@@ -60,10 +60,7 @@ describe('DateTimeUtils', () => {
       expect(result).toBe('jYYYY/jMM/jDD HH:mm');
     });
     it('should return correct format (gregorian)', () => {
-      const result = localizeFormat(
-        'YYYY/MM/DD HH:mm',
-        CalendarTypes.gregorian,
-      );
+      const result = localizeFormat('YYYY/MM/DD HH:mm', Locale.en);
       expect(result).toBe('YYYY/MM/DD HH:mm');
     });
   });
@@ -144,8 +141,7 @@ describe('DateTimeUtils', () => {
       const inputRangeValue = getRangeInputValue(
         timeRange,
         labels,
-        (timeRange) =>
-          formatDateRange(timeRange, 'YYYY', CalendarTypes.gregorian),
+        (timeRange) => formatDateRange(timeRange, 'YYYY', Locale.en),
       );
 
       expect(inputRangeValue).toBe('cancel');
@@ -165,20 +161,15 @@ describe('DateTimeUtils', () => {
           return `${formatDate(
             to!,
             'YY/M',
-            CalendarTypes.gregorian,
-          )} is greater than ${formatDate(
-            from!,
-            'YY/M',
-            CalendarTypes.gregorian,
-          )}`;
+            Locale.en,
+          )} is greater than ${formatDate(from!, 'YY/M', Locale.en)}`;
         },
       };
 
       const inputRangeValue = getRangeInputValue(
         timeRange,
         labels,
-        (timeRange) =>
-          formatDateRange(timeRange, 'YYYY', CalendarTypes.gregorian),
+        (timeRange) => formatDateRange(timeRange, 'YYYY', Locale.en),
       );
 
       expect(inputRangeValue).toBe('21/4 is greater than 20/1');

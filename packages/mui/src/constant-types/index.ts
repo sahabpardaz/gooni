@@ -9,9 +9,4 @@
  * @packageDocumentation
  */
 
-export {
-  CalendarTypes,
-  defaultLocale,
-  LanguageTypes,
-  Locale,
-} from './px-constant-types';
+export { Locale } from './constant-types';

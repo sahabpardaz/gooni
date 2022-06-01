@@ -14,7 +14,7 @@ const useDateRangeInput = () => {
 };
 
 export default {
-  title: 'DateRange Input',
+  title: 'Date Picker/DateRange Input',
   decorators: [storyWrapperDecorator()],
 } as Meta;
 

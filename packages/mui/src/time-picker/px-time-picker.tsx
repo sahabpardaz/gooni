@@ -1,22 +1,19 @@
-import { TimePicker as MuiTimePicker, TimePickerProps } from '@mui/lab';
-import { Moment } from 'moment-jalaali';
-
-import { CalendarTypes, defaultLocale, LanguageTypes } from '../constant-types';
 import {
-  PickerLabel,
-  PickersUtilsProvider,
-  PickerThemeProvider,
+  TimePicker as MuiTimePicker,
+  TimePickerProps,
+} from '@mui/x-date-pickers';
+import { SubsetPartial } from '@sahab/utils';
+import {
+  ThemeColorSwapper,
+  ThemeColorSwapperProps,
   usePickerProps,
 } from '../pickers-common';
 
-interface OwnProps extends Omit<TimePickerProps<Moment>, 'renderInput'> {
+interface Props<In, Out = In>
+  extends SubsetPartial<TimePickerProps<In, Out>, 'renderInput'> {
   // there should added more variants later
   variant?: 'dialog';
-  renderInput?: TimePickerProps['renderInput'];
-  color?: 'primary' | 'secondary';
-  errorsText?: PickerLabel['errors'];
-  localeCalendar?: CalendarTypes;
-  localeLanguage?: LanguageTypes;
+  color?: ThemeColorSwapperProps['color'];
 }
 
 /**
@@ -24,7 +21,7 @@ interface OwnProps extends Omit<TimePickerProps<Moment>, 'renderInput'> {
  *
  * @public
  */
-export type Props = OwnProps;
+export type { Props as TimePickerProps };
 
 /**
  *A component that render timePicker using material-ui time picker
@@ -40,26 +37,18 @@ export type Props = OwnProps;
  *    return <TimePicker value={value} onChange={setValue}/>
  * }
  */
-export function TimePicker(props: Props) {
-  const {
-    color = 'secondary',
-    localeCalendar = defaultLocale.calendar,
-    localeLanguage = defaultLocale.language,
-    errorsText,
-    ...muiTimePickerProps
-  } = props;
+export function TimePicker<In, Out = In>(props: Props<In, Out>) {
+  const { color = 'secondary', ...muiTimePickerProps } = props;
 
-  const commonPickerProps = usePickerProps({ errorsText });
+  const commonPickerProps = usePickerProps<In, Out>();
 
   return (
-    <PickersUtilsProvider calendar={localeCalendar} language={localeLanguage}>
-      <PickerThemeProvider color={color}>
-        <MuiTimePicker
-          desktopModeMediaQuery="@media not all"
-          {...commonPickerProps}
-          {...muiTimePickerProps}
-        />
-      </PickerThemeProvider>
-    </PickersUtilsProvider>
+    <ThemeColorSwapper color={color}>
+      <MuiTimePicker
+        desktopModeMediaQuery="@media not all"
+        {...commonPickerProps}
+        {...muiTimePickerProps}
+      />
+    </ThemeColorSwapper>
   );
 }

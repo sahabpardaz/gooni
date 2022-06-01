@@ -9,4 +9,4 @@
  * @packageDocumentation
  */
 
-export { Props as TimePickerProps, TimePicker } from './px-time-picker';
+export { TimePicker, TimePickerProps } from './px-time-picker';

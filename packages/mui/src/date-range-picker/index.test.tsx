@@ -1,24 +1,29 @@
 import { fireEvent, render } from '@testing-library/react';
 import Moment from 'moment';
-
-import { CalendarTypes, LanguageTypes } from '../constant-types';
+import { Locale } from '../constant-types';
 import { TimeRange } from '../date-time-utils';
 import { RangePickerI18nProvider } from '../pickers-common';
+import { DefaultMuiPickerLocalization } from '../pickers-common/default-mui-picker-localization';
 import { DateRangePicker, DateRangePickerProps } from './index';
 
 const calenderEnabledDaySelector =
   'button.MuiPickersDay-root:not(.MuiPickersDay-hiddenDaySpacingFiller):not(.Mui-disabled)';
 const calenderDisabledDaySelector =
   'button.MuiPickersDay-root:not(.MuiPickersDay-hiddenDaySpacingFiller).Mui-disabled';
+
 const getWrapper = (
   value: TimeRange = { to: null, from: null },
   onChange: Function = () => {},
   props: Omit<DateRangePickerProps, 'value' | 'onChange'> = {},
+  locale: Locale = Locale.defaultLocale,
 ) => {
   return render(
-    <DateRangePicker value={value} onChange={onChange as any} {...props} />,
+    <DefaultMuiPickerLocalization locale={locale}>
+      <DateRangePicker value={value} onChange={onChange as any} {...props} />,
+    </DefaultMuiPickerLocalization>,
   );
 };
+
 describe('DateRangePicker', () => {
   it('should render two input with proper value', () => {
     const wrapper = getWrapper({
@@ -83,10 +88,8 @@ describe('DateRangePicker', () => {
         to: Moment('2018/1/2'),
       },
       () => {},
-      {
-        localeLanguage: LanguageTypes.en,
-        localeCalendar: CalendarTypes.gregorian,
-      },
+      {},
+      Locale.en,
     );
 
     const from = wrapper.queryAllByDisplayValue('01/01/2018');

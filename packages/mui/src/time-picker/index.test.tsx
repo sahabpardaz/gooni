@@ -1,12 +1,17 @@
+import { SubsetPartial } from '@sahab/utils';
 import { fireEvent, render, screen } from '@testing-library/react';
-import moment from 'moment';
-
+import moment, { Moment } from 'moment';
 import { TimePicker } from '.';
-import { CalendarTypes, LanguageTypes } from '../constant-types';
-import { Props as TimePickerProps } from './px-time-picker';
+import { Locale } from '../constant-types';
+import { DefaultMuiPickerLocalization } from '../pickers-common/default-mui-picker-localization';
+import { TimePickerProps } from './px-time-picker';
 
 const renderTimePicker = (
-  props: Partial<TimePickerProps> = {} as TimePickerProps,
+  props: SubsetPartial<
+    TimePickerProps<Moment>,
+    'value' | 'onChange'
+  > = {} as TimePickerProps<Moment>,
+  locale: Locale = Locale.en,
 ) => {
   const {
     value = moment('22:55', 'HH:mm'),
@@ -15,13 +20,9 @@ const renderTimePicker = (
   } = props;
 
   render(
-    <TimePicker
-      localeCalendar={CalendarTypes.gregorian}
-      localeLanguage={LanguageTypes.en}
-      value={value}
-      onChange={onChange}
-      {...restProps}
-    />,
+    <DefaultMuiPickerLocalization locale={locale}>
+      <TimePicker value={value} onChange={onChange} {...restProps} />
+    </DefaultMuiPickerLocalization>,
   );
 };
 
@@ -56,7 +57,7 @@ describe('TimePicker', () => {
   });
 
   it('should override default label', () => {
-    renderTimePicker({ okText: 'Select' });
+    renderTimePicker({});
     const input = screen.getByRole('textbox');
     fireEvent.click(input as HTMLInputElement);
 
@@ -77,9 +78,7 @@ describe('TimePicker', () => {
   });
 
   it('should show time in persian locale', () => {
-    renderTimePicker({
-      localeLanguage: LanguageTypes.fa,
-    });
+    renderTimePicker({}, Locale.fa);
     const result = screen.getAllByDisplayValue('۱۰:۵۵ بعد از ظهر');
 
     expect(result).toHaveLength(1);
