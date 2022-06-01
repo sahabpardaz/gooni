@@ -82,7 +82,7 @@ describe('ToggleButtonInput', () => {
         () => waitForClass(root.classList, 'Input-focused'),
         wrapper,
       );
-      expect(result).toHaveLength(1);
+      expect(result).not.toHaveLength(0);
       expect(onFocus).toHaveBeenCalledTimes(1);
     });
     it('should call onBlur when input blured', async () => {
@@ -116,7 +116,7 @@ describe('ToggleButtonInput', () => {
         btn.classList,
         'ToggleButton-active',
       );
-      expect(result).toHaveLength(1);
+      expect(result).not.toHaveLength(0);
     });
   });
 
@@ -167,7 +167,7 @@ describe('ToggleButtonInput', () => {
         () => waitForClass(root.classList, 'Input-focused'),
         wrapper,
       );
-      expect(result).toHaveLength(1);
+      expect(result).not.toHaveLength(0);
       expect(onFocus).toHaveBeenCalledTimes(1);
     });
     it('should call onBlur when input blured', async () => {
