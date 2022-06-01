@@ -588,7 +588,7 @@ const CustomInput = (props: CustomTextFieldProps) => {
       <Divider
         orientation="vertical"
         absolute
-        style={{
+        sx={{
           height: '50%',
           left: '50%',
           backgroundColor: '#000000',

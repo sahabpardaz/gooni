@@ -94,29 +94,31 @@ export const ToggleButton = <T extends string>(props: Props<T>) => {
   );
 };
 
-const useStyles = makeStyles({ name: 'ToggleButton' })((theme) => ({
-  root: {
-    height: '100%',
-    borderRadius: 0,
-    color: theme.palette.grey[500],
-    minWidth: 0,
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.grey[500], 0.2),
+const useStyles = makeStyles<void, 'active'>({ name: 'ToggleButton' })(
+  (theme, _, classes) => ({
+    root: {
+      height: '100%',
+      borderRadius: 0,
+      color: theme.palette.grey[500],
+      minWidth: 0,
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.grey[500], 0.2),
+      },
     },
-  },
-  active: {},
-  colorPrimary: {
-    '$active&': {
-      backgroundColor: alpha(theme.palette.primary.main, 0.2),
-      color: theme.palette.primary.main,
+    active: {},
+    colorPrimary: {
+      [`&.${classes.active}`]: {
+        backgroundColor: alpha(theme.palette.primary.main, 0.2),
+        color: theme.palette.primary.main,
+      },
     },
-  },
-  colorSecondary: {
-    '$active&': {
-      backgroundColor: alpha(theme.palette.secondary.main, 0.2),
-      color: theme.palette.secondary.main,
+    colorSecondary: {
+      [`&.${classes.active}`]: {
+        backgroundColor: alpha(theme.palette.secondary.main, 0.2),
+        color: theme.palette.secondary.main,
+      },
     },
-  },
-  tooltip: {},
-}));
+    tooltip: {},
+  }),
+);
 type StyleProps = Styles<typeof useStyles>;

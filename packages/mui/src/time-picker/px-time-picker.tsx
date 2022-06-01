@@ -1,6 +1,5 @@
 import { TimePicker as MuiTimePicker, TimePickerProps } from '@mui/lab';
 import { Moment } from 'moment-jalaali';
-import * as React from 'react';
 
 import { CalendarTypes, defaultLocale, LanguageTypes } from '../constant-types';
 import {

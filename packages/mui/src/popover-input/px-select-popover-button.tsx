@@ -26,7 +26,9 @@ export const PxSelectPopoverButton = React.forwardRef<HTMLButtonElement, Props>(
   },
 );
 
-const useStyles = makeStyles({ name: 'PxSelectPopoverButton' })(() => ({
+const useStyles = makeStyles<void, 'disabled'>({
+  name: 'PxSelectPopoverButton',
+})((_t, _p, classes) => ({
   root: {
     color: 'rgba(0, 0, 0, 0.54)',
     width: '100%',
@@ -36,7 +38,7 @@ const useStyles = makeStyles({ name: 'PxSelectPopoverButton' })(() => ({
     '&:hover': {
       backgroundColor: 'transparent',
     },
-    '$disabled&': {
+    [`&.${classes.disabled}`]: {
       color: 'rgba(0, 0, 0, 0.38)',
     },
   },

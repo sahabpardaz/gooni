@@ -1,6 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
 import Moment from 'moment';
-import React from 'react';
 
 import { DatePicker, DatePickerProps } from './index';
 

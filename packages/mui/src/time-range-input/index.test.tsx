@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import * as React from 'react';
 
 import { TimeRangeInput } from '.';
 import { moment } from '../date-time-utils';

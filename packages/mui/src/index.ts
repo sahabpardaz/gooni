@@ -4,7 +4,6 @@ export * from './date-picker';
 export * from './date-range-input';
 export * from './date-range-picker';
 export * from './date-time-utils';
-export * from './overlay-scrollbar';
 export * from './pickers-common';
 export * from './popover-input';
 export * from './react-types';

@@ -1,8 +1,8 @@
-import { ButtonProps } from '@mui/material';
 import React, { createContext, useContext } from 'react';
+import { InputProps } from './input';
 
 export interface ToggleButtonContextType<T extends string> {
-  color: ButtonProps['color'];
+  color: InputProps['color'];
   onClick: (value: T) => void;
   disabled?: boolean;
   value: T | null;

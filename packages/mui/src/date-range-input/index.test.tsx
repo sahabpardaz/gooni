@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 import Moment from 'moment';
-import React from 'react';
 
 import { formatDateRange, TimeRange } from '../date-time-utils';
 import { RangeInputI18nProvider } from '../pickers-common';
