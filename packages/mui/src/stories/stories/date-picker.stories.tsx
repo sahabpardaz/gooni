@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { DateTime } from 'luxon';
+import { parseISO } from 'date-fns-jalali';
 import { useState } from 'react';
 import { DatePicker, DatePickerProps } from '../..';
 import { calendarDecorator } from '../decorators';
@@ -9,12 +9,8 @@ export default {
   decorators: [calendarDecorator()],
 } as Meta;
 
-const Template = (
-  args: Omit<DatePickerProps<DateTime>, 'value' | 'onChange'>,
-) => {
-  const [value, setDateValue] = useState<DateTime | null>(
-    DateTime.fromISO('2019/1/1'),
-  );
+const Template = (args: Omit<DatePickerProps<Date>, 'value' | 'onChange'>) => {
+  const [value, setDateValue] = useState<Date | null>(parseISO('2019/1/1'));
   return <DatePicker value={value} onChange={setDateValue} {...args} />;
 };
 

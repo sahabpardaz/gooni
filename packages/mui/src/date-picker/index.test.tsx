@@ -1,5 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import moment, { Moment } from 'moment';
+import { Locale } from '../constant-types';
+import { DefaultMuiPickerLocalization } from '../pickers-common/default-mui-picker-localization';
 
 import { DatePicker, DatePickerProps } from './index';
 
@@ -8,7 +10,9 @@ const getWrapper = (
   props: Omit<DatePickerProps<Moment>, 'value' | 'onChange'> = {},
 ) =>
   render(
-    <DatePicker value={moment('2019/1/1')} onChange={fn as any} {...props} />,
+    <DefaultMuiPickerLocalization locale={Locale.defaultLocale}>
+      <DatePicker value={moment('2019/1/1')} onChange={fn as any} {...props} />,
+    </DefaultMuiPickerLocalization>,
   );
 describe('DatePicker', () => {
   it('should set value in input', () => {

@@ -1368,6 +1368,13 @@
   resolved "https://registry.npmjs.org/@date-io/core/-/core-2.14.0.tgz#03e9b9b9fc8e4d561c32dd324df0f3ccd967ef14"
   integrity sha512-qFN64hiFjmlDHJhu+9xMkdfDG2jLsggNxKXglnekUpXSq8faiqZgtHm2lsHCUuaPDTV6wuXHcCl8J1GQ5wLmPw==
 
+"@date-io/date-fns-jalali@^2.14.0":
+  version "2.14.0"
+  resolved "https://registry.npmjs.org/@date-io/date-fns-jalali/-/date-fns-jalali-2.14.0.tgz#a3b6933e03cc3f063945a44899db5429224a1e05"
+  integrity sha512-uQFI6s63NqtTg6xfBlgb7Lk/QTqw35BY8RHfD4eXYs4wl13YlJAG9INAqnMlE4AbXmwSOaDxNHoTA/FL0apkiw==
+  dependencies:
+    "@date-io/core" "^2.14.0"
+
 "@date-io/date-fns@^2.11.0", "@date-io/date-fns@^2.14.0":
   version "2.14.0"
   resolved "https://registry.npmjs.org/@date-io/date-fns/-/date-fns-2.14.0.tgz#92ab150f488f294c135c873350d154803cebdbea"
@@ -1382,13 +1389,6 @@
   dependencies:
     "@date-io/core" "^2.14.0"
 
-"@date-io/jalaali@^2.13.1":
-  version "2.13.1"
-  resolved "https://registry.yarnpkg.com/@date-io/jalaali/-/jalaali-2.13.1.tgz#5c167c652542f001cd80150483a38ecbfb0eb022"
-  integrity sha512-OrYXPbdA+ZP4H0Fj79mRfeoBqwM/N2SRz05BUzBs41dOYz/aYgf24/8uCTkqL14S7SAt2tr07wlvyQqjQkpoFg==
-  dependencies:
-    "@date-io/moment" "^2.13.1"
-
 "@date-io/luxon@^2.11.1", "@date-io/luxon@^2.14.0":
   version "2.14.0"
   resolved "https://registry.npmjs.org/@date-io/luxon/-/luxon-2.14.0.tgz#cd1641229e00a899625895de3a31e3aaaf66629f"
@@ -1396,7 +1396,7 @@
   dependencies:
     "@date-io/core" "^2.14.0"
 
-"@date-io/moment@^2.11.0", "@date-io/moment@^2.13.1", "@date-io/moment@^2.14.0":
+"@date-io/moment@^2.11.0", "@date-io/moment@^2.14.0":
   version "2.14.0"
   resolved "https://registry.npmjs.org/@date-io/moment/-/moment-2.14.0.tgz#8300abd6ae8c55d8edee90d118db3cef0b1d4f58"
   integrity sha512-VsoLXs94GsZ49ecWuvFbsa081zEv2xxG7d+izJsqGa2L8RPZLlwk27ANh87+SNnOUpp+qy2AoCAf0mx4XXhioA==
@@ -4542,11 +4542,6 @@
   version "4.14.182"
   resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
   integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
-
-"@types/luxon@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.npmjs.org/@types/luxon/-/luxon-2.3.2.tgz#8a3f2cdd4858ce698b56cd8597d9243b8e9d3c65"
-  integrity sha512-WOehptuhKIXukSUUkRgGbj2c997Uv/iUgYgII8U7XLJqq9W2oF0kQ6frEznRQbdurioz+L/cdaIm4GutTQfgmA==
 
 "@types/mdast@^3.0.0":
   version "3.0.10"
@@ -7769,6 +7764,16 @@ data-urls@^2.0.0:
     abab "^2.0.3"
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
+
+date-fns-jalali@^2.28.0-0:
+  version "2.28.0-0"
+  resolved "https://registry.npmjs.org/date-fns-jalali/-/date-fns-jalali-2.28.0-0.tgz#aba9875232423643fb09c4937863b648d47c81d4"
+  integrity sha512-Vc13J1N4/gD12plGzR+b1kpagPu/LxvaIQvjLS3jxieh0lHRdWZ27e/Q1FSPu/JoC7iGSWbhI9Dq06SrGMywKQ==
+
+date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.npmjs.org/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
 dateformat@^3.0.0:
   version "3.0.3"
@@ -12265,11 +12270,6 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
-
-luxon@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.npmjs.org/luxon/-/luxon-2.4.0.tgz#9435806545bb32d4234dab766ab8a3d54847a765"
-  integrity sha512-w+NAwWOUL5hO0SgwOHsMBAmZ15SoknmQXhSO0hIbJCAmPKSsGeK8MlmhYh2w6Iib38IxN2M+/ooXWLbeis7GuA==
 
 lz-string@^1.4.4:
   version "1.4.4"

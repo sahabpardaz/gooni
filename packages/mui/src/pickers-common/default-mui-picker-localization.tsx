@@ -1,5 +1,7 @@
+import DateFnsAdapter from '@date-io/date-fns';
+import DateFnsJalaliAdapterBase from '@date-io/date-fns-jalali';
 import { LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
-import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
+import * as DateFnsJalali from 'date-fns-jalali';
 import { ReactNode } from 'react';
 import { Locale } from '../constant-types';
 
@@ -8,12 +10,22 @@ interface Props {
   children: ReactNode;
 }
 
+class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
+  public getWeekdays = () => {
+    const now = new Date();
+    return DateFnsJalali.eachDayOfInterval({
+      start: DateFnsJalali.startOfWeek(now, { locale: this.locale }),
+      end: DateFnsJalali.endOfWeek(now, { locale: this.locale }),
+    }).map((day) => this.formatByString(day, 'EEEEE'));
+  };
+}
+
 export function DefaultMuiPickerLocalization(props: Props) {
   const { locale, children } = props;
+
   return (
     <LocalizationProvider
-      dateAdapter={AdapterLuxon}
-      adapterLocale={locale === 'en' ? 'en-US' : 'fa-IR'}
+      dateAdapter={locale === 'en' ? DateFnsAdapter : DateFnsJalaliAdapter}
       localeText={locale === 'en' ? undefined : persianLocaleTexts}
     >
       {children}

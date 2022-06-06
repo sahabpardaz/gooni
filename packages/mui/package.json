@@ -65,15 +65,14 @@
     "stylis-plugin-rtl": "^2.1.1"
   },
   "dependencies": {
-    "@date-io/jalaali": "^2.13.1",
+    "@date-io/date-fns": "^2.14.0",
+    "@date-io/date-fns-jalali": "^2.14.0",
     "@sahab/react": "^0.1.0",
     "@sahab/utils": "^0.2.0",
     "@types/moment-jalaali": "^0.7.5",
-    "@types/luxon": "^2.3.2",
     "moment": "^2.29.1",
     "moment-jalaali": "^0.9.4",
     "react-resize-detector": "^6.7.7",
-    "luxon": "^2.4.0",
     "tss-react": "^3.3.2"
   }
 }
