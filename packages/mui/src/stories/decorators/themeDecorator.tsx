@@ -7,10 +7,9 @@ import { TssCacheProvider } from 'tss-react';
 import { muiCacheRtl, tssCacheRtl } from '../core/emotion';
 import { GlobalStyles } from '../core/styles/GlobalStyles';
 import { ltrTheme, rtlTheme } from '../core/theme';
-import { StoryDummy } from './helpers';
 
 export const themeDecorator: DecoratorFunction<StoryFnReactReturnType> = (
-  storyFn,
+  Story,
   context,
 ) => {
   const direction = context?.globals.locale ?? 'en';
@@ -21,7 +20,7 @@ export const themeDecorator: DecoratorFunction<StoryFnReactReturnType> = (
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <GlobalStyles />
-          <StoryDummy storyFn={storyFn} />
+          <Story />
         </ThemeProvider>
       </CacheProvider>
     </TssCacheProvider>

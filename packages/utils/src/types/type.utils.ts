@@ -4,10 +4,9 @@ export type Nil = null | undefined;
  * @type FilterKeyByValueType filters a type based on value
  * @example FilterKeyByValueType<Person, number> -> {age: 10}
  */
-export type FilterKeyByValueType<Base, ValueType> = Pick<
-  Base,
-  { [key in keyof Base]: Base[key] extends ValueType ? key : never }[keyof Base]
->;
+export type FilterKeyByValueType<Base, ValueType> = {
+  [key in keyof Base]: Base[key] extends ValueType ? key : never;
+}[keyof Base];
 
 // ────────────────────────────────────────────────────────────────────────────────
 
@@ -72,3 +71,6 @@ export type ArrayElement<T extends ReadonlyArray<unknown>> =
   T extends ReadonlyArray<infer R> ? R : never;
 
 export type OmitRefType<T> = Omit<T, ' $refType'>;
+
+export type SubsetPartial<T, K extends keyof T> = Omit<T, K> &
+  Partial<Pick<T, K>>;

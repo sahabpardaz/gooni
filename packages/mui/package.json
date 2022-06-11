@@ -15,9 +15,8 @@
   "scripts": {
     "start": "utsdx watch",
     "build": "utsdx build",
-    "test:no-jsdom": "utsdx test --passWithNoTests --testPathIgnorePatterns=\"/popover-input/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
-    "test:jsdom": "utsdx test --passWithNoTests --env=jsdom --testPathPattern=\"/popover-input/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
-    "test": "yarn test:jsdom && yarn test:no-jsdom",
+    "test:all": "utsdx test --passWithNoTests --testPathIgnorePatterns=\"/popover-input/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
+    "test": "yarn test:all --env=jsdom && yarn test:all",
     "prepublishOnly": "yarn test && yarn build",
     "type:check": "yarn tsc",
     "storybook": "start-storybook -p 6006",
@@ -38,6 +37,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.83",
     "@mui/material": "^5.8.1",
+    "@mui/x-date-pickers": "^5.0.0-alpha.4",
     "@storybook/addon-essentials": "^6.5.5",
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.5.5",
@@ -52,7 +52,6 @@
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "27.0.3",
-    "@types/moment-jalaali": "^0.7.4",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-resize-detector": "^6.1.0",
@@ -66,12 +65,10 @@
     "stylis-plugin-rtl": "^2.1.1"
   },
   "dependencies": {
-    "@date-io/jalaali": "^2.13.1",
-    "@date-io/moment": "^2.13.1",
+    "@date-io/date-fns": "^2.14.0",
+    "@date-io/date-fns-jalali": "^2.14.0",
     "@sahab/react": "^0.1.0",
     "@sahab/utils": "^0.2.0",
-    "moment": "^2.29.1",
-    "moment-jalaali": "^0.9.4",
     "react-resize-detector": "^6.7.7",
     "tss-react": "^3.3.2"
   }

@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import Moment from 'moment';
 
 import { formatDateRange, TimeRange } from '../date-time-utils';
 import { RangeInputI18nProvider } from '../pickers-common';
@@ -35,7 +34,7 @@ describe('DateRangeInput', () => {
   });
   it('should render correct value in input', () => {
     const wrapper = getWrapper({
-      value: { from: Moment('2018/1/1'), to: Moment('2018/1/2') },
+      value: { from: new Date('2018/1/1'), to: new Date('2018/1/2') },
     });
     const result = wrapper.queryAllByDisplayValue(
       'from 1396/10/11 to 1396/10/12',
@@ -44,14 +43,14 @@ describe('DateRangeInput', () => {
   });
   it('should render correct value in input when there is only from value provided', () => {
     const wrapper = getWrapper({
-      value: { from: Moment('2018/1/1'), to: null },
+      value: { from: new Date('2018/1/1'), to: null },
     });
     const result = wrapper.queryAllByDisplayValue('from 1396/10/11');
     expect(result).toHaveLength(1);
   });
   it('should render correct value in input when there is to value provided', () => {
     const wrapper = getWrapper({
-      value: { from: null, to: Moment('2018/1/2') },
+      value: { from: null, to: new Date('2018/1/2') },
     });
     const result = wrapper.queryAllByDisplayValue('to 1396/10/12');
     expect(result).toHaveLength(1);
@@ -62,7 +61,7 @@ describe('DateRangeInput', () => {
         value={{ customText: 'Date Range: 1396/10/11 - 1396/10/12' }}
       >
         <DateRangeInput
-          value={{ from: Moment('2018/1/1'), to: Moment('2018/1/2') }}
+          value={{ from: new Date('2018/1/1'), to: new Date('2018/1/2') }}
           onChange={() => {}}
         />
       </RangeInputI18nProvider>,
@@ -80,7 +79,7 @@ describe('DateRangeInput', () => {
     const wrapper = render(
       <RangeInputI18nProvider value={{ customText: customFunc }}>
         <DateRangeInput
-          value={{ from: Moment('2018/1/1'), to: Moment('2018/1/2') }}
+          value={{ from: new Date('2018/1/1'), to: new Date('2018/1/2') }}
           onChange={() => {}}
         />
       </RangeInputI18nProvider>,

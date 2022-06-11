@@ -1,109 +1,59 @@
-import { Meta } from '@storybook/react';
-import Moment from 'moment';
+import DateFnsJalaliAdapter from '@date-io/date-fns-jalali';
+import { LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
+import { Meta, Story } from '@storybook/react';
+import { parseISO } from 'date-fns-jalali';
 import { useState } from 'react';
-
-import {
-  CalendarTypes,
-  DatePicker,
-  LanguageTypes,
-  PickerI18nProvider,
-} from '../..';
-import { calendarDecorator, useCalendarContext } from '../decorators';
+import { DatePicker, DatePickerProps } from '../..';
+import { calendarDecorator } from '../decorators';
 
 export default {
-  title: 'Date Picker',
+  title: 'Date Picker/Date Picker',
   decorators: [calendarDecorator()],
+  argTypes: {
+    color: {
+      defaultValue: 'primary',
+      options: ['primary', 'secondary'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+  },
 } as Meta;
 
-export const Simple = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return <DatePicker value={value} onChange={setDateValue} />;
+const Template = (args: Omit<DatePickerProps<Date>, 'value' | 'onChange'>) => {
+  const [value, setDateValue] = useState<Date | null>(parseISO('2019/1/1'));
+  return <DatePicker value={value} onChange={setDateValue} {...args} />;
 };
 
-export const ColorPrimary = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return <DatePicker value={value} onChange={setDateValue} color="primary" />;
-};
+export const SimpleCalender: Story = Template.bind({});
 
-export const ColorSecondary = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return <DatePicker value={value} onChange={setDateValue} />;
-};
+export const EnglishCalender: Story = Template.bind({});
+EnglishCalender.decorators = [calendarDecorator('en')];
 
-export const SimpleGregorian = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('en');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
+export const PersianCalender: Story = Template.bind({});
+PersianCalender.decorators = [calendarDecorator('fa')];
+
+export const CustomLocalization: Story<
+  Omit<DatePickerProps<Date>, 'value' | 'onChange'> &
+    Record<keyof PickersLocaleText, string>
+> = (args) => {
+  const { okButtonLabel } = args;
+  const [value, setDateValue] = useState<Date | null>(parseISO('2019/1/1'));
   return (
-    <DatePicker
-      value={value}
-      onChange={setDateValue}
-      localeLanguage={LanguageTypes.en}
-      localeCalendar={CalendarTypes.gregorian}
-    />
-  );
-};
-
-export const SimpleWithLabel = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return (
-    <DatePicker
-      value={value}
-      localeLanguage={LanguageTypes.fa}
-      localeCalendar={CalendarTypes.jalaali}
-      onChange={setDateValue}
-      {...{
-        cancelText: 'کنسل',
-        okText: 'انتخاب',
-        clearText: 'پاک کردن',
-        errorsText: {
-          invalidDate: 'تاریخ انتخابی اشتباه است.',
-          maxDate: 'تاریخ انتخابی نباید بیشتر از حد مشخص شده باشد.',
-          minDate: 'تاریخ انتخابی نباید کمتر از حد مشخص شده باشد.',
-        },
+    <LocalizationProvider
+      dateAdapter={DateFnsJalaliAdapter}
+      localeText={{
+        errors: { invalidDate: 'اشتباه انتخاب کردی' },
+        okButtonLabel,
       }}
-    />
+    >
+      <DatePicker value={value} onChange={setDateValue} {...args} />
+    </LocalizationProvider>
   );
 };
-
-export const SimpleWithLabelsPropsAndContext = () => {
-  const { changeLanguage } = useCalendarContext();
-  changeLanguage('fa');
-  const [value, setDateValue] = useState<Moment.Moment | null>(
-    Moment('2019/1/1'),
-  );
-  return (
-    <PickerI18nProvider value={{ cancelText: 'لغو کرن' }}>
-      <DatePicker
-        value={value}
-        localeLanguage={LanguageTypes.fa}
-        localeCalendar={CalendarTypes.jalaali}
-        onChange={setDateValue}
-        {...{
-          clearText: 'پاک کردن',
-          invalidDateMessage: 'تاریخ انتخابی اشتباه است.',
-          maxDateMessage: 'تاریخ انتخابی نباید بیشتر از حد مشخص شده باشد.',
-          minDateMessage: 'تاریخ انتخابی نباید کمتر از حد مشخص شده باشد.',
-        }}
-      />
-    </PickerI18nProvider>
-  );
+CustomLocalization.argTypes = {
+  okButtonLabel: {
+    defaultValue: 'حله',
+    type: 'string',
+  },
 };

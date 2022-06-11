@@ -1,14 +1,22 @@
 import { fireEvent, render } from '@testing-library/react';
-import Moment from 'moment';
+import { Locale } from '../constant-types';
+import { DefaultMuiPickerLocalization } from '../pickers-common/default-mui-picker-localization';
 
 import { DatePicker, DatePickerProps } from './index';
 
 const getWrapper = (
   fn: Function = () => {},
-  props: Omit<DatePickerProps, 'value' | 'onChange'> = {},
+  props: Omit<DatePickerProps<Date>, 'value' | 'onChange'> = {},
 ) =>
   render(
-    <DatePicker value={Moment('2019/1/1')} onChange={fn as any} {...props} />,
+    <DefaultMuiPickerLocalization locale={Locale.defaultLocale}>
+      <DatePicker
+        value={new Date('2019/1/1')}
+        onChange={fn as any}
+        {...props}
+      />
+      ,
+    </DefaultMuiPickerLocalization>,
   );
 describe('DatePicker', () => {
   it('should set value in input', () => {
@@ -34,16 +42,5 @@ describe('DatePicker', () => {
     const result = wrapper.queryByText('OK');
     fireEvent.click(result as Element);
     expect(mocked).toHaveBeenCalled();
-  });
-
-  it('should override default labels', () => {
-    const wrapper = getWrapper(() => {}, {
-      okText: 'foo',
-    });
-    const result = wrapper.queryAllByDisplayValue('۹۷/۱۰/۱۱');
-    fireEvent.click(result[0]);
-    expect(wrapper.queryAllByText('foo')).toHaveLength(1);
-    expect(wrapper.queryAllByText('Select')).toHaveLength(0);
-    expect(wrapper.queryAllByText('Cancel')).toHaveLength(1);
   });
 });

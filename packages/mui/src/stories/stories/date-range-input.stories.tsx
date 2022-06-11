@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react';
-import jMoment from 'moment-jalaali';
+import { addDays } from 'date-fns-jalali';
 import { useCallback, useState } from 'react';
 
 import { DateRangeInput, RangeInputI18nProvider, TimeRange } from '../..';
-import { storyWrapperDecorator } from '../decorators';
+import { calendarDecorator, storyWrapperDecorator } from '../decorators';
 
 const useDateRangeInput = () => {
   const [value, setValue] = useState<TimeRange>({ from: null, to: null });
@@ -14,8 +14,8 @@ const useDateRangeInput = () => {
 };
 
 export default {
-  title: 'DateRange Input',
-  decorators: [storyWrapperDecorator()],
+  title: 'Date Picker/DateRange Input',
+  decorators: [storyWrapperDecorator(), calendarDecorator()],
 } as Meta;
 
 export const Simple = () => {
@@ -46,10 +46,9 @@ export const SimpleWithContext = () => {
 
 export const LimitToDate = () => {
   const { value, onChange } = useDateRangeInput();
-  const fromDate = jMoment(value.from);
   // to Date can be at most, 7 days far from the from date
   const days = 7;
-  const toMaxDate = fromDate.add(days, 'days');
+  const toMaxDate = value.from ? addDays(value.from, days) : undefined;
 
   return (
     <RangeInputI18nProvider value={{ from: 'از', to: 'تا' }}>

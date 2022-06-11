@@ -1,13 +1,15 @@
-import { DateTimePickerProps } from '@mui/lab';
 import { TextField } from '@mui/material';
-import { ReactNode, useState } from 'react';
+import {
+  DateTimePickerProps,
+  MuiPickersAdapterContext,
+} from '@mui/x-date-pickers';
+import { DateTimeValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateTimeValidation';
+import { ReactNode, useContext, useState } from 'react';
 
-import { PickerLabel, usePickerI18nContext } from './px-picker-i18n-provider';
-
-type RenderInput = DateTimePickerProps['renderInput'];
+type RenderInput = DateTimePickerProps<unknown, unknown>['renderInput'];
 
 export type RenderInputFactoryProps = {
-  error: { reason: string; message: ReactNode } | undefined;
+  error: { reason: DateTimeValidationError; message: ReactNode } | undefined;
 };
 
 export const pickerDefaultRenderInputFactory =
@@ -24,26 +26,18 @@ export const pickerDefaultRenderInputFactory =
       />
     );
 
-export function usePickerProps(props: { errorsText: PickerLabel['errors'] }) {
-  const contextLabel = usePickerI18nContext();
-
+export function usePickerProps<In, Out>() {
+  const pickerLocalization = useContext(MuiPickersAdapterContext)!.localeText;
   const [error, setError] = useState<RenderInputFactoryProps['error']>();
-  const onError: DateTimePickerProps['onError'] = (reason) => {
+  const onError: DateTimePickerProps<In, Out>['onError'] = (reason) => {
     setError(
       !reason
         ? undefined
-        : {
-            reason,
-            message:
-              props.errorsText?.[reason] ??
-              contextLabel.errors?.[reason] ??
-              reason,
-          },
+        : { reason, message: pickerLocalization.errors?.[reason] ?? reason },
     );
   };
 
   return {
-    ...contextLabel,
     onError,
     renderInput: pickerDefaultRenderInputFactory({ error }),
   };
