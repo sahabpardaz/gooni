@@ -1,7 +1,5 @@
-import moment, { Moment } from 'moment-jalaali';
-
 import { Locale } from '../constant-types';
-import { localizeFormat } from './moment-utils';
+import { getLocalizedDateFns } from './date-utils';
 import { TimeRange } from './time-range-type';
 
 /**
@@ -13,12 +11,8 @@ import { TimeRange } from './time-range-type';
  * @returns {TimeRange}
  */
 export function formatDateTimeRange(dateRange: TimeRange, locale?: Locale) {
-  const from = dateRange.from
-    ? formatDateTime(dateRange.from.toDate(), locale)
-    : null;
-  const to = dateRange.to
-    ? formatDateTime(dateRange.to.toDate(), locale)
-    : null;
+  const from = dateRange.from ? formatDateTime(dateRange.from, locale) : null;
+  const to = dateRange.to ? formatDateTime(dateRange.to, locale) : null;
   return { from, to };
 }
 
@@ -36,48 +30,46 @@ export function formatDateRange(
   locale?: Locale,
 ) {
   const from = dateRange.from
-    ? formatDate(dateRange.from.toDate(), format, locale)
+    ? formatDate(dateRange.from, format, locale)
     : null;
-  const to = dateRange.to
-    ? formatDate(dateRange.to.toDate(), format, locale)
-    : null;
+  const to = dateRange.to ? formatDate(dateRange.to, format, locale) : null;
   return { from, to };
 }
 
 /**
  *
  * convert input date to datetime format.
- * @param {(string | Date | Moment)} date
+ * @param {(string | Date)} date
  * @param {Locale} [locale]
  * @returns {string}
  */
-export function formatDateTime(date: string | Date | Moment, locale?: Locale) {
-  return formatDate(date, 'YYYY/MM/DD HH:mm', locale);
+export function formatDateTime(date: string | Date, locale?: Locale) {
+  return formatDate(date, 'yyyy/MM/dd HH:mm', locale);
 }
 
 /**
  *
  * convert input date to time HH:mm format.
- * @param {(string | Date | Moment)} date
+ * @param {(string | Date)} date
  * @param {Locale} [locale]
  * @returns {string}
  */
-export function formatTime(date: string | Date | Moment, locale?: Locale) {
+export function formatTime(date: string | Date, locale?: Locale) {
   return formatDate(date, 'HH:mm', locale);
 }
 
 /**
  *
- * convert input date to format(YYYY/MM/DD).
- * @param {(string | Date | Moment)} date
- * @param {string} [format='YYYY/MM/DD']
+ * convert input date to format(yyyy/MM/dd).
+ * @param {(string | Date)} date
+ * @param {string} [format='yyyy/MM/dd']
  * @param {Locale} [locale=Locale.defaultLocale]
  * @returns {string}
  */
 export function formatDate(
-  date: string | Date | Moment,
-  format: string = 'YYYY/MM/DD',
+  date: string | Date,
+  format: string = 'yyyy/MM/dd',
   locale: Locale = Locale.defaultLocale,
 ) {
-  return moment(date).format(localizeFormat(format, locale));
+  return getLocalizedDateFns(locale).format(new Date(date), format);
 }

@@ -16,7 +16,7 @@ export {
   formatDateTimeRange,
   formatTime,
 } from './date-time-utils';
-export { localizeFormat, moment } from './moment-utils';
+export { DefaultDateFns, getLocalizedDateFns } from './date-utils';
 export {
   getRangeInputValue,
   RangeInputFormatter,

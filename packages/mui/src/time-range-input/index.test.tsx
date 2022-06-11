@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { TimeRangeInput } from '.';
-import { moment } from '../date-time-utils';
+import { DefaultDateFns } from '../date-time-utils';
 import { RangeInputI18nProvider } from '../pickers-common';
 import { Props as TimeRangeInputProps } from './px-time-range-input';
 
@@ -38,7 +38,10 @@ describe('TimeRangeInput', () => {
 
   it('should render form time', () => {
     const { timeRangeInput } = renderer({
-      value: { from: moment('9:30', 'HH:mm'), to: null },
+      value: {
+        from: DefaultDateFns.parse('9:30', 'HH:mm', new Date()),
+        to: null,
+      },
     });
 
     expect(timeRangeInput?.value).toBe('from 09:30');
@@ -46,7 +49,10 @@ describe('TimeRangeInput', () => {
 
   it('should render to time', () => {
     const { timeRangeInput } = renderer({
-      value: { to: moment('9:30', 'HH:mm'), from: null },
+      value: {
+        to: DefaultDateFns.parse('9:30', 'HH:mm', new Date()),
+        from: null,
+      },
     });
 
     expect(timeRangeInput?.value).toBe('to 09:30');
@@ -54,7 +60,10 @@ describe('TimeRangeInput', () => {
 
   it('should render from time to time', () => {
     const { timeRangeInput } = renderer({
-      value: { from: moment('09:30', 'HH:mm'), to: moment('22:30', 'HH:mm') },
+      value: {
+        from: DefaultDateFns.parse('09:30', 'HH:mm', new Date()),
+        to: DefaultDateFns.parse('22:30', 'HH:mm', new Date()),
+      },
     });
 
     expect(timeRangeInput?.value).toBe('from 09:30 to 22:30');
@@ -65,8 +74,8 @@ describe('TimeRangeInput', () => {
       <RangeInputI18nProvider value={{ from: 'az', to: 'ta' }}>
         <TimeRangeInput
           value={{
-            from: moment('09:30', 'HH:mm'),
-            to: moment('22:30', 'HH:mm'),
+            from: DefaultDateFns.parse('09:30', 'HH:mm', new Date()),
+            to: DefaultDateFns.parse('22:30', 'HH:mm', new Date()),
           }}
           onChange={() => {}}
         />
@@ -84,8 +93,8 @@ describe('TimeRangeInput', () => {
       >
         <TimeRangeInput
           value={{
-            from: moment('09:30', 'HH:mm'),
-            to: moment('22:30', 'HH:mm'),
+            from: DefaultDateFns.parse('09:30', 'HH:mm', new Date()),
+            to: DefaultDateFns.parse('22:30', 'HH:mm', new Date()),
           }}
           onChange={() => {}}
         />
@@ -103,15 +112,16 @@ describe('TimeRangeInput', () => {
           to: 'foo',
           from: 'baz',
           customText: (timeRange) =>
-            `You can go from ${timeRange.from?.format(
+            `You can go from ${DefaultDateFns.format(
+              timeRange.from!,
               'HH:mm',
-            )} to ${timeRange.to?.format('HH:mm')}`,
+            )} to ${DefaultDateFns.format(timeRange.to!, 'HH:mm')}`,
         }}
       >
         <TimeRangeInput
           value={{
-            from: moment('09:30', 'HH:mm'),
-            to: moment('22:30', 'HH:mm'),
+            from: DefaultDateFns.parse('09:30', 'HH:mm', new Date()),
+            to: DefaultDateFns.parse('22:30', 'HH:mm', new Date()),
           }}
           onChange={() => {}}
         />

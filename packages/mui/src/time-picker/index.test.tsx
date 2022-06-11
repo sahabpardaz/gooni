@@ -1,6 +1,6 @@
 import { SubsetPartial } from '@sahab/utils';
 import { fireEvent, render, screen } from '@testing-library/react';
-import moment, { Moment } from 'moment';
+import { parse } from 'date-fns-jalali';
 import { TimePicker } from '.';
 import { Locale } from '../constant-types';
 import { DefaultMuiPickerLocalization } from '../pickers-common/default-mui-picker-localization';
@@ -8,13 +8,13 @@ import { TimePickerProps } from './px-time-picker';
 
 const renderTimePicker = (
   props: SubsetPartial<
-    TimePickerProps<Moment>,
+    TimePickerProps<Date>,
     'value' | 'onChange'
-  > = {} as TimePickerProps<Moment>,
+  > = {} as TimePickerProps<Date>,
   locale: Locale = Locale.en,
 ) => {
   const {
-    value = moment('22:55', 'HH:mm'),
+    value = parse('22:55', 'HH:mm', new Date()),
     onChange = () => {},
     ...restProps
   } = props;

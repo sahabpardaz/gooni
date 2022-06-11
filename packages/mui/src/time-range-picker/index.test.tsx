@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { moment } from '../date-time-utils';
+import { DefaultDateFns } from '../date-time-utils';
 import { RangePickerI18nProvider } from '../pickers-common';
 import {
   Props as TimeRangePickerProps,
@@ -66,8 +66,8 @@ describe('TimeRangePicker', () => {
   it('should render two input with proper time', () => {
     const { fromInput, toInput } = renderer({
       value: {
-        from: moment('10:54', 'HH:mm'),
-        to: moment('23:30', 'HH:mm'),
+        from: DefaultDateFns.parse('10:54', 'HH:mm', new Date()),
+        to: DefaultDateFns.parse('23:30', 'HH:mm', new Date()),
       },
     });
 
@@ -79,8 +79,8 @@ describe('TimeRangePicker', () => {
     const mocked = jest.fn();
     const { resetBtn } = renderer({
       value: {
-        from: moment('10:54', 'HH:mm'),
-        to: moment('23:30', 'HH:mm'),
+        from: DefaultDateFns.parse('10:54', 'HH:mm', new Date()),
+        to: DefaultDateFns.parse('23:30', 'HH:mm', new Date()),
       },
       onChange: mocked,
     });
@@ -109,8 +109,8 @@ describe('TimeRangePicker', () => {
     const { fromInput } = renderer({
       onChange: mocked,
       value: {
-        from: moment('06:54', 'HH:mm'),
-        to: moment('23:30', 'HH:mm'),
+        from: DefaultDateFns.parse('06:54', 'HH:mm', new Date()),
+        to: DefaultDateFns.parse('23:30', 'HH:mm', new Date()),
       },
     });
 

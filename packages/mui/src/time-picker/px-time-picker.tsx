@@ -33,7 +33,7 @@ export type { Props as TimePickerProps };
  * Here's an example:
  *
  * function MyComponent() {
- *    const [value, setValue] = useState<ParsableDate>(moment('10:30', 'HH:mm'))
+ *    const [value, setValue] = useState(DateFns.format('10:30', 'HH:mm', new Date()))
  *    return <TimePicker value={value} onChange={setValue}/>
  * }
  */

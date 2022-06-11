@@ -1,6 +1,4 @@
-import { default as Moment, default as moment } from 'moment';
 import { Locale } from '../constant-types';
-
 import { formatDate } from './date-time-utils';
 import {
   formatDateRange,
@@ -8,7 +6,6 @@ import {
   formatTime,
   getRangeInputValue,
 } from './index';
-import { localizeFormat } from './moment-utils';
 import { RangeInputLabels } from './range-input-utils';
 import { TimeRange } from './time-range-type';
 
@@ -21,8 +18,8 @@ describe('DateTimeUtils', () => {
     });
     it('formatDateTimeRange should return object with from and to property', () => {
       const result = formatDateTimeRange({
-        from: Moment('2019/1/1'),
-        to: Moment('2019/1/1'),
+        from: new Date('2019/1/1'),
+        to: new Date('2019/1/1'),
       });
       expect(result).toHaveProperty('from');
       expect(result).toHaveProperty('to');
@@ -36,8 +33,8 @@ describe('DateTimeUtils', () => {
     });
     it('formatDateRange should return object with from and to property', () => {
       const result = formatDateRange({
-        from: Moment('2019/1/1'),
-        to: Moment('2019/1/1'),
+        from: new Date('2019/1/1'),
+        to: new Date('2019/1/1'),
       });
       expect(result).toHaveProperty('from');
       expect(result).toHaveProperty('to');
@@ -51,17 +48,6 @@ describe('DateTimeUtils', () => {
     it('formatTime should return object with from and to property', () => {
       const result = formatTime('2019/1/1');
       expect(result).toBe('00:00');
-    });
-  });
-
-  describe('moment-utils', () => {
-    it('should return correct format (jalali)', () => {
-      const result = localizeFormat('YYYY/MM/DD HH:mm');
-      expect(result).toBe('jYYYY/jMM/jDD HH:mm');
-    });
-    it('should return correct format (gregorian)', () => {
-      const result = localizeFormat('YYYY/MM/DD HH:mm', Locale.en);
-      expect(result).toBe('YYYY/MM/DD HH:mm');
     });
   });
 
@@ -84,7 +70,7 @@ describe('DateTimeUtils', () => {
     it('should return data range input value from "to date" when "from date" is null', () => {
       const timeRange: TimeRange = {
         from: null,
-        to: moment('2021/04/01'),
+        to: new Date('2021/04/01'),
       };
 
       const labels: RangeInputLabels = {
@@ -98,7 +84,7 @@ describe('DateTimeUtils', () => {
 
     it('should return data range input value from "from date" when "to date" is null', () => {
       const timeRange: TimeRange = {
-        from: moment('2020/01/01'),
+        from: new Date('2020/01/01'),
         to: null,
       };
 
@@ -113,8 +99,8 @@ describe('DateTimeUtils', () => {
 
     it('should return data range input value', () => {
       const timeRange: TimeRange = {
-        from: moment('2020/01/01'),
-        to: moment('2021/04/01'),
+        from: new Date('2020/01/01'),
+        to: new Date('2021/04/01'),
       };
 
       const labels: RangeInputLabels = {
@@ -128,8 +114,8 @@ describe('DateTimeUtils', () => {
 
     it('should return custom text when customText has been provided as string', () => {
       const timeRange: TimeRange = {
-        from: moment('2020/01/01'),
-        to: moment('2021/04/01'),
+        from: new Date('2020/01/01'),
+        to: new Date('2021/04/01'),
       };
 
       const labels: RangeInputLabels = {
@@ -141,7 +127,7 @@ describe('DateTimeUtils', () => {
       const inputRangeValue = getRangeInputValue(
         timeRange,
         labels,
-        (timeRange) => formatDateRange(timeRange, 'YYYY', Locale.en),
+        (timeRange) => formatDateRange(timeRange, 'yyyy', Locale.en),
       );
 
       expect(inputRangeValue).toBe('cancel');
@@ -149,8 +135,8 @@ describe('DateTimeUtils', () => {
 
     it('should return custom text when customText has been provided as function', () => {
       const timeRange: TimeRange = {
-        from: moment('2020/01/01'),
-        to: moment('2021/04/01'),
+        from: new Date('2020/01/01'),
+        to: new Date('2021/04/01'),
       };
 
       const labels: RangeInputLabels = {
@@ -160,16 +146,16 @@ describe('DateTimeUtils', () => {
           const { from, to } = timeRange;
           return `${formatDate(
             to!,
-            'YY/M',
+            'yy/M',
             Locale.en,
-          )} is greater than ${formatDate(from!, 'YY/M', Locale.en)}`;
+          )} is greater than ${formatDate(from!, 'yy/M', Locale.en)}`;
         },
       };
 
       const inputRangeValue = getRangeInputValue(
         timeRange,
         labels,
-        (timeRange) => formatDateRange(timeRange, 'YYYY', Locale.en),
+        (timeRange) => formatDateRange(timeRange, 'yy', Locale.en),
       );
 
       expect(inputRangeValue).toBe('21/4 is greater than 20/1');
