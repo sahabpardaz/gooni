@@ -6,7 +6,7 @@ import {
 import { DateTimeValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateTimeValidation';
 import { ReactNode, useContext, useState } from 'react';
 
-type RenderInput = DateTimePickerProps<any, any>['renderInput'];
+type RenderInput = DateTimePickerProps<unknown, unknown>['renderInput'];
 
 export type RenderInputFactoryProps = {
   error: { reason: DateTimeValidationError; message: ReactNode } | undefined;
@@ -26,7 +26,7 @@ export const pickerDefaultRenderInputFactory =
       />
     );
 
-export function usePickerProps<In, Out>(props?: {}) {
+export function usePickerProps<In, Out>() {
   const pickerLocalization = useContext(MuiPickersAdapterContext)!.localeText;
   const [error, setError] = useState<RenderInputFactoryProps['error']>();
   const onError: DateTimePickerProps<In, Out>['onError'] = (reason) => {
