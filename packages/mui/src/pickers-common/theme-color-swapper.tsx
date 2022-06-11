@@ -1,4 +1,4 @@
-import { createTheme, Theme, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -13,13 +13,13 @@ export function ThemeColorSwapper(props: Props) {
   const primary = color;
   const secondary = color === 'primary' ? 'secondary' : 'primary';
 
-  const themeChanger = (outerTheme: Theme) =>
-    createTheme(outerTheme, {
-      palette: {
-        primary: outerTheme.palette[primary],
-        secondary: outerTheme.palette[secondary],
-      },
-    });
+  const outerTheme = useTheme();
+  const theme = createTheme(outerTheme, {
+    palette: {
+      primary: outerTheme.palette[primary],
+      secondary: outerTheme.palette[secondary],
+    },
+  });
 
-  return <ThemeProvider theme={themeChanger}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
