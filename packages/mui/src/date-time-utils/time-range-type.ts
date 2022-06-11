@@ -1,11 +1,8 @@
-import { Moment } from 'moment';
-import { Moment as jMoment } from 'moment-jalaali';
-
 /**
- * TimeRange contract (support both Moment and JalaliMoment)
+ * TimeRange contract)
  * @interface TimeRange
  */
-export interface TimeRange<T = Moment | jMoment> {
+export interface TimeRange<T = Date> {
   /**
    * Beginning of time range.
    *

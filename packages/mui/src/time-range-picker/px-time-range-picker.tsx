@@ -1,5 +1,4 @@
 import { Button, Grid, GridProps } from '@mui/material';
-import { Moment } from 'moment-jalaali';
 import * as React from 'react';
 import { useMergedClasses } from 'tss-react';
 
@@ -13,7 +12,7 @@ import { Styles } from '../react-types';
 import { TimePicker, TimePickerProps } from '../time-picker';
 import { makeStyles } from '../tss-mui';
 
-type PickerProps = Partial<Omit<TimePickerProps<Moment>, 'value' | 'onChange'>>;
+type PickerProps = Partial<Omit<TimePickerProps<Date>, 'value' | 'onChange'>>;
 
 interface OwnProps {
   value: TimeRange;
@@ -65,14 +64,14 @@ export function TimeRangePicker(props: Props) {
   const { from, to } = value;
 
   const onChangeFrom = React.useCallback(
-    (fromValue: Moment | null) => {
+    (fromValue: Date | null) => {
       onChange({ to, from: fromValue });
     },
     [onChange, to],
   );
 
   const onChangeTo = React.useCallback(
-    (toValue: Moment | null) => {
+    (toValue: Date | null) => {
       onChange({ to: toValue, from });
     },
     [onChange, from],

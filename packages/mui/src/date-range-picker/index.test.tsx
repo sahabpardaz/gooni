@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react';
-import Moment from 'moment';
 import { Locale } from '../constant-types';
 import { TimeRange } from '../date-time-utils';
 import { RangePickerI18nProvider } from '../pickers-common';
@@ -27,8 +26,8 @@ const getWrapper = (
 describe('DateRangePicker', () => {
   it('should render two input with proper value', () => {
     const wrapper = getWrapper({
-      from: Moment('2018/1/1'),
-      to: Moment('2018/1/2'),
+      from: new Date('2018/1/1'),
+      to: new Date('2018/1/2'),
     });
     const from = wrapper.queryAllByDisplayValue('۹۶/۱۰/۱۱');
     const to = wrapper.queryAllByDisplayValue('۹۶/۱۰/۱۲');
@@ -38,8 +37,8 @@ describe('DateRangePicker', () => {
 
   it('should render msg when beginning is after the end', () => {
     const wrapper = getWrapper({
-      to: Moment('2018/1/1'),
-      from: Moment('2018/1/2'),
+      to: new Date('2018/1/1'),
+      from: new Date('2018/1/2'),
     });
     const result = wrapper.queryAllByText(
       'Date should not be before minimal date',
@@ -52,8 +51,8 @@ describe('DateRangePicker', () => {
     const onChange = jest.fn();
     const wrapper = getWrapper(
       {
-        from: Moment('2018/1/1'),
-        to: Moment('2018/1/2'),
+        from: new Date('2018/1/1'),
+        to: new Date('2018/1/2'),
       },
       onChange,
     );
@@ -66,8 +65,8 @@ describe('DateRangePicker', () => {
   it('should override default labels', () => {
     const wrapper = getWrapper(
       {
-        from: Moment('2018/1/1'),
-        to: Moment('2018/1/2'),
+        from: new Date('2018/1/1'),
+        to: new Date('2018/1/2'),
       },
       () => {},
       {
@@ -84,8 +83,8 @@ describe('DateRangePicker', () => {
   it('should render date in gregorian format', () => {
     const wrapper = getWrapper(
       {
-        from: Moment('2018/1/1'),
-        to: Moment('2018/1/2'),
+        from: new Date('2018/1/1'),
+        to: new Date('2018/1/2'),
       },
       () => {},
       {},
@@ -102,7 +101,7 @@ describe('DateRangePicker', () => {
     const onChange = jest.fn();
     const wrapper = getWrapper(
       {
-        from: Moment('2018/1/1'),
+        from: new Date('2018/1/1'),
         to: null,
       },
       onChange,
@@ -119,8 +118,8 @@ describe('DateRangePicker', () => {
     const onChange = jest.fn();
     const wrapper = getWrapper(
       {
-        from: Moment('2018/1/1'),
-        to: Moment('2018/1/2'),
+        from: new Date('2018/1/1'),
+        to: new Date('2018/1/2'),
       },
       onChange,
     );
@@ -137,8 +136,8 @@ describe('DateRangePicker', () => {
       <RangePickerI18nProvider value={{ resetLabel: 'foo' }}>
         <DateRangePicker
           value={{
-            from: Moment('2018/1/1'),
-            to: Moment('2018/1/2'),
+            from: new Date('2018/1/1'),
+            to: new Date('2018/1/2'),
           }}
           onChange={() => {}}
         />
@@ -150,8 +149,8 @@ describe('DateRangePicker', () => {
 
   it('should show disabled buttons', () => {
     const wrapper = getWrapper({
-      from: Moment('2018/1/1'),
-      to: Moment('2018/1/5'),
+      from: new Date('2018/1/1'),
+      to: new Date('2018/1/5'),
     });
 
     const from = wrapper.queryAllByDisplayValue('۹۶/۱۰/۱۱');

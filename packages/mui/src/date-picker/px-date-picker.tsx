@@ -28,7 +28,7 @@ export type { Props as DatePickerProps };
  * Here's an example
  *
  * function MyComponent(){
- *     const [value, setDateValue] = useState<ParsableDate>(Moment('2019/1/1'));
+ *     const [value, setDateValue] = useState(new Date('2019/1/1'));
  *     return <DatePicker value={value} onChange={setDateValue} />;
  * }
  */

@@ -1,5 +1,5 @@
 import { Button, Grid } from '@mui/material';
-import { Moment } from 'moment-jalaali';
+import { endOfDay, startOfDay } from 'date-fns-jalali';
 import React, { useCallback } from 'react';
 import { useMergedClasses } from 'tss-react';
 
@@ -9,7 +9,7 @@ import { RangePickerLabel, useRangePickerI18nContext } from '../pickers-common';
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 
-type PickerProps = Partial<Omit<DatePickerProps<Moment>, 'value' | 'onChange'>>;
+type PickerProps = Partial<Omit<DatePickerProps<Date>, 'value' | 'onChange'>>;
 
 interface OwnProps {
   value: TimeRange;
@@ -19,7 +19,7 @@ interface OwnProps {
   fromDatePickerProps?: PickerProps;
   toDatePickerProps?: PickerProps;
   labels?: RangePickerLabel;
-  color?: DatePickerProps<Moment>['color'];
+  color?: DatePickerProps<Date>['color'];
 }
 
 /**
@@ -60,15 +60,18 @@ export function DateRangePicker(props: Props) {
   const { from, to } = value;
 
   const onChangeFrom = useCallback(
-    (fromValue: Moment | null) => {
-      onChange({ to, from: fromValue?.startOf('day') ?? null });
+    (fromValue: Date | null) => {
+      onChange({
+        to,
+        from: fromValue ? startOfDay(fromValue) : null,
+      });
     },
     [onChange, to],
   );
 
   const onChangeTo = useCallback(
-    (toValue: Moment | null) => {
-      onChange({ to: toValue?.endOf('day') ?? null, from });
+    (toValue: Date | null) => {
+      onChange({ to: toValue ? endOfDay(toValue) : null, from });
     },
     [onChange, from],
   );
