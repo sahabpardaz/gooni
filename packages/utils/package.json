@@ -1,5 +1,7 @@
 {
-  "version": "0.2.0",
+  "name": "@my-sahab/utils",
+  "version": "0.1.0",
+  "module": "dist/utils.esm.js",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -14,8 +16,6 @@
     "prepublishOnly": "yarn test && yarn build",
     "type:check": "yarn tsc"
   },
-  "name": "@sahab/utils",
-  "module": "dist/utils.esm.js",
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",
     "@types/ramda": "^0.27.62",

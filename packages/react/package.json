@@ -1,5 +1,7 @@
 {
+  "name": "@my-sahab/react",
   "version": "0.1.0",
+  "module": "dist/react.esm.js",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -14,8 +16,6 @@
     "prepublishOnly": "yarn test && yarn build",
     "type:check": "yarn tsc"
   },
-  "name": "@sahab/react",
-  "module": "dist/react.esm.js",
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",
     "@sahab/utils": "^0.2.0",
