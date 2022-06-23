@@ -1,6 +1,9 @@
 {
   "name": "@my-sahab/mui",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "module": "dist/mui.esm.js",
   "license": "MIT",
   "main": "dist/index.js",
