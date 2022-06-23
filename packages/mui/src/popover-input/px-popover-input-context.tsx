@@ -23,7 +23,7 @@ export const PopoverInputContext =
  * Here's an example:
  *
  * ```ts
- * import { usePopoverInputContext } from '@sahab/mui'
+ * import { usePopoverInputContext } from '@my-sahab/mui'
  *
  * const Sample = () => {
  *  const setOpen = usePopoverInputContext();

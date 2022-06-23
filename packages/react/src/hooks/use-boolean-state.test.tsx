@@ -1,4 +1,4 @@
-import { product } from '@sahab/utils';
+import { product } from '@my-sahab/utils';
 import { act, renderHook } from '@testing-library/react-hooks';
 import * as React from 'react';
 

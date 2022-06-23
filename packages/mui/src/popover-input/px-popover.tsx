@@ -43,7 +43,7 @@ export type Props = React.PropsWithChildren<OwnProps> & StyleProps;
  * Here's an example:
  *
  * ```ts
- * import { PxPopover } from '@sahab/mui'
+ * import { PxPopover } from '@my-sahab/mui'
  *
  * export function MyComponent() {
  *     return <PxPopover />;

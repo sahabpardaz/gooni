@@ -1,5 +1,5 @@
 /**
- * `value` prop of `toggle-button-input` in `@sahab/mui` component is an object consisting of two properties:
+ * `value` prop of `toggle-button-input` in `@my-sahab/mui` component is an object consisting of two properties:
  * `type` and `value`
  * @typeParam T - the type of property `type`
  * @public

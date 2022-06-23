@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",
-    "@sahab/utils": "^0.2.0",
+    "@my-sahab/utils": "^0.1.0",
     "react-test-renderer": "^17.0.2"
   },
   "peerDependencies": {

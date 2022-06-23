@@ -11,7 +11,7 @@ import { ReactNode } from 'react';
  *
  * ```tsx
  * import React from 'react';
- * import { FCProps } from '@sahab/mui';
+ * import { FCProps } from '@my-sahab/mui';
  *
  * interface OwnProps {
  *  className: string;

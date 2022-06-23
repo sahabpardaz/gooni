@@ -1,4 +1,4 @@
-import { SubsetPartial } from '@sahab/utils';
+import { SubsetPartial } from '@my-sahab/utils';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { parse } from 'date-fns-jalali';
 import { TimePicker } from '.';

@@ -5,7 +5,7 @@ import {
   Tooltip,
   TooltipProps,
 } from '@mui/material';
-import { useDelayedValue } from '@sahab/react';
+import { useDelayedValue } from '@my-sahab/react';
 import clsx from 'clsx';
 import React, { useCallback, useState } from 'react';
 import { useMergedClasses } from 'tss-react';

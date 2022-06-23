@@ -2,7 +2,7 @@ import {
   TimePicker as MuiTimePicker,
   TimePickerProps,
 } from '@mui/x-date-pickers';
-import { SubsetPartial } from '@sahab/utils';
+import { SubsetPartial } from '@my-sahab/utils';
 import {
   ThemeColorSwapper,
   ThemeColorSwapperProps,

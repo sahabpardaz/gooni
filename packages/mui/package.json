@@ -67,8 +67,8 @@
   "dependencies": {
     "@date-io/date-fns": "^2.14.0",
     "@date-io/date-fns-jalali": "^2.14.0",
-    "@sahab/react": "^0.1.0",
-    "@sahab/utils": "^0.2.0",
+    "@my-sahab/react": "^0.1.0",
+    "@my-sahab/utils": "^0.1.0",
     "react-resize-detector": "^6.7.7",
     "tss-react": "^3.3.2"
   }

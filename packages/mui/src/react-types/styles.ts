@@ -7,7 +7,7 @@
  *
  * ```tsx
  * import React from 'react';
- * import { Styles } from '@sahab/mui';
+ * import { Styles } from '@my-sahab/mui';
  *
  * interface OwnProps {}
  *

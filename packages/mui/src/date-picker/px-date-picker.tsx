@@ -2,7 +2,7 @@ import {
   DatePicker as MuiDatePicker,
   DatePickerProps,
 } from '@mui/x-date-pickers';
-import { SubsetPartial } from '@sahab/utils';
+import { SubsetPartial } from '@my-sahab/utils';
 import { ThemeColorSwapper, usePickerProps } from '../pickers-common';
 
 interface Props<In, Out = In>

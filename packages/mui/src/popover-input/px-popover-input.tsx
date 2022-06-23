@@ -28,7 +28,7 @@ export type Props = React.PropsWithChildren<OwnProps> &
  * Here's an example:
  *
  * ```ts
- * import { PopoverInput } from '@sahab/mui'
+ * import { PopoverInput } from '@my-sahab/mui'
  *
  * export function MyComponent() {
  *     return <PopoverInput />;
