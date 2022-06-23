@@ -1,6 +1,9 @@
 {
   "name": "@my-sahab/utils",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "module": "dist/utils.esm.js",
   "license": "MIT",
   "main": "dist/index.js",
