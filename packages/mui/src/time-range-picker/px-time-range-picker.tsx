@@ -2,14 +2,15 @@ import { Button, Grid, GridProps } from '@mui/material';
 import * as React from 'react';
 import { useMergedClasses } from 'tss-react';
 
+import { TimePicker, TimePickerProps } from '../date-time-pickers';
 import { TimeRange } from '../date-time-utils';
 import {
   RangePickerLabel,
+  ThemeColorSwapper,
   ThemeColorSwapperProps,
   useRangePickerI18nContext,
 } from '../pickers-common';
 import { Styles } from '../react-types';
-import { TimePicker, TimePickerProps } from '../time-picker';
 import { makeStyles } from '../tss-mui';
 
 type PickerProps = Partial<Omit<TimePickerProps<Date>, 'value' | 'onChange'>>;
@@ -105,29 +106,27 @@ export function TimeRangePicker(props: Props) {
           </Button>
         </Grid>
 
-        <Grid className={classes.fromTime} item xs={12}>
-          <TimePicker
-            variant="dialog"
-            label={labelsWithTranslate.fromLabel}
-            color={color}
-            {...timePickerProps}
-            {...fromTimePickerProps}
-            value={from}
-            onChange={onChangeFrom}
-          />
-        </Grid>
+        <ThemeColorSwapper color={color}>
+          <Grid className={classes.fromTime} item xs={12}>
+            <TimePicker
+              label={labelsWithTranslate.fromLabel}
+              {...timePickerProps}
+              {...fromTimePickerProps}
+              value={from}
+              onChange={onChangeFrom}
+            />
+          </Grid>
 
-        <Grid className={classes.toTime} item xs={12}>
-          <TimePicker
-            variant="dialog"
-            label={labelsWithTranslate.toLabel}
-            color={color}
-            {...timePickerProps}
-            {...toTimePickerProps}
-            value={to}
-            onChange={onChangeTo}
-          />
-        </Grid>
+          <Grid className={classes.toTime} item xs={12}>
+            <TimePicker
+              label={labelsWithTranslate.toLabel}
+              {...timePickerProps}
+              {...toTimePickerProps}
+              value={to}
+              onChange={onChangeTo}
+            />
+          </Grid>
+        </ThemeColorSwapper>
       </Grid>
     </div>
   );

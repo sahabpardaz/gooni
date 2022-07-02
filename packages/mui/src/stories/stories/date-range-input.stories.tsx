@@ -73,7 +73,6 @@ export const ColorPrimary = () => {
       onChange={onChange}
       variant="outlined"
       margin="dense"
-      color="primary"
     />
   );
 };
