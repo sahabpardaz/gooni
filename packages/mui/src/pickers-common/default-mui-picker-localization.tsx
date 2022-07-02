@@ -9,6 +9,7 @@ interface Props {
   locale: Locale;
   children: ReactNode;
 }
+export { Props as DefaultMuiPickerLocalizationProps };
 
 class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
   public getWeekdays = () => {
