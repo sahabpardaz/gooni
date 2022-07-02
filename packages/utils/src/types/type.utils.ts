@@ -74,3 +74,7 @@ export type OmitRefType<T> = Omit<T, ' $refType'>;
 
 export type SubsetPartial<T, K extends keyof T> = Omit<T, K> &
   Partial<Pick<T, K>>;
+
+export type OmitAndReplace<T, K extends keyof T, R> = Omit<T, K> & {
+  [I in K]: R;
+};

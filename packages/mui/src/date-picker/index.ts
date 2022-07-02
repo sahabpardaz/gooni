@@ -10,3 +10,7 @@
  */
 
 export { DatePicker, DatePickerProps } from './px-date-picker';
+export {
+  MultiLocaleDatePicker,
+  MultiLocaleDatePickerProps,
+} from './px-multi-locale-date-picker';

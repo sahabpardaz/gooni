@@ -7,6 +7,8 @@ import { Locale } from '../constant-types';
 
 interface Props {
   locale: Locale;
+  lang?: Locale;
+  localeTexts?: Partial<PickersLocaleText>;
   children: ReactNode;
 }
 
@@ -21,19 +23,35 @@ class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
 }
 
 export function DefaultMuiPickerLocalization(props: Props) {
-  const { locale, children } = props;
+  const { locale, lang = 'fa', localeTexts, children } = props;
 
   return (
     <LocalizationProvider
       dateAdapter={locale === 'en' ? DateFnsAdapter : DateFnsJalaliAdapter}
-      localeText={locale === 'en' ? undefined : persianLocaleTexts}
+      localeText={
+        localeTexts || lang === 'en'
+          ? defaultEnglishLocaleTexts
+          : defaultPersianLocaleTexts
+      }
     >
       {children}
     </LocalizationProvider>
   );
 }
 
-const persianLocaleTexts: Partial<PickersLocaleText> = {
+const defaultEnglishLocaleTexts: Partial<PickersLocaleText> = {
+  changeLocaleButtonLabel: {
+    [Locale.en]: 'Jalali Calendar',
+    [Locale.fa]: 'Gregorian Calendar',
+  },
+};
+
+const defaultPersianLocaleTexts: Partial<PickersLocaleText> = {
+  changeLocaleButtonLabel: {
+    [Locale.en]: 'تقویم شمسی',
+    [Locale.fa]: 'تقویم میلادی',
+  },
+  todayButtonLabel: 'برو به امروز',
   cancelButtonLabel: 'کنسل',
   okButtonLabel: 'انتخاب',
   clearButtonLabel: 'پاک کردن',
