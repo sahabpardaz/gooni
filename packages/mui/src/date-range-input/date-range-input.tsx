@@ -3,14 +3,18 @@ import React, { useCallback, useRef } from 'react';
 
 import { DateRangePicker, DateRangePickerProps } from '../date-range-picker';
 import { getRangeInputValue, TimeRange } from '../date-time-utils';
-import { useRangeInputI18nContext } from '../pickers-common';
+import {
+  ThemeColorSwapper,
+  ThemeColorSwapperProps,
+  useRangeInputI18nContext,
+} from '../pickers-common';
 import { ClickAwayClose, PopoverInput } from '../popover-input';
 
 interface OwnProps {
   value: TimeRange;
   onChange: (value: TimeRange) => void;
   dateRangePickerProps?: Omit<DateRangePickerProps, 'value' | 'onChange'>;
-  color?: DateRangePickerProps['color'];
+  color?: ThemeColorSwapperProps['color'];
 }
 
 type PopoverInputProps = Omit<TextFieldProps, 'value' | 'onChange' | 'color'>;
@@ -75,17 +79,18 @@ export function DateRangeInput(props: Props) {
       <Paper elevation={5}>
         <ClickAwayClose ignoreClickRef={ignoreClickRef}>
           <div>
-            <DateRangePicker
-              value={value}
-              onChange={onChange}
-              color={color}
-              {...dateRangePickerProps}
-              datePickerProps={{
-                ...dateRangePickerProps?.datePickerProps,
-                onOpen,
-                onClose,
-              }}
-            />
+            <ThemeColorSwapper color={color}>
+              <DateRangePicker
+                value={value}
+                onChange={onChange}
+                {...dateRangePickerProps}
+                datePickerProps={{
+                  ...dateRangePickerProps?.datePickerProps,
+                  onOpen,
+                  onClose,
+                }}
+              />
+            </ThemeColorSwapper>
           </div>
         </ClickAwayClose>
       </Paper>

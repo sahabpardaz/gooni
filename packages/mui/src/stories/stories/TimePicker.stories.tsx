@@ -2,6 +2,10 @@ import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
 
 import { TimePicker as PxTimePicker, TimePickerProps } from '../..';
+import {
+  ThemeColorSwapper,
+  ThemeColorSwapperProps,
+} from '../../pickers-common';
 import { calendarDecorator } from '../decorators';
 
 export default {
@@ -9,21 +13,15 @@ export default {
   decorators: [calendarDecorator()],
 } as Meta;
 
-export const TimePicker: Story<TimePickerProps<Date>> = ({
-  ampm,
-  views,
-  color,
-}) => {
+export const TimePicker: Story<
+  TimePickerProps<Date> & ThemeColorSwapperProps
+> = ({ ampm, views, color }) => {
   const [time, setTime] = React.useState<Date | null>(null);
 
   return (
-    <PxTimePicker
-      color={color}
-      value={time}
-      onChange={setTime}
-      ampm={ampm}
-      views={views}
-    />
+    <ThemeColorSwapper color={color}>
+      <PxTimePicker value={time} onChange={setTime} ampm={ampm} views={views} />
+    </ThemeColorSwapper>
   );
 };
 

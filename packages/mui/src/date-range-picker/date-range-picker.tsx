@@ -3,9 +3,14 @@ import { endOfDay, startOfDay } from 'date-fns-jalali';
 import React, { useCallback } from 'react';
 import { useMergedClasses } from 'tss-react';
 
-import { DatePicker, DatePickerProps } from '../date-picker';
+import { DatePicker, DatePickerProps } from '../date-time-pickers';
 import { TimeRange } from '../date-time-utils';
-import { RangePickerLabel, useRangePickerI18nContext } from '../pickers-common';
+import {
+  RangePickerLabel,
+  ThemeColorSwapper,
+  ThemeColorSwapperProps,
+  useRangePickerI18nContext,
+} from '../pickers-common';
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 
@@ -19,7 +24,7 @@ interface OwnProps {
   fromDatePickerProps?: PickerProps;
   toDatePickerProps?: PickerProps;
   labels?: RangePickerLabel;
-  color?: DatePickerProps<Date>['color'];
+  color?: ThemeColorSwapperProps['color'];
 }
 
 /**
@@ -99,31 +104,29 @@ export function DateRangePicker(props: Props) {
           </Button>
         </Grid>
 
-        <Grid item xs={12}>
-          <DatePicker
-            variant="dialog"
-            maxDate={to || undefined}
-            label={labelsWithTranslate.fromLabel}
-            color={color}
-            {...datePickerProps}
-            {...fromDatePickerProps}
-            value={from}
-            onChange={onChangeFrom}
-          />
-        </Grid>
+        <ThemeColorSwapper color={color}>
+          <Grid item xs={12}>
+            <DatePicker
+              maxDate={to || undefined}
+              label={labelsWithTranslate.fromLabel}
+              {...datePickerProps}
+              {...fromDatePickerProps}
+              value={from}
+              onChange={onChangeFrom}
+            />
+          </Grid>
 
-        <Grid item xs={12}>
-          <DatePicker
-            variant="dialog"
-            minDate={from || undefined}
-            label={labelsWithTranslate.toLabel}
-            color={color}
-            {...datePickerProps}
-            {...toDatePickerProps}
-            value={to}
-            onChange={onChangeTo}
-          />
-        </Grid>
+          <Grid item xs={12}>
+            <DatePicker
+              minDate={from || undefined}
+              label={labelsWithTranslate.toLabel}
+              {...datePickerProps}
+              {...toDatePickerProps}
+              value={to}
+              onChange={onChangeTo}
+            />
+          </Grid>
+        </ThemeColorSwapper>
       </Grid>
     </div>
   );
