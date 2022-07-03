@@ -31,8 +31,7 @@ export const MultiLocalePickersActionBar = (
       <PickersActionBar {...pickersActionBarProps} />
       <DialogActions>
         <Button onClick={onLocaleChange}>
-          {localeText.changeLocaleButtonLabel &&
-            localeText.changeLocaleButtonLabel[locale]}
+          {localeText.changeLocaleButtonLabel?.[locale]}
         </Button>
       </DialogActions>
     </DialogActionBar>

@@ -49,6 +49,7 @@ export const JalaliCalender: Story = Template.bind({});
 JalaliCalender.decorators = [calendarDecorator(Locale.fa)];
 
 export const MultiLocaleCalendar: Story = MultiLocaleTemplate.bind({});
+MultiLocaleCalendar.decorators = [calendarDecorator()];
 
 export const CustomLocalization: Story<
   Omit<DatePickerProps<Date>, 'value' | 'onChange'> &

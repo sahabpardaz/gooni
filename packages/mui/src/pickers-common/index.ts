@@ -1,5 +1,9 @@
 // read more about doc comment syntax in https://api-extractor.com/pages/tsdoc/doc_comment_syntax/
 
+export {
+  MultiLocalePickersActionBar,
+  MultiLocalePickersActionBarProps,
+} from './MultiLocalePickersActionBar';
 export * from './picker-props';
 export {
   RangeInputI18nProvider,

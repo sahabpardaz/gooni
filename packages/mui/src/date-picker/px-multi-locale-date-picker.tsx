@@ -1,16 +1,18 @@
+import { LocalizationProvider } from '@mui/x-date-pickers';
 import {
   DatePickerSlotsComponent,
   DatePickerSlotsComponentsProps,
 } from '@mui/x-date-pickers/DatePicker/DatePicker';
+import { useLocaleText } from '@mui/x-date-pickers/internals';
 import { OmitAndReplace } from '@my-sahab/utils';
 import { mergeDeepRight } from 'ramda';
 import { useState } from 'react';
+import { getLocalizedDateFnsAdapter } from 'src/date-time-utils';
 import { Locale } from '../constant-types';
-import { DefaultMuiPickerLocalization } from '../pickers-common/default-mui-picker-localization';
 import {
   MultiLocalePickersActionBar,
   MultiLocalePickersActionBarProps,
-} from '../pickers-common/MultiLocalePickersActionBar';
+} from '../pickers-common';
 import { DatePicker, DatePickerProps } from './px-date-picker';
 
 interface Props<In, Out = In>
@@ -57,21 +59,26 @@ export function MultiLocaleDatePicker<In, Out = In>(props: Props<In, Out>) {
     );
   };
 
+  const localeText = useLocaleText();
+
+  const passedProps = mergeDeepRight<
+    Props<In, Out>,
+    Pick<Props<In, Out>, 'components' | 'componentsProps'>
+  >(props, {
+    components: {
+      ActionBar: MultiLocalePickersActionBar,
+    },
+    componentsProps: {
+      actionBar: { locale, onLocaleChange: handleLocaleChange },
+    },
+  }) as unknown as DatePickerProps<In, Out>;
+
   return (
-    <DefaultMuiPickerLocalization locale={locale}>
-      <DatePicker
-        {...(mergeDeepRight<
-          Props<In, Out>,
-          Pick<Props<In, Out>, 'components' | 'componentsProps'>
-        >(props, {
-          components: {
-            ActionBar: MultiLocalePickersActionBar,
-          },
-          componentsProps: {
-            actionBar: { locale, onLocaleChange: handleLocaleChange },
-          },
-        }) as unknown as DatePickerProps<In, Out>)}
-      />
-    </DefaultMuiPickerLocalization>
+    <LocalizationProvider
+      dateAdapter={getLocalizedDateFnsAdapter(locale)}
+      localeText={localeText}
+    >
+      <DatePicker {...passedProps} />
+    </LocalizationProvider>
   );
 }
