@@ -3,7 +3,8 @@ import { LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
 import { Meta, Story } from '@storybook/react';
 import { parseISO } from 'date-fns-jalali';
 import { useState } from 'react';
-import { DatePicker, DatePickerProps } from '../..';
+import { Locale } from 'src/constant-types';
+import { DatePicker, DatePickerProps } from 'src/date-time-pickers';
 import { calendarDecorator } from '../decorators';
 
 export default {
@@ -17,6 +18,11 @@ export default {
         type: 'inline-radio',
       },
     },
+    multiLocale: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -28,10 +34,10 @@ const Template = (args: Omit<DatePickerProps<Date>, 'value' | 'onChange'>) => {
 export const SimpleCalender: Story = Template.bind({});
 
 export const EnglishCalender: Story = Template.bind({});
-EnglishCalender.decorators = [calendarDecorator('en')];
+EnglishCalender.decorators = [calendarDecorator(Locale.en)];
 
 export const PersianCalender: Story = Template.bind({});
-PersianCalender.decorators = [calendarDecorator('fa')];
+PersianCalender.decorators = [calendarDecorator(Locale.fa)];
 
 export const CustomLocalization: Story<
   Omit<DatePickerProps<Date>, 'value' | 'onChange'> &

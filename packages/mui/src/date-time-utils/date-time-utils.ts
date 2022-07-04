@@ -1,10 +1,26 @@
+import DateFnsBaseAdapter from '@date-io/date-fns';
+import DateFnsJalaliAdapterBase from '@date-io/date-fns-jalali';
 import * as DateFnsBase from 'date-fns';
 import * as DateFnsJalali from 'date-fns-jalali';
 import { Locale } from '../constant-types';
 import { TimeRange } from './time-range-type';
 
+class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
+  public getWeekdays = () => {
+    const now = new Date();
+    return DateFnsJalali.eachDayOfInterval({
+      start: DateFnsJalali.startOfWeek(now, { locale: this.locale }),
+      end: DateFnsJalali.endOfWeek(now, { locale: this.locale }),
+    }).map((day) => this.formatByString(day, 'EEEEE'));
+  };
+}
+
 export const getLocalizedDateFns = (locale: Locale = Locale.defaultLocale) =>
   locale === Locale.fa ? DateFnsJalali : DateFnsBase;
+
+export const getLocalizedDateFnsAdapter = (
+  locale: Locale = Locale.defaultLocale,
+) => (locale === Locale.fa ? DateFnsJalaliAdapter : DateFnsBaseAdapter);
 
 /**
  *

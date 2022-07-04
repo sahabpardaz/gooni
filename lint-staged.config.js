@@ -1,7 +1,7 @@
 module.exports = {
   '*.{ts,tsx,js,jsx}': (files) => {
     return [
-      `eslint --max-warnings 0 ${files.join(' ')}`,
+      `eslint --max-warnings 0 ${files.map((file) => `"${file}"`).join(' ')}`,
       'lerna run type:check',
     ];
   },

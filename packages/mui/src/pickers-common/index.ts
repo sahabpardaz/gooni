@@ -4,6 +4,10 @@ export {
   DefaultMuiPickerLocalization,
   DefaultMuiPickerLocalizationProps,
 } from './default-mui-picker-localization';
+export {
+  MultiLocalePickersActionBar,
+  MultiLocalePickersActionBarProps,
+} from './MultiLocalePickersActionBar';
 export * from './picker-props';
 export {
   RangeInputI18nProvider,
