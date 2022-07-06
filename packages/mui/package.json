@@ -21,7 +21,6 @@
     "test:all": "utsdx test --passWithNoTests --testPathIgnorePatterns=\"/popover-input/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
     "test": "yarn test:all --env=jsdom && yarn test:all",
     "prepublishOnly": "yarn test && yarn build",
-    "type:check": "yarn tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "chromatic --exit-zero-on-changes"

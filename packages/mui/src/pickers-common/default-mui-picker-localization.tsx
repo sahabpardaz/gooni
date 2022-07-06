@@ -34,7 +34,7 @@ export function DefaultMuiPickerLocalization(props: Props) {
   );
 }
 
-const persianLocaleTexts: Partial<PickersLocaleText> = {
+const persianLocaleTexts: Partial<PickersLocaleText<unknown>> = {
   cancelButtonLabel: 'کنسل',
   okButtonLabel: 'انتخاب',
   clearButtonLabel: 'پاک کردن',

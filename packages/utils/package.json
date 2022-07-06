@@ -16,8 +16,7 @@
     "start": "utsdx watch",
     "build": "utsdx build",
     "test": "utsdx test",
-    "prepublishOnly": "yarn test && yarn build",
-    "type:check": "yarn tsc"
+    "prepublishOnly": "yarn test && yarn build"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",

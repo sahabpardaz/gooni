@@ -2,18 +2,22 @@
   "name": "sahab",
   "version": "0.0.1",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "packageManager": "yarn@3.2.1",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "devDependencies": {
     "@commitlint/cli": "^16.0.0",
     "@commitlint/config-conventional": "^16.0.0",
     "@commitlint/config-lerna-scopes": "^16.0.0",
+    "@nrwl/nx-cloud": "^14.2.0",
     "eslint": "^8.16.0",
     "husky": "^7.0.1",
-    "lerna": "^5.1.4",
     "lint-staged": "^12.1.4",
     "micromatch": "^4.0.4",
+    "nx": "14.4.2",
     "prettier": "^2.6.2",
     "prettier-plugin-organize-imports": "^2.3.4",
     "react": "^17.0.0",
@@ -23,21 +27,27 @@
     "yarn-deduplicate": "^3.1.0"
   },
   "scripts": {
-    "update-version": "lerna version --conventional-commits",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "lint": "eslint --max-warnings=0 \"**/*.{js,jsx,ts,tsx}\"",
+    "release": "yarn prepublishOnly && yarn workspaces foreach --no-private npm publish",
+    "format": "prettier --write packages/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
+    "format:check": "prettier --check packages/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
+    "lint": "eslint --max-warnings=0 \"packages/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install",
-    "storybook": "yarn lerna run storybook --scope=@my-sahab/mui --stream",
-    "prepublishOnly": "yarn format:check && yarn lint && lerna run prepublishOnly --stream",
-    "test": "lerna run test --stream --parallel",
-    "dev": "lerna run start --stream --parallel",
-    "build": "lerna run build --stream --parallel",
-    "deduplicate": "yarn-deduplicate -s fewer yarn.lock",
-    "deduplicate:check": "yarn-deduplicate -s fewer yarn.lock --list --fail"
+    "workspace:type:check": "yarn $INIT_CWD run -T tsc",
+    "type:check": "yarn nx run-many --all --target=workspace:type:check",
+    "storybook": "yarn nx run-many --all --target=storybook",
+    "prepublishOnly": "yarn format:check && yarn lint && yarn build && yarn test",
+    "test": "yarn nx run-many --all --target=test",
+    "dev": "yarn nx run-many --all --target=start",
+    "build": "yarn nx run-many --all --target=build",
+    "deduplicate": "yarn dedupe",
+    "deduplicate:check": "yarn dedupe --check"
   },
   "dependencies": {
     "date-fns": "^2.28.0",
     "date-fns-jalali": "^2.28.0-0"
+  },
+  "resolutions": {
+    "@types/react": "17.0.38",
+    "@types/react-dom": "17.0.11"
   }
 }
