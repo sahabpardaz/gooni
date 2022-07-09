@@ -6,11 +6,10 @@ import {
   ThemeColorSwapper,
   ThemeColorSwapperProps,
 } from '../../pickers-common';
-import { calendarDecorator } from '../decorators';
 
 export default {
   title: 'Time Picker',
-  decorators: [calendarDecorator()],
+  // decorators: [calendarDecorator()],
 } as Meta;
 
 export const TimePicker: Story<

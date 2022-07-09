@@ -90,6 +90,34 @@ export function getThemeOptions(
           },
         },
       },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: ({ ownerState, theme }) => {
+            let color =
+              ownerState.color === 'standard' || !ownerState.color
+                ? 'primary'
+                : ownerState.color;
+            return {
+              borderColor: theme.palette[color].main,
+              padding: theme.spacing(0.75, 1),
+              color: theme.palette[color].main,
+              '&:hover': {
+                backgroundColor: alpha(
+                  theme.palette[color].main,
+                  theme.palette.action.hoverOpacity,
+                ),
+              },
+              '&.Mui-selected': {
+                color: theme.palette.common.white,
+                backgroundColor: theme.palette[color].main,
+                '&:hover': {
+                  backgroundColor: theme.palette[color].main,
+                },
+              },
+            };
+          },
+        },
+      },
     },
   };
   return themeOptions;

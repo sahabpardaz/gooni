@@ -3,15 +3,15 @@ import { Locale } from '../constant-types';
 
 export const defaultEnglishLocaleTexts: Partial<PickersLocaleText> = {
   changeLocaleButtonLabel: {
-    [Locale.en]: 'Jalali Calendar',
-    [Locale.fa]: 'Gregorian Calendar',
+    [Locale.en]: 'Gregorian',
+    [Locale.fa]: 'Jalali',
   },
 };
 
 export const defaultPersianLocaleTexts: Partial<PickersLocaleText> = {
   changeLocaleButtonLabel: {
-    [Locale.en]: 'تقویم شمسی',
-    [Locale.fa]: 'تقویم میلادی',
+    [Locale.en]: 'میلادی',
+    [Locale.fa]: 'شمسی',
   },
   todayButtonLabel: 'برو به امروز',
   cancelButtonLabel: 'کنسل',

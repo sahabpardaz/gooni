@@ -1,13 +1,11 @@
 import { Paper, Typography } from '@mui/material';
 import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
-import { Locale } from 'src/constant-types';
 import { DateRangePicker, TimeRange } from '../..';
-import { calendarDecorator } from '../decorators';
 
 export default {
   title: 'Date Picker/DateRangePicker',
-  decorators: [calendarDecorator()],
+  // decorators: [calendarDecorator()],
 } as Meta;
 
 const Template: Story = (args) => {
@@ -34,11 +32,11 @@ const Template: Story = (args) => {
   );
 };
 
-export const PersianJalaaliCalendar: Story = Template.bind({});
-PersianJalaaliCalendar.decorators = [calendarDecorator(Locale.fa)];
+// export const PersianJalaaliCalendar: Story = Template.bind({});
+// PersianJalaaliCalendar.decorators = [calendarDecorator(Locale.fa)];
 
-export const EnglishGregorianCalendar: Story = Template.bind({});
-EnglishGregorianCalendar.decorators = [calendarDecorator(Locale.en)];
+// export const EnglishGregorianCalendar: Story = Template.bind({});
+// EnglishGregorianCalendar.decorators = [calendarDecorator(Locale.en)];
 
 export const PrimaryColor: Story = Template.bind({});
 PrimaryColor.args = { color: 'primary' };

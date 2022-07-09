@@ -7,8 +7,12 @@ import {
   TimePickerProps,
 } from '@mui/x-date-pickers';
 import { SubsetPartial } from '@my-sahab/utils';
-import { usePickerProps } from 'src/pickers-common';
-import { MultiLocaleWrapper } from 'src/pickers-common/MultiLocaleWrapper';
+import { mergeDeepRight } from 'ramda';
+import {
+  MultiLocalePickersActionBar,
+  useMultiLocalizationContext,
+  usePickerProps,
+} from 'src/pickers-common';
 
 type PickerTypes =
   | typeof TimePicker
@@ -39,26 +43,29 @@ export function WrapPicker<P extends PickerTypes>(Picker: P) {
   function WrappedPicker<In, Out>(props: Props<P, In, Out>) {
     const commonPickerProps = usePickerProps<In, Out>();
 
-    // @ts-ignore
-    if (props.multiLocale) {
-      return (
-        <MultiLocaleWrapper>
-          {/* @ts-ignore */}
-          <Picker
-            desktopModeMediaQuery="@media not all"
-            {...commonPickerProps}
-            {...props}
-          />
-        </MultiLocaleWrapper>
-      );
-    }
+    const { defaultMultiLocaleProp } = useMultiLocalizationContext();
+    let multiLocale =
+      'ampm' in props
+        ? false
+        : 'multiLocale' in props
+        ? props['multiLocale']
+        : defaultMultiLocaleProp;
 
     return (
       // @ts-ignore
       <Picker
         desktopModeMediaQuery="@media not all"
         {...commonPickerProps}
-        {...props}
+        {...mergeDeepRight<Props<P, In, Out>, object>(
+          props,
+          multiLocale
+            ? {
+                components: {
+                  ActionBar: MultiLocalePickersActionBar,
+                },
+              }
+            : {},
+        )}
       />
     );
   }

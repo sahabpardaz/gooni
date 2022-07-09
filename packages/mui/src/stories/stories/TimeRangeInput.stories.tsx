@@ -7,11 +7,10 @@ import {
   TimeRange,
   TimeRangeInput as PxTimeRangeInput,
 } from '../..';
-import { calendarDecorator } from '../decorators';
 
 export default {
   title: 'Time Picker/Time Range Input',
-  decorators: [calendarDecorator()],
+  // decorators: [calendarDecorator()],
 } as Meta;
 
 interface TimeRangeInputStoryProps {
