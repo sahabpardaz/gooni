@@ -4,10 +4,11 @@ import { Meta, Story } from '@storybook/react';
 import { parseISO } from 'date-fns-jalali';
 import { useState } from 'react';
 import { DatePicker, DatePickerProps } from 'src/date-time-pickers';
+import { calendarDecorator } from '../decorators';
 
 export default {
   title: 'Date Picker/Date Picker',
-  // decorators: [calendarDecorator()],
+  decorators: [calendarDecorator()],
   argTypes: {
     color: {
       defaultValue: 'primary',
@@ -30,12 +31,6 @@ const Template = (args: Omit<DatePickerProps<Date>, 'value' | 'onChange'>) => {
 };
 
 export const SimpleCalender: Story = Template.bind({});
-
-// export const EnglishCalender: Story = Template.bind({});
-// EnglishCalender.decorators = [calendarDecorator(Locale.en)];
-
-// export const PersianCalender: Story = Template.bind({});
-// PersianCalender.decorators = [calendarDecorator(Locale.fa)];
 
 export const CustomLocalization: Story<
   Omit<DatePickerProps<Date>, 'value' | 'onChange'> &

@@ -39,33 +39,31 @@ type Props<P extends PickerTypes, In, Out> = SubsetPartial<
 
 export { Props as WrappedPickerProps };
 
-export function WrapPicker<P extends PickerTypes>(Picker: P) {
+export function WrapPicker<P extends PickerTypes>(
+  Picker: P,
+  disableMultiLocaleProp: boolean = false,
+) {
   function WrappedPicker<In, Out>(props: Props<P, In, Out>) {
     const commonPickerProps = usePickerProps<In, Out>();
 
     const { defaultMultiLocaleProp } = useMultiLocalizationContext();
-    let multiLocale =
-      'ampm' in props
-        ? false
-        : 'multiLocale' in props
-        ? props['multiLocale']
-        : defaultMultiLocaleProp;
+    let multiLocale = disableMultiLocaleProp
+      ? false
+      : ('multiLocale' in props && props['multiLocale']) ??
+        defaultMultiLocaleProp;
 
     return (
       // @ts-ignore
       <Picker
         desktopModeMediaQuery="@media not all"
         {...commonPickerProps}
-        {...mergeDeepRight<Props<P, In, Out>, object>(
-          props,
-          multiLocale
-            ? {
-                components: {
-                  ActionBar: MultiLocalePickersActionBar,
-                },
-              }
-            : {},
-        )}
+        {...(multiLocale
+          ? mergeDeepRight<Props<P, In, Out>, object>(props, {
+              components: {
+                ActionBar: MultiLocalePickersActionBar,
+              },
+            })
+          : props)}
       />
     );
   }

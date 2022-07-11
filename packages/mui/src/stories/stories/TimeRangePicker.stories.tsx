@@ -8,10 +8,11 @@ import {
   TimeRangePicker as PxTimeRangePicker,
   TimeRangePickerProps,
 } from '../..';
+import { calendarDecorator } from '../decorators';
 
 export default {
   title: 'Time Picker/Time Range Picker',
-  // decorators: [calendarDecorator()],
+  decorators: [calendarDecorator()],
 } as Meta;
 
 interface StoryProps extends RangePickerLabel, TimeRangePickerProps {}

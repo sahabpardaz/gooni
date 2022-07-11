@@ -24,16 +24,13 @@ export interface MultiLocalizationContextValue {
   localeOptions: Locale[];
   defaultMultiLocaleProp?: boolean;
   currentLocale: Locale;
-  changeLocale: (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-    value: Locale,
-  ) => void;
+  changeLocale: (value: Locale) => void;
 }
 
 export const MultiLocalizationContext =
   React.createContext<MultiLocalizationContextValue | null>(null);
 
-/** Used for wrapping the whole project that provides proper adapters for the locales given as `localeOptions` props */
+/** Used for wrapping the whole project and provides proper adapters for the locales given as `localeOptions` props */
 export function MultiLocalizationProvider(props: Props) {
   const {
     localeOptions,
@@ -44,13 +41,9 @@ export function MultiLocalizationProvider(props: Props) {
   } = props;
 
   const defaultLocale = localeOptions[0];
-  const [currentLocale, setCurrentLocale] =
-    React.useState<Locale>(defaultLocale);
-  const changeLocale = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-    value: Locale,
-  ) => {
-    value && setCurrentLocale(value);
+  const [currentLocale, setCurrentLocale] = React.useState(defaultLocale);
+  const changeLocale = (value: Locale) => {
+    setCurrentLocale(value);
   };
 
   const contextValue: MultiLocalizationContextValue = {
@@ -87,5 +80,5 @@ export const useMultiLocalizationContext =
       );
     }
 
-    return localizationContext as MultiLocalizationContextValue;
+    return localizationContext;
   };

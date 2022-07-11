@@ -1,4 +1,4 @@
-import { calendarDecorator, themeDecorator } from '../src/stories/decorators';
+import { themeDecorator } from '../src/stories/decorators';
 // https://storybook.js.org/docs/react/writing-stories/parameters#global-parameters
 export const parameters = {
   // https://storybook.js.org/docs/react/essentials/actions#automatically-matching-args
@@ -17,4 +17,4 @@ export const globalTypes = {
   },
 };
 
-export const decorators = [themeDecorator, calendarDecorator()];
+export const decorators = [themeDecorator];

@@ -3,7 +3,7 @@ import { addDays } from 'date-fns-jalali';
 import { useCallback, useState } from 'react';
 
 import { DateRangeInput, RangeInputI18nProvider, TimeRange } from '../..';
-import { storyWrapperDecorator } from '../decorators';
+import { calendarDecorator, storyWrapperDecorator } from '../decorators';
 
 const useDateRangeInput = () => {
   const [value, setValue] = useState<TimeRange>({ from: null, to: null });
@@ -15,7 +15,7 @@ const useDateRangeInput = () => {
 
 export default {
   title: 'Date Picker/DateRange Input',
-  decorators: [storyWrapperDecorator()],
+  decorators: [storyWrapperDecorator(), calendarDecorator()],
 } as Meta;
 
 export const Simple = () => {
