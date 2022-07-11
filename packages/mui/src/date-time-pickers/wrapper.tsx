@@ -46,11 +46,10 @@ export function WrapPicker<P extends PickerTypes>(
   function WrappedPicker<In, Out>(props: Props<P, In, Out>) {
     const commonPickerProps = usePickerProps<In, Out>();
 
-    const { defaultMultiLocaleProp } = useMultiLocalizationContext();
-    let multiLocale = disableMultiLocaleProp
-      ? false
-      : ('multiLocale' in props && props['multiLocale']) ??
-        defaultMultiLocaleProp;
+    const { defaultMultiLocale } = useMultiLocalizationContext();
+    const multiLocale =
+      !disableMultiLocaleProp &&
+      ('multiLocale' in props ? props['multiLocale'] : defaultMultiLocale);
 
     return (
       // @ts-ignore

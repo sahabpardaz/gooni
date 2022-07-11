@@ -93,7 +93,7 @@ export function getThemeOptions(
       MuiToggleButton: {
         styleOverrides: {
           root: ({ ownerState, theme }) => {
-            let color =
+            const color =
               ownerState.color === 'standard' || !ownerState.color
                 ? 'primary'
                 : ownerState.color;

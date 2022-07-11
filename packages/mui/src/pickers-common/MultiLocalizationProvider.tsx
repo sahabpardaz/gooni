@@ -16,13 +16,14 @@ interface Props
   /** locale options array to be available for the project, first locale in the array would be the default locale
    */
   localeOptions: Locale[];
-  /** default `multiLocale` to be used for all date & date-time pickers unless mentioned otherwise on the component itself */
-  defaultMultiLocaleProp?: boolean;
+  /** default `multiLocale` to be used for all date & date-time pickers in the children tree
+   *  unless mentioned otherwise on the component itself */
+  defaultMultiLocale?: boolean;
 }
 
 export interface MultiLocalizationContextValue {
   localeOptions: Locale[];
-  defaultMultiLocaleProp?: boolean;
+  defaultMultiLocale?: boolean;
   currentLocale: Locale;
   changeLocale: (value: Locale) => void;
 }
@@ -34,7 +35,7 @@ export const MultiLocalizationContext =
 export function MultiLocalizationProvider(props: Props) {
   const {
     localeOptions,
-    defaultMultiLocaleProp = false,
+    defaultMultiLocale = false,
     children,
     localeText,
     dateFormats,
@@ -42,27 +43,36 @@ export function MultiLocalizationProvider(props: Props) {
 
   const defaultLocale = localeOptions[0];
   const [currentLocale, setCurrentLocale] = React.useState(defaultLocale);
-  const changeLocale = (value: Locale) => {
-    setCurrentLocale(value);
-  };
 
-  const contextValue: MultiLocalizationContextValue = {
-    localeOptions,
-    defaultMultiLocaleProp,
-    currentLocale,
-    changeLocale,
-  };
+  const contextValue: MultiLocalizationContextValue = React.useMemo(
+    () => ({
+      localeOptions,
+      defaultMultiLocale,
+      currentLocale,
+      changeLocale: setCurrentLocale,
+    }),
+    [localeOptions, defaultMultiLocale, currentLocale, setCurrentLocale],
+  );
+
+  const memoizedLocalizedDateAdapter = React.useMemo(
+    () => getLocalizedDateFnsAdapter(currentLocale),
+    [currentLocale],
+  );
+
+  const memoizedLocaleText = React.useMemo(
+    () =>
+      localeText ||
+      (defaultLocale === Locale.en
+        ? defaultEnglishLocaleTexts
+        : defaultPersianLocaleTexts),
+    [localeText, defaultLocale],
+  );
 
   return (
     <MultiLocalizationContext.Provider value={contextValue}>
       <LocalizationProvider
-        dateAdapter={getLocalizedDateFnsAdapter(currentLocale)}
-        localeText={
-          localeText ||
-          (defaultLocale === Locale.en
-            ? defaultEnglishLocaleTexts
-            : defaultPersianLocaleTexts)
-        }
+        dateAdapter={memoizedLocalizedDateAdapter}
+        localeText={memoizedLocaleText}
         dateFormats={dateFormats}
       >
         {children}

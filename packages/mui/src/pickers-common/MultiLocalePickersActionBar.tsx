@@ -8,12 +8,12 @@ import {
 import { Locale } from 'src/constant-types';
 import { useMultiLocalizationContext } from './MultiLocalizationProvider';
 
-const DialogActionBar = styled('div')(() => ({
+const DialogActionBar = styled('div')({
   display: 'flex',
   flexDirection: 'row-reverse',
   alignItems: 'flex-end',
   justifyContent: 'space-between',
-}));
+});
 
 export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
   const { currentLocale, localeOptions, changeLocale } =
@@ -22,7 +22,7 @@ export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
 
   const handleLocaleChange = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
-    value: Locale,
+    value: Locale | null,
   ) => {
     value && changeLocale(value);
   };
