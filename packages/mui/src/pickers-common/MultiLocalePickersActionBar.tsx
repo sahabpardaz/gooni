@@ -16,7 +16,7 @@ const DialogActionBar = styled('div')({
 });
 
 export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
-  const { currentLocale, localeOptions, changeLocale } =
+  const { currentLocale, locales, changeLocale } =
     useMultiLocalizationContext();
   const localeText = useLocaleText();
 
@@ -36,9 +36,9 @@ export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
           exclusive
           onChange={handleLocaleChange}
         >
-          {localeOptions.map((option) => (
-            <ToggleButton key={option} value={option}>
-              {localeText.changeLocaleButtonLabel?.[option]}
+          {locales.map((locale) => (
+            <ToggleButton key={locale} value={locale}>
+              {localeText.changeLocaleButtonLabel?.[locale]}
             </ToggleButton>
           ))}
         </ToggleButtonGroup>

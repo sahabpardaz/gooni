@@ -3,7 +3,7 @@ import { Locale } from 'src/constant-types';
 
 declare module '@mui/x-date-pickers' {
   export interface PickersLocaleText {
-    changeLocaleButtonLabel?: Record<Locale, string>;
+    changeLocaleButtonLabel?: Record<Locale | string, string>;
     errors?: Partial<Record<NonNullable<DateTimeValidationError>, string>>;
   }
 }
