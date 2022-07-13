@@ -69,6 +69,9 @@
     "resize-observer-polyfill": "^1.5.1",
     "stylis-plugin-rtl": "^2.1.1"
   },
+  "resolutions": {
+    "prettier": "^2.6.2"
+  },
   "dependencies": {
     "@date-io/date-fns": "^2.14.0",
     "@date-io/date-fns-jalali": "^2.14.0",

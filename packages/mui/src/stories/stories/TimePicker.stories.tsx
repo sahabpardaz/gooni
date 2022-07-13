@@ -13,21 +13,17 @@ export default {
   decorators: [calendarDecorator()],
 } as Meta;
 
-export const TimePicker: Story<TimePickerProps<Date> & ThemeColorSwapperProps> =
-  ({ ampm, views, color }) => {
-    const [time, setTime] = React.useState<Date | null>(null);
+export const TimePicker: Story<
+  TimePickerProps<Date> & ThemeColorSwapperProps
+> = ({ ampm, views, color }) => {
+  const [time, setTime] = React.useState<Date | null>(null);
 
-    return (
-      <ThemeColorSwapper color={color}>
-        <PxTimePicker
-          value={time}
-          onChange={setTime}
-          ampm={ampm}
-          views={views}
-        />
-      </ThemeColorSwapper>
-    );
-  };
+  return (
+    <ThemeColorSwapper color={color}>
+      <PxTimePicker value={time} onChange={setTime} ampm={ampm} views={views} />
+    </ThemeColorSwapper>
+  );
+};
 
 TimePicker.argTypes = {
   ampm: {
