@@ -62,7 +62,7 @@ export interface MultiLocalizationContextValue {
   changeLocale: (value: GeneralizedLocale) => void;
 }
 
-export const MultiLocalizationContext =
+const MultiLocalizationContext =
   React.createContext<MultiLocalizationContextValue | null>(null);
 
 /** Used for wrapping the whole project and provides proper adapters for the locales given as `localeOptions` props */
