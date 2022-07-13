@@ -19,17 +19,14 @@ type PickerTypes =
   | typeof DatePicker
   | typeof DateTimePicker;
 
-type PickerProps<
-  P extends PickerTypes,
-  In,
-  Out = In,
-> = P extends typeof TimePicker
-  ? TimePickerProps<In, Out>
-  : P extends typeof DatePicker
-  ? DatePickerProps<In, Out>
-  : P extends typeof DateTimePicker
-  ? DateTimePickerProps<In, Out>
-  : never;
+type PickerProps<P extends PickerTypes, In, Out = In> =
+  P extends typeof TimePicker
+    ? TimePickerProps<In, Out>
+    : P extends typeof DatePicker
+    ? DatePickerProps<In, Out>
+    : P extends typeof DateTimePicker
+    ? DateTimePickerProps<In, Out>
+    : never;
 
 type Props<P extends PickerTypes, In, Out> = SubsetPartial<
   PickerProps<P, In, Out>,

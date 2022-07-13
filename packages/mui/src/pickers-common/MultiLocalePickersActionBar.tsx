@@ -5,8 +5,10 @@ import {
   PickersActionBar,
   PickersActionBarProps,
 } from '@mui/x-date-pickers/PickersActionBar';
-import { Locale } from 'src/constant-types';
-import { useMultiLocalizationContext } from './MultiLocalizationProvider';
+import {
+  GeneralizedLocale,
+  useMultiLocalizationContext,
+} from './MultiLocalizationProvider';
 
 const DialogActionBar = styled('div')({
   display: 'flex',
@@ -22,7 +24,7 @@ export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
 
   const handleLocaleChange = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
-    value: Locale | null,
+    value: GeneralizedLocale | null,
   ) => {
     value && changeLocale(value);
   };

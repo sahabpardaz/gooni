@@ -10,7 +10,7 @@ import {
   defaultPersianLocaleTexts,
 } from './default-locale-texts';
 
-type GeneralizedLocale = Locale | string;
+export type GeneralizedLocale = Locale | string;
 
 /**
  * type for locales with custom adapter taken from the user
@@ -20,10 +20,10 @@ export type LocaleWithCustomAdapter = {
   adapter: LocalizationProviderProps['dateAdapter'];
 };
 
-export type LocalesWithAdapters = Record<
+export type LocalesWithAdaptersEntries = [
   GeneralizedLocale,
-  LocalizationProviderProps['dateAdapter']
->;
+  LocalizationProviderProps['dateAdapter'],
+][];
 
 /**
  * type guard for Locale type
@@ -33,7 +33,7 @@ export type LocalesWithAdapters = Record<
 function isLocale(
   localeOption: Locale | LocaleWithCustomAdapter,
 ): localeOption is Locale {
-  return (localeOption as LocaleWithCustomAdapter).locale === undefined;
+  return typeof localeOption === 'string';
 }
 
 interface Props
@@ -44,8 +44,10 @@ interface Props
    * first locale in the array would be the default locale
    *
    * locale option can be given in two formats:
-   * - locale with default adapter provided by gooni, e.g. `Locale.en`, `Locale.fa`
+   * - locale with default adapter provided by gooni (DateFns Adapter), e.g. `Locale.en`, `Locale.fa`
    * - locale with custom adapter, e.g. `{locale: 'en', adapter: yourCustomEnAdapter}`
+   *
+   * If you pass different adapters, beware that they should be compatible with each other
    */
   localeOptions: (Locale | LocaleWithCustomAdapter)[];
   /** default `multiLocale` to be used for all date & date-time pickers in the children tree
@@ -57,7 +59,7 @@ export interface MultiLocalizationContextValue {
   locales: GeneralizedLocale[];
   defaultMultiLocale?: boolean;
   currentLocale: GeneralizedLocale;
-  changeLocale: (value: Locale) => void;
+  changeLocale: (value: GeneralizedLocale) => void;
 }
 
 export const MultiLocalizationContext =
@@ -74,14 +76,16 @@ export function MultiLocalizationProvider(props: Props) {
   } = props;
 
   const [locales, localesWithAdapters] = React.useMemo(() => {
-    const localesWithAdapters: LocalesWithAdapters = Object.fromEntries(
+    const localesWithAdaptersEntries: LocalesWithAdaptersEntries =
       localeOptions.map((localeOption) =>
         isLocale(localeOption)
           ? [localeOption, getLocalizedDateFnsAdapter(localeOption)]
           : [localeOption.locale, localeOption.adapter],
-      ),
-    );
-    return [Object.keys(localesWithAdapters), localesWithAdapters];
+      );
+    return [
+      localesWithAdaptersEntries.map((entry) => entry[0]),
+      Object.fromEntries(localesWithAdaptersEntries),
+    ];
   }, [localeOptions]);
 
   const defaultLocale = locales[0];

@@ -18,12 +18,10 @@ export type NonNilArray<A> = A extends (infer V | Nil)[] ? V[] : A;
  * @type EnrichedArray
  * @example EnrichedArray<[{a: 1}], {b: 2}> -> [{a: 1, b: 2}]
  */
-export type EnrichedArray<
-  Array extends any[],
-  Enrichment = {},
-> = Array extends (infer V)[]
-  ? (V extends null ? null : V & Enrichment)[]
-  : never;
+export type EnrichedArray<Array extends any[], Enrichment = {}> =
+  Array extends (infer V)[]
+    ? (V extends null ? null : V & Enrichment)[]
+    : never;
 
 // ────────────────────────────────────────────────────────────────────────────────
 
