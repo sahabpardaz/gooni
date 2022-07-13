@@ -8,8 +8,8 @@ import { PopoverInput } from './px-popover-input';
 import { PopoverInputContextProvider } from './px-popover-input-context';
 
 beforeEach(() => {
-  jest.resetModules();
-  jest.mock(
+  vi.resetModules();
+  vi.mock(
     'popper.js',
     () =>
       class Popper {

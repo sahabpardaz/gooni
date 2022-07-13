@@ -10,6 +10,6 @@
  */
 
 export {
-  Props as TimeRangeInputProps,
   TimeRangeInput,
+  type Props as TimeRangeInputProps,
 } from './px-time-range-input';

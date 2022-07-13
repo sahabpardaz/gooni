@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
-
 import { CheckboxList } from './check-list-box';
 import { SelectOption } from './package-types';
 import { PxCheckListFilter } from './px-check-list-filter';
@@ -69,7 +68,7 @@ describe('check list box', () => {
     });
 
     it('should work without value', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { checkBoxInputs, checkBoxItems } = renderCheckBoxList({
         onChange,
       });
@@ -127,10 +126,10 @@ describe('check list box', () => {
 
 describe('check-list-filter', () => {
   beforeEach(() => {
-    jest.useFakeTimers('legacy');
+    vi.useFakeTimers();
   });
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
   it('should open menu list', () => {
     render(<PxCheckListFilter items={ITEMS} buttonContent="click me" />);
@@ -139,7 +138,7 @@ describe('check-list-filter', () => {
     expect(screen.getByRole('tooltip')).toBeInTheDocument();
   });
   it('should call onReset function', () => {
-    const onReset = jest.fn();
+    const onReset = vi.fn();
 
     render(
       <PxCheckListFilter
@@ -169,8 +168,8 @@ describe('check-list-filter', () => {
   });
 
   it('should call onChange only when popper has been closed', async () => {
-    const onChange = jest.fn();
-    const onClose = jest.fn();
+    const onChange = vi.fn();
+    const onClose = vi.fn();
     const { baseElement } = render(
       <PxCheckListFilter
         items={ITEMS}
@@ -182,7 +181,7 @@ describe('check-list-filter', () => {
     );
     const button = screen.getByRole('button');
     userEvent.click(button);
-    jest.advanceTimersToNextTimer(); // because of this: https://github.com/mui-org/material-ui/blob/v4.12.3/packages/material-ui/src/ClickAwayListener/ClickAwayListener.js#L40
+    vi.advanceTimersToNextTimer(); // because of this: https://github.com/mui-org/material-ui/blob/v4.12.3/packages/material-ui/src/ClickAwayListener/ClickAwayListener.js#L40
     const checkboxes = screen.getAllByRole('checkbox');
 
     checkboxes.forEach((checkbox) => userEvent.click(checkbox));
@@ -194,7 +193,7 @@ describe('check-list-filter', () => {
   });
 
   it('should call onChange', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     onChange.mockClear();
     render(
       <PxCheckListFilter

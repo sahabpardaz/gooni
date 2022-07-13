@@ -48,7 +48,7 @@ describe('DateRangePicker', () => {
   });
 
   it('should call onChange when click on reset', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const wrapper = getWrapper(
       {
         from: new Date('2018/1/1'),
@@ -98,7 +98,7 @@ describe('DateRangePicker', () => {
   });
 
   it('should call onChange when select a datetime in the from part', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const wrapper = getWrapper(
       {
         from: new Date('2018/1/1'),
@@ -115,7 +115,7 @@ describe('DateRangePicker', () => {
   });
 
   it('should call onChange when select a datetime in the to part', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const wrapper = getWrapper(
       {
         from: new Date('2018/1/1'),

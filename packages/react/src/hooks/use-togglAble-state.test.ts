@@ -86,7 +86,7 @@ describe('useToggleAbleState', () => {
     });
 
     it('should call onAdd when a state is added with proper argument', () => {
-      const onAdd = jest.fn();
+      const onAdd = vi.fn();
 
       const { result } = renderHook(() => {
         return useToggleAbleState({ options: { multiple: false, onAdd } });
@@ -100,8 +100,8 @@ describe('useToggleAbleState', () => {
     });
 
     it('should call onRemove when a state is removed with proper argument', () => {
-      const onAdd = jest.fn();
-      const onRemove = jest.fn();
+      const onAdd = vi.fn();
+      const onRemove = vi.fn();
 
       const { result } = renderHook(() => {
         return useToggleAbleState({
@@ -158,7 +158,7 @@ describe('useToggleAbleState', () => {
     });
 
     it('should call onAdd when a state is added with proper argument', () => {
-      const onAdd = jest.fn();
+      const onAdd = vi.fn();
 
       const { result } = renderHook(() => {
         return useToggleAbleState({ options: { multiple: false, onAdd } });
@@ -190,7 +190,7 @@ describe('useToggleAbleState', () => {
 
     it('should call onRemove when a state is removed with proper argument', () => {
       const initialState = ['4'];
-      const onRemove = jest.fn();
+      const onRemove = vi.fn();
 
       const { result } = renderHook(() => {
         return useToggleAbleState({
@@ -242,7 +242,7 @@ describe('useToggleAbleState', () => {
   });
 
   describe('unControlled with onChange handler', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     it('should controlled from outside by setState', () => {
       const { result } = renderHook(() => {
         const { values, toggleByValue, setValues } = useToggleAbleState({

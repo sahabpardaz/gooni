@@ -3,8 +3,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { getLocalizedDateFns } from '../date-time-utils';
 import { RangePickerI18nProvider } from '../pickers-common';
 import {
-  Props as TimeRangePickerProps,
   TimeRangePicker,
+  type Props as TimeRangePickerProps,
 } from './px-time-range-picker';
 
 const DefaultDateFns = getLocalizedDateFns();
@@ -77,7 +77,7 @@ describe('TimeRangePicker', () => {
   });
 
   it('should call onChange when click on reset', () => {
-    const mocked = jest.fn();
+    const mocked = vi.fn();
     const { resetBtn } = renderer({
       value: {
         from: DefaultDateFns.parse('10:54', 'HH:mm', new Date()),
@@ -106,7 +106,7 @@ describe('TimeRangePicker', () => {
   });
 
   it('should call onChange when select from time', () => {
-    const mocked = jest.fn();
+    const mocked = vi.fn();
     const { fromInput } = renderer({
       onChange: mocked,
       value: {

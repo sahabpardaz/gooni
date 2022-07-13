@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { TimeRangeInput } from '.';
 import { getLocalizedDateFns } from '../date-time-utils';
 import { RangeInputI18nProvider } from '../pickers-common';
-import { Props as TimeRangeInputProps } from './px-time-range-input';
+import { type Props as TimeRangeInputProps } from './px-time-range-input';
 
 const DefaultDateFns = getLocalizedDateFns();
 

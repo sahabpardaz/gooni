@@ -5,7 +5,7 @@ import { useMergedClasses } from 'tss-react';
 
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
-import { Props as PxPopoverProps, PxPopover } from './px-popover';
+import { PxPopover, type Props as PxPopoverProps } from './px-popover';
 
 interface OwnProps extends Omit<PxPopoverProps, 'renderer' | 'classes'> {}
 

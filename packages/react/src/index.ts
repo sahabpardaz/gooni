@@ -11,10 +11,13 @@
 
 export { useBooleanState } from './hooks/use-boolean-state';
 export { useDeepMemoize } from './hooks/use-deep-memoize';
-export { Options, useDelayedValue } from './hooks/use-delayed-value';
-export { DialogHooksReturnType, useDialog } from './hooks/use-dialog';
 export {
-  ToggleAbleStateOptions,
-  ToggleAbleStateReturn,
+  useDelayedValue,
+  type Options as UseDelayedValueOptions,
+} from './hooks/use-delayed-value';
+export { useDialog, type DialogHooksReturnType } from './hooks/use-dialog';
+export {
   useToggleAbleState,
+  type ToggleAbleStateOptions,
+  type ToggleAbleStateReturn,
 } from './hooks/use-toggleAble-state';

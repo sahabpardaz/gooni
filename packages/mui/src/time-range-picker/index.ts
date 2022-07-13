@@ -10,6 +10,6 @@
  */
 
 export {
-  Props as TimeRangePickerProps,
   TimeRangePicker,
+  type Props as TimeRangePickerProps,
 } from './px-time-range-picker';

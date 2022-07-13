@@ -4,18 +4,18 @@
   "publishConfig": {
     "access": "public"
   },
-  "module": "dist/utils.esm.js",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/utils.cjs.js",
+  "module": "dist/utils.es.js",
+  "typings": "dist/utils.d.ts",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "start": "utsdx watch",
-    "build": "utsdx build",
-    "test": "utsdx test",
+    "start": "vite build --watch",
+    "build": "vite build",
+    "test": "vitest",
     "prepublishOnly": "yarn test && yarn build",
     "type:check": "yarn tsc"
   },
@@ -29,8 +29,5 @@
     "ramda": "^0.25.0",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
-  },
-  "dependencies": {
-    "@react-stately/utils": "^3.2.1"
   }
 }

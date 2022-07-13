@@ -11,5 +11,5 @@
 
 export {
   DateRangePicker,
-  Props as DateRangePickerProps,
+  type Props as DateRangePickerProps,
 } from './date-range-picker';

@@ -72,7 +72,7 @@ describe('DateRangeInput', () => {
     expect(result).toHaveLength(1);
   });
   it('should show function custom text', () => {
-    const customFunc = jest.fn().mockImplementation((timeRange: TimeRange) => {
+    const customFunc = vi.fn().mockImplementation((timeRange: TimeRange) => {
       const value = formatDateRange(timeRange);
       return `${value.from} ${value.to}`;
     });

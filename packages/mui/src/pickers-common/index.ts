@@ -2,7 +2,7 @@
 
 export {
   DefaultMuiPickerLocalization,
-  DefaultMuiPickerLocalizationProps,
+  type DefaultMuiPickerLocalizationProps,
 } from './default-mui-picker-localization';
 export * from './picker-props';
 export {
@@ -11,10 +11,10 @@ export {
 } from './px-range-input-i18n-provider';
 export {
   RangePickerI18nProvider,
-  RangePickerLabel,
   useRangePickerI18nContext,
+  type RangePickerLabel,
 } from './px-range-picker-i18n-provider';
 export {
   ThemeColorSwapper,
-  ThemeColorSwapperProps,
+  type ThemeColorSwapperProps,
 } from './theme-color-swapper';

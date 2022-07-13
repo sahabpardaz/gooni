@@ -62,7 +62,7 @@ describe('ToggleButtonInput', () => {
       expect(wrapper.queryAllByDisplayValue('foo')).toHaveLength(1);
     });
     it('should call onChange when input value changed', async () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const wrapper = render(<Input value="foo" onChange={onChange} />);
       const inpt = await waitFor(
         () => wrapper.queryAllByDisplayValue('foo')[0],
@@ -71,7 +71,7 @@ describe('ToggleButtonInput', () => {
       expect(onChange).toHaveBeenCalledTimes(1);
     });
     it('should call onFocus when input focused', async () => {
-      const onFocus = jest.fn();
+      const onFocus = vi.fn();
       const wrapper = render(<Input value="foo" onFocus={onFocus} />);
       const inpt = await waitFor(
         () => wrapper.queryAllByDisplayValue('foo')[0],
@@ -86,7 +86,7 @@ describe('ToggleButtonInput', () => {
       expect(onFocus).toHaveBeenCalledTimes(1);
     });
     it('should call onBlur when input blured', async () => {
-      const onBlur = jest.fn();
+      const onBlur = vi.fn();
       const wrapper = render(<Input value="foo" onBlur={onBlur} />);
       const inpt = await waitFor(
         () => wrapper.queryAllByDisplayValue('foo')[0],
@@ -103,7 +103,7 @@ describe('ToggleButtonInput', () => {
       expect(button).toHaveLength(1);
     });
     it('should call onClick when button clicked', () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       const wrapper = getButtonWrapper(onClick);
       const button = wrapper.baseElement.querySelectorAll('button');
       fireEvent.click(button[0]);
@@ -130,7 +130,7 @@ describe('ToggleButtonInput', () => {
       expect(wrapper.queryAllByDisplayValue('test')).toHaveLength(1);
     });
     it('should call onChange when input value changed', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const wrapper = getToggleButtonInputWrapper(
         { value: 'test', type: 'imei' },
         { onChange },
@@ -153,7 +153,7 @@ describe('ToggleButtonInput', () => {
       expect(result).toHaveLength(0);
     });
     it('should call onFocus when input focused', async () => {
-      const onFocus = jest.fn();
+      const onFocus = vi.fn();
       const wrapper = getToggleButtonInputWrapper(
         { value: 'test', type: 'imei' },
         { onFocus },
@@ -171,7 +171,7 @@ describe('ToggleButtonInput', () => {
       expect(onFocus).toHaveBeenCalledTimes(1);
     });
     it('should call onBlur when input blured', async () => {
-      const onBlur = jest.fn();
+      const onBlur = vi.fn();
       const wrapper = getToggleButtonInputWrapper(
         { value: 'test', type: 'imei' },
         { onBlur },
@@ -183,7 +183,7 @@ describe('ToggleButtonInput', () => {
       expect(onBlur).toHaveBeenCalledTimes(1);
     });
     it('shouldnt call onFocus when input is disabled', async () => {
-      const onFocus = jest.fn();
+      const onFocus = vi.fn();
       const wrapper = getToggleButtonInputWrapper(
         { value: 'test', type: null },
         { onFocus },
@@ -198,7 +198,7 @@ describe('ToggleButtonInput', () => {
       expect(onFocus).toHaveBeenCalledTimes(0);
     });
     it('should call onChange when type changed', () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const wrapper = getToggleButtonInputWrapper(
         { value: 'test', type: 'imei' },
         { onChange },

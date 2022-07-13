@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "module": "esnext",
     "target": "ES6",
     "lib": ["dom", "esnext"],

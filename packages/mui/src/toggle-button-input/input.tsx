@@ -14,7 +14,7 @@ import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 import {
   OutlinedTextField,
-  Props as CustomTextFieldProps,
+  type Props as CustomTextFieldProps,
 } from './OutlinedTextField';
 
 interface OwnProps extends Omit<CustomTextFieldProps, 'color'> {

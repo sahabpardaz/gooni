@@ -10,6 +10,6 @@ module.exports = {
     check: true, // type-check stories during Storybook build
   },
   core: {
-    builder: 'webpack5',
+    builder: '@storybook/builder-vite',
   },
 };

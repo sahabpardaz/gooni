@@ -9,15 +9,15 @@
  * @packageDocumentation
  */
 
-export { Input, Props as InputProps } from './input';
-export { Props as CustomTextFieldProps } from './OutlinedTextField';
+export { Input, type Props as InputProps } from './input';
+export { type Props as CustomTextFieldProps } from './OutlinedTextField';
 export {
-  Props as ToggleButtonInputProps,
   ToggleButtonInput,
+  type Props as ToggleButtonInputProps,
 } from './px-toggle-button-input';
-export { Props as ButtonToggleProps, ToggleButton } from './toggle-button';
+export { ToggleButton, type Props as ButtonToggleProps } from './toggle-button';
 export {
-  Props as ButtonToggleContextProps,
   useToggleButtonContext,
+  type Props as ButtonToggleContextProps,
 } from './toggle-button-context';
-export { TypeValue } from './type-value';
+export { type TypeValue } from './type-value';

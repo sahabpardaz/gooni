@@ -4,10 +4,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "module": "dist/mui.esm.js",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/mui.cjs.js",
+  "module": "dist/mui.es.js",
+  "typings": "dist/mui.d.ts",
   "files": [
     "dist",
     "src"
@@ -16,10 +16,9 @@
     "node": ">=12"
   },
   "scripts": {
-    "start": "utsdx watch",
-    "build": "utsdx build",
-    "test:all": "utsdx test --passWithNoTests --testPathIgnorePatterns=\"/popover-input/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
-    "test": "yarn test:all --env=jsdom && yarn test:all",
+    "start": "vite build --mode=development --watch",
+    "build": "vite build",
+    "test": "vitest",
     "prepublishOnly": "yarn test && yarn build",
     "type:check": "yarn tsc",
     "storybook": "start-storybook -p 6006",
@@ -45,8 +44,7 @@
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.5.5",
     "@storybook/addons": "^6.5.5",
-    "@storybook/builder-webpack5": "^6.5.5",
-    "@storybook/manager-webpack5": "^6.5.5",
+    "@storybook/builder-vite": "^0.1.39",
     "@storybook/preset-create-react-app": "^4.1.1",
     "@storybook/react": "^6.5.5",
     "@testing-library/dom": "^8.11.1",
@@ -59,6 +57,7 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-resize-detector": "^6.1.0",
     "chromatic": "^6.5.4",
+    "happy-dom": "^6.0.2",
     "jest-environment-jsdom": "^27.0.6",
     "jest-mock-extended": "^2.0.4",
     "popper.js": "1.16.1",
