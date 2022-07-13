@@ -1,8 +1,4 @@
 // read more about doc comment syntax in https://api-extractor.com/pages/tsdoc/doc_comment_syntax/
-export {
-  DefaultMuiPickerLocalization,
-  DefaultMuiPickerLocalizationProps,
-} from './default-mui-picker-localization';
 export { MultiLocalePickersActionBar } from './MultiLocalePickersActionBar';
 export {
   MultiLocalizationContext,
