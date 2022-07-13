@@ -61,8 +61,6 @@
     "chromatic": "^6.5.4",
     "jest-environment-jsdom": "^27.0.6",
     "jest-mock-extended": "^2.0.4",
-    "luxon": "^3.0.1",
-    "moment": "^2.29.4",
     "popper.js": "1.16.1",
     "react-lorem-component": "^0.13.0",
     "react-scripts": "5.0.0",
