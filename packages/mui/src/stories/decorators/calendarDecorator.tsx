@@ -1,12 +1,14 @@
 import { DecoratorFunction } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
 import { Locale } from 'src/constant-types';
-import { MultiLocalizationProvider } from 'src/pickers-common';
-import { LocaleWithCustomAdapter } from 'src/pickers-common/MultiLocalizationProvider';
+import {
+  MultiLocalizationProvider,
+  MultiLocalizationProviderProps,
+} from 'src/pickers-common';
 
 export const calendarDecorator =
   (
-    localeOptions?: (Locale | LocaleWithCustomAdapter)[],
+    localeOptions?: MultiLocalizationProviderProps['localeOptions'],
   ): DecoratorFunction<StoryFnReactReturnType> =>
   (Story, context) => {
     let defaultLocaleOptions =

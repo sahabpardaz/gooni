@@ -55,6 +55,8 @@ interface Props
   defaultMultiLocale?: boolean;
 }
 
+export type { Props as MultiLocalizationProviderProps };
+
 export interface MultiLocalizationContextValue {
   locales: GeneralizedLocale[];
   defaultMultiLocale?: boolean;

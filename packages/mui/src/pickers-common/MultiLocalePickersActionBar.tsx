@@ -40,7 +40,7 @@ export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
         >
           {locales.map((locale) => (
             <ToggleButton key={locale} value={locale}>
-              {localeText.changeLocaleButtonLabel?.[locale]}
+              {localeText.localeButtonLabel?.[locale]}
             </ToggleButton>
           ))}
         </ToggleButtonGroup>

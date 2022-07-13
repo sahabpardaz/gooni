@@ -2,6 +2,7 @@
 export { MultiLocalePickersActionBar } from './MultiLocalePickersActionBar';
 export {
   MultiLocalizationProvider,
+  MultiLocalizationProviderProps,
   useMultiLocalizationContext,
 } from './MultiLocalizationProvider';
 export * from './picker-props';

@@ -3,7 +3,7 @@ import { GeneralizedLocale } from './MultiLocalizationProvider';
 
 declare module '@mui/x-date-pickers' {
   export interface PickersLocaleText {
-    changeLocaleButtonLabel?: Record<GeneralizedLocale, string>;
+    localeButtonLabel?: Record<GeneralizedLocale, string>;
     errors?: Partial<Record<NonNullable<DateTimeValidationError>, string>>;
   }
 }
