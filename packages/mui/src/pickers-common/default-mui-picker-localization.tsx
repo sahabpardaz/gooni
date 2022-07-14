@@ -19,6 +19,12 @@ class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
       end: DateFnsJalali.endOfWeek(now, { locale: this.locale }),
     }).map((day) => this.formatByString(day, 'EEEEE'));
   };
+
+  formatByString = (date: Date, formatString: string) => {
+    return this.formatNumber(
+      DateFnsJalali.format(date, formatString, { locale: this.locale }),
+    );
+  };
 }
 
 export function DefaultMuiPickerLocalization(props: Props) {
@@ -27,7 +33,7 @@ export function DefaultMuiPickerLocalization(props: Props) {
   return (
     <LocalizationProvider
       dateAdapter={locale === 'en' ? DateFnsAdapter : DateFnsJalaliAdapter}
-      localeText={locale === 'en' ? undefined : persianLocaleTexts}
+      localeText={locale === 'en' ? englishLocaleTexts : persianLocaleTexts}
     >
       {children}
     </LocalizationProvider>
@@ -42,5 +48,13 @@ const persianLocaleTexts: Partial<PickersLocaleText> = {
     invalidDate: 'تاریخ انتخابی اشتباه است.',
     maxDate: 'تاریخ انتخابی نباید بیشتر از حد مشخص شده باشد.',
     minDate: 'تاریخ انتخابی نباید کمتر از حد مشخص شده باشد.',
+  },
+};
+
+const englishLocaleTexts: Partial<PickersLocaleText> = {
+  errors: {
+    // invalidDate: '',
+    maxDate: 'Date should not be after maximum date',
+    minDate: 'Date should not be before minimal date',
   },
 };

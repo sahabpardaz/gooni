@@ -46,28 +46,29 @@ describe('check list box', () => {
   });
 
   describe('unControlled', () => {
-    it('should work without value and onChange', () => {
+    it('should work without value and onChange', async () => {
+      const user = userEvent.setup();
       const { checkBoxInputs, checkBoxItems } = renderCheckBoxList();
       const getCheckedItems = () =>
         checkBoxInputs.filter((checkBox) => checkBox.checked);
 
       expect(getCheckedItems()).toHaveLength(0);
 
-      userEvent.click(checkBoxItems[0]);
+      await user.click(checkBoxItems[0]);
 
       expect(getCheckedItems()).toHaveLength(1);
 
-      userEvent.click(checkBoxItems[0]);
+      await user.click(checkBoxItems[0]);
 
       expect(getCheckedItems()).toHaveLength(0);
 
-      userEvent.click(checkBoxItems[0]);
-      userEvent.click(checkBoxItems[1]);
+      await user.click(checkBoxItems[0]);
+      await user.click(checkBoxItems[1]);
 
       expect(getCheckedItems()).toHaveLength(2);
     });
 
-    it('should work without value', () => {
+    it('should work without value', async () => {
       const onChange = vi.fn();
       const { checkBoxInputs, checkBoxItems } = renderCheckBoxList({
         onChange,
@@ -77,22 +78,22 @@ describe('check list box', () => {
 
       expect(getCheckedItems()).toHaveLength(0);
 
-      userEvent.click(checkBoxItems[0]);
+      await userEvent.click(checkBoxItems[0]);
 
       expect(getCheckedItems()).toHaveLength(1);
       expect(onChange).toBeCalledTimes(1);
       expect(onChange).toBeCalledWith([ITEMS[0].value]);
 
       onChange.mockClear();
-      userEvent.click(checkBoxItems[0]);
+      await userEvent.click(checkBoxItems[0]);
 
       expect(getCheckedItems()).toHaveLength(0);
       expect(onChange).toBeCalledTimes(1);
       expect(onChange).toBeCalledWith([]);
 
       onChange.mockClear();
-      userEvent.click(checkBoxItems[0]);
-      userEvent.click(checkBoxItems[1]);
+      await userEvent.click(checkBoxItems[0]);
+      await userEvent.click(checkBoxItems[1]);
 
       expect(getCheckedItems()).toHaveLength(2);
       expect(onChange).toBeCalledTimes(2);
@@ -102,7 +103,7 @@ describe('check list box', () => {
   });
 
   describe('controlled', () => {
-    it('should not change checked items if values does not change', () => {
+    it('should not change checked items if values does not change', async () => {
       const values = [ITEMS[0].value];
 
       const { checkBoxItems, checkBoxInputs } = renderCheckBoxList({
@@ -112,12 +113,12 @@ describe('check list box', () => {
         checkBoxInputs.filter((checkBox) => checkBox.checked);
       expect(getCheckedItems()).toHaveLength(1);
 
-      userEvent.click(checkBoxItems[0]);
+      await userEvent.click(checkBoxItems[0]);
 
       expect(getCheckedItems()).toHaveLength(1);
 
-      userEvent.click(checkBoxItems[1]);
-      userEvent.click(checkBoxItems[2]);
+      await userEvent.click(checkBoxItems[1]);
+      await userEvent.click(checkBoxItems[2]);
 
       expect(getCheckedItems()).toHaveLength(1);
     });
@@ -125,19 +126,13 @@ describe('check list box', () => {
 });
 
 describe('check-list-filter', () => {
-  beforeEach(() => {
-    vi.useFakeTimers();
-  });
-  afterEach(() => {
-    vi.useRealTimers();
-  });
-  it('should open menu list', () => {
+  it('should open menu list', async () => {
     render(<PxCheckListFilter items={ITEMS} buttonContent="click me" />);
     const button = screen.getByRole('button');
-    userEvent.click(button);
+    await userEvent.click(button);
     expect(screen.getByRole('tooltip')).toBeInTheDocument();
   });
-  it('should call onReset function', () => {
+  it('should call onReset function', async () => {
     const onReset = vi.fn();
 
     render(
@@ -149,9 +144,9 @@ describe('check-list-filter', () => {
       />,
     );
     const button = screen.getByRole('button');
-    userEvent.click(button);
+    await userEvent.click(button);
     const resetBtn = screen.getByRole('button', { name: 'reset' });
-    userEvent.click(resetBtn);
+    await userEvent.click(resetBtn);
     expect(onReset).toBeCalledTimes(1);
   });
   it('should render helperText', () => {
@@ -180,19 +175,20 @@ describe('check-list-filter', () => {
       />,
     );
     const button = screen.getByRole('button');
-    userEvent.click(button);
-    vi.advanceTimersToNextTimer(); // because of this: https://github.com/mui-org/material-ui/blob/v4.12.3/packages/material-ui/src/ClickAwayListener/ClickAwayListener.js#L40
+    await userEvent.click(button);
     const checkboxes = screen.getAllByRole('checkbox');
 
-    checkboxes.forEach((checkbox) => userEvent.click(checkbox));
+    await userEvent.pointer(
+      checkboxes.map((checkbox) => ({ keys: '[MouseLeft]', target: checkbox })),
+    );
 
-    userEvent.click(baseElement);
+    await userEvent.click(baseElement);
 
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('should call onChange', () => {
+  it.only('should call onChange', async () => {
     const onChange = vi.fn();
     onChange.mockClear();
     render(
@@ -204,11 +200,13 @@ describe('check-list-filter', () => {
     );
 
     const button = screen.getByRole('button');
-    userEvent.click(button);
+    await userEvent.click(button);
 
     const checkboxes = screen.getAllByRole('checkbox');
 
-    checkboxes.forEach((checkbox) => userEvent.click(checkbox));
+    await userEvent.pointer(
+      checkboxes.map((checkbox) => ({ keys: '[MouseLeft]', target: checkbox })),
+    );
 
     expect(onChange).toHaveBeenCalledTimes(3);
   });

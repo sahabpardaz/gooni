@@ -14,9 +14,23 @@
     }
   ],
   "settings": {
+    "vitest.commandLine": "yarn --cwd=${fileWorkspaceFolder} test"
   },
   "launch": {
     "version": "0.2.0",
-    "configurations": []
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug Current Test File",
+        "autoAttachChildProcesses": true,
+        "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+        "runtimeExecutable": "yarn",
+        "cwd": "${fileWorkspaceFolder}",
+        "runtimeArgs": ["test", "--run", "${relativeFile}"],
+        "smartStep": true,
+        "console": "integratedTerminal"
+      }
+    ]
   }
 }

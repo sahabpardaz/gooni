@@ -1,7 +1,14 @@
 import { TextField } from '@mui/material';
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent, {
+  PointerEventsCheckLevel,
+} from '@testing-library/user-event';
+import { Locale } from '../constant-types';
 import { getLocalizedDateFns } from '../date-time-utils';
-import { RangePickerI18nProvider } from '../pickers-common';
+import {
+  DefaultMuiPickerLocalization,
+  RangePickerI18nProvider,
+} from '../pickers-common';
 import {
   TimeRangePicker,
   type Props as TimeRangePickerProps,
@@ -17,29 +24,31 @@ const renderer = (props: Partial<TimeRangePickerProps> = {}) => {
   } = props;
 
   render(
-    <TimeRangePicker
-      value={value}
-      onChange={onChange}
-      {...restProps}
-      toTimePickerProps={{
-        renderInput: (params) => (
-          <TextField
-            inputProps={{ 'aria-label': 'to input' }}
-            InputLabelProps={{ 'aria-label': 'to input label' }}
-            {...params}
-          />
-        ),
-      }}
-      fromTimePickerProps={{
-        renderInput: (params) => (
-          <TextField
-            inputProps={{ 'aria-label': 'from input' }}
-            InputLabelProps={{ 'aria-label': 'from input label' }}
-            {...params}
-          />
-        ),
-      }}
-    />,
+    <DefaultMuiPickerLocalization locale={Locale.defaultLocale}>
+      <TimeRangePicker
+        value={value}
+        onChange={onChange}
+        {...restProps}
+        toTimePickerProps={{
+          renderInput: (params) => (
+            <TextField
+              inputProps={{ 'aria-label': 'to input' }}
+              InputLabelProps={{ 'aria-label': 'to input label' }}
+              {...params}
+            />
+          ),
+        }}
+        fromTimePickerProps={{
+          renderInput: (params) => (
+            <TextField
+              inputProps={{ 'aria-label': 'from input' }}
+              InputLabelProps={{ 'aria-label': 'from input label' }}
+              {...params}
+            />
+          ),
+        }}
+      />
+    </DefaultMuiPickerLocalization>,
   );
 
   const [fromInput, toInput] = screen.getAllByRole('textbox') as [
@@ -72,8 +81,8 @@ describe('TimeRangePicker', () => {
       },
     });
 
-    expect(fromInput?.value).toBe('۱۰:۵۴ قبل از ظهر');
-    expect(toInput?.value).toBe('۱۱:۳۰ بعد از ظهر');
+    expect(fromInput?.value).toBe('۱۰:۵۴ ق.ظ.');
+    expect(toInput?.value).toBe('۱۱:۳۰ ب.ظ.');
   });
 
   it('should call onChange when click on reset', () => {
@@ -105,7 +114,7 @@ describe('TimeRangePicker', () => {
     expect(resetBtn.textContent).toBe('foo');
   });
 
-  it('should call onChange when select from time', () => {
+  it('should call onChange when select from time', async () => {
     const mocked = vi.fn();
     const { fromInput } = renderer({
       onChange: mocked,
@@ -115,16 +124,26 @@ describe('TimeRangePicker', () => {
       },
     });
 
-    fireEvent.click(fromInput as HTMLInputElement);
+    await userEvent.click(fromInput);
 
-    const time = screen.getByText(/^۱۰$/);
-    const okBtn = screen.getByRole('button', { name: /OK/ });
+    const time = screen.getByRole('option', { name: /۱۰/ });
+    const okBtn = screen.getByRole('button', { name: /انتخاب/ });
 
-    fireEvent.click(time as HTMLElement);
+    await userEvent.pointer(
+      [
+        { target: time },
+        {
+          keys: '[MouseLeft]',
+          target: time.parentElement!.parentElement!.firstElementChild!,
+        },
+      ],
+      {
+        pointerEventsCheck: PointerEventsCheckLevel.Never,
+      },
+    );
+    await userEvent.click(okBtn);
 
-    fireEvent.click(okBtn as HTMLButtonElement);
-
-    expect(mocked).toHaveBeenCalledTimes(1);
+    expect(mocked).toHaveBeenCalled();
   });
 
   it('should take labels from provider', () => {
@@ -136,28 +155,30 @@ describe('TimeRangePicker', () => {
           resetLabel: 'remove times',
         }}
       >
-        <TimeRangePicker
-          value={{ from: null, to: null }}
-          onChange={() => {}}
-          toTimePickerProps={{
-            renderInput: (params) => (
-              <TextField
-                inputProps={{ 'aria-label': 'to input' }}
-                InputLabelProps={{ 'aria-label': 'to input label' }}
-                {...params}
-              />
-            ),
-          }}
-          fromTimePickerProps={{
-            renderInput: (params) => (
-              <TextField
-                inputProps={{ 'aria-label': 'to input' }}
-                InputLabelProps={{ 'aria-label': 'from input label' }}
-                {...params}
-              />
-            ),
-          }}
-        />
+        <DefaultMuiPickerLocalization locale={Locale.defaultLocale}>
+          <TimeRangePicker
+            value={{ from: null, to: null }}
+            onChange={() => {}}
+            toTimePickerProps={{
+              renderInput: (params) => (
+                <TextField
+                  inputProps={{ 'aria-label': 'to input' }}
+                  InputLabelProps={{ 'aria-label': 'to input label' }}
+                  {...params}
+                />
+              ),
+            }}
+            fromTimePickerProps={{
+              renderInput: (params) => (
+                <TextField
+                  inputProps={{ 'aria-label': 'to input' }}
+                  InputLabelProps={{ 'aria-label': 'from input label' }}
+                  {...params}
+                />
+              ),
+            }}
+          />
+        </DefaultMuiPickerLocalization>
       </RangePickerI18nProvider>,
     );
 

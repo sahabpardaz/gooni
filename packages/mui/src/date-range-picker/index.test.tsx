@@ -29,17 +29,22 @@ describe('DateRangePicker', () => {
       from: new Date('2018/1/1'),
       to: new Date('2018/1/2'),
     });
-    const from = wrapper.queryAllByDisplayValue('۹۶/۱۰/۱۱');
-    const to = wrapper.queryAllByDisplayValue('۹۶/۱۰/۱۲');
+    const from = wrapper.queryAllByDisplayValue('۱۳۹۶/۱۰/۱۱');
+    const to = wrapper.queryAllByDisplayValue('۱۳۹۶/۱۰/۱۲');
     expect(from).toHaveLength(1);
     expect(to).toHaveLength(1);
   });
 
   it('should render msg when beginning is after the end', () => {
-    const wrapper = getWrapper({
-      to: new Date('2018/1/1'),
-      from: new Date('2018/1/2'),
-    });
+    const wrapper = getWrapper(
+      {
+        to: new Date('2018/1/1'),
+        from: new Date('2018/1/2'),
+      },
+      () => {},
+      {},
+      Locale.en,
+    );
     const result = wrapper.queryAllByText(
       'Date should not be before minimal date',
       { selector: 'p.Mui-error' },
@@ -107,7 +112,7 @@ describe('DateRangePicker', () => {
       onChange,
     );
 
-    const from = wrapper.queryAllByDisplayValue('۹۶/۱۰/۱۱');
+    const from = wrapper.queryAllByDisplayValue('۱۳۹۶/۱۰/۱۱');
     fireEvent.click(from[0]);
     const day = wrapper.baseElement.querySelector(calenderEnabledDaySelector);
     fireEvent.click(day as Element);
@@ -124,7 +129,7 @@ describe('DateRangePicker', () => {
       onChange,
     );
 
-    const to = wrapper.queryAllByDisplayValue('۹۶/۱۰/۱۲');
+    const to = wrapper.queryAllByDisplayValue('۱۳۹۶/۱۰/۱۲');
     fireEvent.click(to[0]);
     const day = wrapper.baseElement.querySelector(calenderEnabledDaySelector);
     fireEvent.click(day as Element);
@@ -134,13 +139,15 @@ describe('DateRangePicker', () => {
   it('should render as child in provider', () => {
     const wrapper = render(
       <RangePickerI18nProvider value={{ resetLabel: 'foo' }}>
-        <DateRangePicker
-          value={{
-            from: new Date('2018/1/1'),
-            to: new Date('2018/1/2'),
-          }}
-          onChange={() => {}}
-        />
+        <DefaultMuiPickerLocalization locale={Locale.defaultLocale}>
+          <DateRangePicker
+            value={{
+              from: new Date('2018/1/1'),
+              to: new Date('2018/1/2'),
+            }}
+            onChange={() => {}}
+          />
+        </DefaultMuiPickerLocalization>
       </RangePickerI18nProvider>,
     );
     const label = wrapper.queryAllByText('foo');
@@ -153,7 +160,7 @@ describe('DateRangePicker', () => {
       to: new Date('2018/1/5'),
     });
 
-    const from = wrapper.queryAllByDisplayValue('۹۶/۱۰/۱۱');
+    const from = wrapper.queryAllByDisplayValue('۱۳۹۶/۱۰/۱۱');
     fireEvent.click(from[0]);
     const disabledDays = wrapper.baseElement.querySelectorAll(
       calenderDisabledDaySelector,
