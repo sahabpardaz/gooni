@@ -12,7 +12,7 @@ import {
   MultiLocalePickersActionBar,
   useMultiLocalizationContext,
   usePickerProps,
-} from 'src/pickers-common';
+} from '../pickers-common';
 
 type PickerTypes =
   | typeof TimePicker

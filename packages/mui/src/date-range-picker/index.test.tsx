@@ -1,10 +1,10 @@
 import { fireEvent, render } from '@testing-library/react';
+import { Locale } from '../constant-types';
+import { TimeRange } from '../date-time-utils';
 import {
   MultiLocalizationProvider,
   RangePickerI18nProvider,
-} from 'src/pickers-common';
-import { Locale } from '../constant-types';
-import { TimeRange } from '../date-time-utils';
+} from '../pickers-common';
 import { DateRangePicker, DateRangePickerProps } from './index';
 
 const calenderEnabledDaySelector =

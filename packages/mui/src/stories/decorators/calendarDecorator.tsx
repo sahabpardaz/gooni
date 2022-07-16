@@ -1,10 +1,10 @@
 import { DecoratorFunction } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
-import { Locale } from 'src/constant-types';
 import {
+  Locale,
   MultiLocalizationProvider,
   MultiLocalizationProviderProps,
-} from 'src/pickers-common';
+} from '../..';
 
 export const calendarDecorator =
   (

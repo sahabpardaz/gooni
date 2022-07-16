@@ -3,7 +3,7 @@ import { LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
 import { Meta, Story } from '@storybook/react';
 import { parseISO } from 'date-fns-jalali';
 import { useState } from 'react';
-import { DatePicker, DatePickerProps } from 'src/date-time-pickers';
+import { DatePicker, DatePickerProps } from '../..';
 import { calendarDecorator } from '../decorators';
 
 export default {
