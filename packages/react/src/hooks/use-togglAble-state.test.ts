@@ -1,6 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import * as React from 'react';
-
 import { useToggleAbleState } from './use-toggleAble-state';
 
 describe('useToggleAbleState', () => {

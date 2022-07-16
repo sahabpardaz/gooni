@@ -1,5 +1,4 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-
 import { useDialog } from './use-dialog';
 
 describe('useDialog', () => {

@@ -10,7 +10,6 @@ import React, {
 } from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 import { useMergedClasses } from 'tss-react';
-
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 import { PopoverInputContextProvider } from './px-popover-input-context';

@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
 import { useMergedClasses } from 'tss-react';
-
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 import { PxPopover, type Props as PxPopoverProps } from './px-popover';

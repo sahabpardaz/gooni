@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-
 import { TimeRangeInput } from '.';
 import { getLocalizedDateFns } from '../date-time-utils';
 import { RangeInputI18nProvider } from '../pickers-common';

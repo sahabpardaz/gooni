@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-
 import { useBooleanState } from './use-boolean-state';
 
 /**

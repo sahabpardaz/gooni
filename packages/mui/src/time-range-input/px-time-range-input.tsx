@@ -1,6 +1,5 @@
 import { Box, Paper, TextFieldProps } from '@mui/material';
 import React, { useCallback, useRef } from 'react';
-
 import {
   formatDateRange,
   getRangeInputValue,

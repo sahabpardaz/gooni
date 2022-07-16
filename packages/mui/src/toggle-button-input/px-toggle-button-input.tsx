@@ -1,6 +1,5 @@
 import { isNil } from 'ramda';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-
 import { Input, InputProps } from './input';
 import { useMergeRefs } from './mergeRefs.util';
 import { ToggleButtonContextProvider } from './toggle-button-context';

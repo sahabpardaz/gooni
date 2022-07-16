@@ -1,6 +1,5 @@
 import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
-
 import { TimePicker as PxTimePicker, TimePickerProps } from '../..';
 import {
   ThemeColorSwapper,

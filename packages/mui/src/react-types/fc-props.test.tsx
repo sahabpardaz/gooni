@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-
 import { FCProps } from '.';
 
 type Props = FCProps<{ a: number }>;

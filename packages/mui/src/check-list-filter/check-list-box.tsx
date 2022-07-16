@@ -8,7 +8,6 @@ import {
 import { useToggleAbleState } from '@my-sahab/react';
 import * as React from 'react';
 import { useMergedClasses } from 'tss-react';
-
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 import { CheckboxListItem } from './check-box-list-item';

@@ -8,7 +8,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-
 import { CustomTextFieldProps, ToggleButton, ToggleButtonInput } from '../..';
 import { storyWrapperDecorator } from '../decorators';
 import { LeftInput } from './left-input';

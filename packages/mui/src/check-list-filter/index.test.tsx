@@ -188,7 +188,7 @@ describe('check-list-filter', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it.only('should call onChange', async () => {
+  it('should call onChange', async () => {
     const onChange = vi.fn();
     onChange.mockClear();
     render(

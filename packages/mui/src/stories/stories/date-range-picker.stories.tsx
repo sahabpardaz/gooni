@@ -1,7 +1,6 @@
 import { Paper, Typography } from '@mui/material';
 import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
-
 import { DateRangePicker, TimeRange } from '../..';
 import { calendarDecorator } from '../decorators';
 

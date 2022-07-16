@@ -19,7 +19,7 @@
     "start": "vite build --mode=development --watch",
     "build": "vite build",
     "test": "vitest",
-    "prepublishOnly": "yarn test && yarn build",
+    "prepublishOnly": "yarn test --run && yarn build",
     "type:check": "yarn tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
