@@ -17,7 +17,12 @@ export const createConfig = (config: UserConfigExport) =>
           formats: ['es', 'cjs'],
         },
         rollupOptions: {
-          external: (id) => !(id.startsWith('.') || path.isAbsolute(id)),
+          external: (id) =>
+            !(
+              id.startsWith('.') ||
+              id.startsWith('src/') ||
+              path.isAbsolute(id)
+            ),
         },
       },
       test: {
