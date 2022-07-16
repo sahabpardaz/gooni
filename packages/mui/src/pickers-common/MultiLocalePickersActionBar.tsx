@@ -1,5 +1,10 @@
-import styled from '@emotion/styled';
-import { DialogActions, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import {
+  alpha,
+  DialogActions,
+  ToggleButton as MuiToggleButton,
+  ToggleButtonGroup as MuiToggleButtonGroup,
+} from '@mui/material';
+import { styled } from '@mui/system';
 import { useLocaleText } from '@mui/x-date-pickers/internals/hooks/useUtils';
 import {
   PickersActionBar,
@@ -15,6 +20,28 @@ const DialogActionBar = styled('div')({
   flexDirection: 'row-reverse',
   alignItems: 'flex-end',
   justifyContent: 'space-between',
+});
+
+const ToggleButton = styled(MuiToggleButton)(({ theme, color: colorProp }) => {
+  const color = colorProp === 'standard' || !colorProp ? 'primary' : colorProp;
+  return {
+    borderColor: theme.palette[color].main,
+    padding: theme.spacing(0.75, 1),
+    color: theme.palette[color].main,
+    '&:hover': {
+      backgroundColor: alpha(
+        theme.palette[color].main,
+        theme.palette.action.hoverOpacity,
+      ),
+    },
+    '&.Mui-selected': {
+      color: theme.palette.common.white,
+      backgroundColor: theme.palette[color].main,
+      '&:hover': {
+        backgroundColor: theme.palette[color].main,
+      },
+    },
+  };
 });
 
 export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
@@ -33,7 +60,7 @@ export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
     <DialogActionBar>
       <PickersActionBar {...props} />
       <DialogActions>
-        <ToggleButtonGroup
+        <MuiToggleButtonGroup
           value={currentLocale}
           exclusive
           onChange={handleLocaleChange}
@@ -43,7 +70,7 @@ export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
               {localeText.localeButtonLabel?.[locale]}
             </ToggleButton>
           ))}
-        </ToggleButtonGroup>
+        </MuiToggleButtonGroup>
       </DialogActions>
     </DialogActionBar>
   );
