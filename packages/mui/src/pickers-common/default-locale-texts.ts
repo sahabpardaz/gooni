@@ -6,6 +6,10 @@ export const defaultEnglishLocaleTexts: Partial<PickersLocaleText> = {
     [Locale.en]: 'Gregorian',
     [Locale.fa]: 'Jalali',
   },
+  errors: {
+    maxDate: 'Date should not be after maximum date',
+    minDate: 'Date should not be before minimal date',
+  },
 };
 
 export const defaultPersianLocaleTexts: Partial<PickersLocaleText> = {
