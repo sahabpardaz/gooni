@@ -6,7 +6,7 @@ import userEvent, {
 import { Locale } from '../constant-types';
 import { getLocalizedDateFns } from '../date-time-utils';
 import {
-  DefaultMuiPickerLocalization,
+  MultiLocalizationProvider,
   RangePickerI18nProvider,
 } from '../pickers-common';
 import {
@@ -24,7 +24,7 @@ const renderer = (props: Partial<TimeRangePickerProps> = {}) => {
   } = props;
 
   render(
-    <DefaultMuiPickerLocalization locale={Locale.defaultLocale}>
+    <MultiLocalizationProvider localeOptions={[Locale.defaultLocale]}>
       <TimeRangePicker
         value={value}
         onChange={onChange}
@@ -48,7 +48,7 @@ const renderer = (props: Partial<TimeRangePickerProps> = {}) => {
           ),
         }}
       />
-    </DefaultMuiPickerLocalization>,
+    </MultiLocalizationProvider>,
   );
 
   const [fromInput, toInput] = screen.getAllByRole('textbox') as [
@@ -155,7 +155,7 @@ describe('TimeRangePicker', () => {
           resetLabel: 'remove times',
         }}
       >
-        <DefaultMuiPickerLocalization locale={Locale.defaultLocale}>
+        <MultiLocalizationProvider localeOptions={[Locale.defaultLocale]}>
           <TimeRangePicker
             value={{ from: null, to: null }}
             onChange={() => {}}
@@ -178,7 +178,7 @@ describe('TimeRangePicker', () => {
               ),
             }}
           />
-        </DefaultMuiPickerLocalization>
+        </MultiLocalizationProvider>
       </RangePickerI18nProvider>,
     );
 

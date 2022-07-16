@@ -16,6 +16,7 @@ export {
   formatDateTimeRange,
   formatTime,
   getLocalizedDateFns,
+  getLocalizedDateFnsAdapter,
 } from './date-time-utils';
 export {
   getRangeInputValue,

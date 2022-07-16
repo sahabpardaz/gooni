@@ -33,12 +33,6 @@ const Template: Story = (args) => {
   );
 };
 
-export const PersianJalaaliCalendar: Story = Template.bind({});
-PersianJalaaliCalendar.decorators = [calendarDecorator('fa')];
-
-export const EnglishGregorianCalendar: Story = Template.bind({});
-EnglishGregorianCalendar.decorators = [calendarDecorator('en')];
-
 export const PrimaryColor: Story = Template.bind({});
 PrimaryColor.args = { color: 'primary' };
 

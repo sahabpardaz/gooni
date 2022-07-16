@@ -1,8 +1,10 @@
 import { fireEvent, render } from '@testing-library/react';
 import { Locale } from '../constant-types';
 import { TimeRange } from '../date-time-utils';
-import { RangePickerI18nProvider } from '../pickers-common';
-import { DefaultMuiPickerLocalization } from '../pickers-common/default-mui-picker-localization';
+import {
+  MultiLocalizationProvider,
+  RangePickerI18nProvider,
+} from '../pickers-common';
 import { DateRangePicker, DateRangePickerProps } from './index';
 
 const calenderEnabledDaySelector =
@@ -17,9 +19,9 @@ const getWrapper = (
   locale: Locale = Locale.defaultLocale,
 ) => {
   return render(
-    <DefaultMuiPickerLocalization locale={locale}>
+    <MultiLocalizationProvider localeOptions={[locale]}>
       <DateRangePicker value={value} onChange={onChange as any} {...props} />,
-    </DefaultMuiPickerLocalization>,
+    </MultiLocalizationProvider>,
   );
 };
 
@@ -139,7 +141,7 @@ describe('DateRangePicker', () => {
   it('should render as child in provider', () => {
     const wrapper = render(
       <RangePickerI18nProvider value={{ resetLabel: 'foo' }}>
-        <DefaultMuiPickerLocalization locale={Locale.defaultLocale}>
+        <MultiLocalizationProvider localeOptions={[Locale.defaultLocale]}>
           <DateRangePicker
             value={{
               from: new Date('2018/1/1'),
@@ -147,7 +149,7 @@ describe('DateRangePicker', () => {
             }}
             onChange={() => {}}
           />
-        </DefaultMuiPickerLocalization>
+        </MultiLocalizationProvider>
       </RangePickerI18nProvider>,
     );
     const label = wrapper.queryAllByText('foo');
