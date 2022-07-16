@@ -1,6 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useEffect, useState } from 'react';
-
 import { useDeepMemoize } from './use-deep-memoize';
 
 function useDeepMemoExample(initialState: Record<string, string>) {

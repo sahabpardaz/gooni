@@ -1,8 +1,7 @@
+import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { DecoratorFunction } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
-
-import { CacheProvider } from '@emotion/react';
 import { TssCacheProvider } from 'tss-react';
 import { muiCacheRtl, tssCacheRtl } from '../core/emotion';
 import { GlobalStyles } from '../core/styles/GlobalStyles';

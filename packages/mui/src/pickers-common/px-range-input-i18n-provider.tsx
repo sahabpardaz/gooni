@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { RangeInputLabels } from '../date-time-utils';
 
 interface OwnProps {

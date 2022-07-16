@@ -1,7 +1,6 @@
 import { ThemeProvider, useTheme } from '@mui/material';
 import { renderHook } from '@testing-library/react-hooks';
 import * as React from 'react';
-
 import {
   RangeInputI18nProvider,
   RangePickerI18nProvider,

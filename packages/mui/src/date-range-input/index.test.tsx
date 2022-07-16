@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-
 import { formatDateRange, TimeRange } from '../date-time-utils';
 import { RangeInputI18nProvider } from '../pickers-common';
 import { DateRangeInput } from './index';
@@ -72,7 +71,7 @@ describe('DateRangeInput', () => {
     expect(result).toHaveLength(1);
   });
   it('should show function custom text', () => {
-    const customFunc = jest.fn().mockImplementation((timeRange: TimeRange) => {
+    const customFunc = vi.fn().mockImplementation((timeRange: TimeRange) => {
       const value = formatDateRange(timeRange);
       return `${value.from} ${value.to}`;
     });

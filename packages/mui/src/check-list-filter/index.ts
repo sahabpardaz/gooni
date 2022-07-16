@@ -9,9 +9,12 @@
  * @packageDocumentation
  */
 
-export { CheckboxList, Props as CheckListBoxProps } from './check-list-box';
-export { SelectOption } from './package-types';
 export {
-  Props as PxCheckListFilterProps,
+  CheckboxList,
+  type Props as CheckListBoxProps,
+} from './check-list-box';
+export { type SelectOption } from './package-types';
+export {
   PxCheckListFilter,
+  type Props as PxCheckListFilterProps,
 } from './px-check-list-filter';

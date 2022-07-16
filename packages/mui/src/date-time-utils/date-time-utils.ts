@@ -13,6 +13,12 @@ class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
       end: DateFnsJalali.endOfWeek(now, { locale: this.locale }),
     }).map((day) => this.formatByString(day, 'EEEEE'));
   };
+
+  public formatByString = (date: Date, formatString: string) => {
+    return this.formatNumber(
+      DateFnsJalali.format(date, formatString, { locale: this.locale }),
+    );
+  };
 }
 
 export const getLocalizedDateFns = (locale: Locale = Locale.defaultLocale) =>

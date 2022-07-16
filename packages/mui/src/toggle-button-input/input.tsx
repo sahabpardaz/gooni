@@ -9,12 +9,11 @@ import { useDelayedValue } from '@my-sahab/react';
 import clsx from 'clsx';
 import React, { useCallback, useState } from 'react';
 import { useMergedClasses } from 'tss-react';
-
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 import {
   OutlinedTextField,
-  Props as CustomTextFieldProps,
+  type Props as CustomTextFieldProps,
 } from './OutlinedTextField';
 
 interface OwnProps extends Omit<CustomTextFieldProps, 'color'> {

@@ -10,13 +10,16 @@
  */
 
 export { ClickAwayClose } from './px-click-away-close';
-export { Props as PxPopoverProps, PxPopover } from './px-popover';
+export { PxPopover, type Props as PxPopoverProps } from './px-popover';
 export {
   PopoverButton,
-  Props as PopoverButtonProps,
+  type Props as PopoverButtonProps,
 } from './px-popover-button';
-export { PopoverInput, Props as PopoverInputProps } from './px-popover-input';
 export {
-  PopoverInputContextType,
+  PopoverInput,
+  type Props as PopoverInputProps,
+} from './px-popover-input';
+export {
   usePopoverInputContext,
+  type PopoverInputContextType,
 } from './px-popover-input-context';

@@ -1,5 +1,4 @@
 import { renderHook } from '@testing-library/react-hooks';
-
 import { useDelayedValue } from './use-delayed-value';
 
 describe('useDelayedValue', () => {

@@ -1,15 +1,13 @@
 import '@testing-library/jest-dom/extend-expect';
-
 import { fireEvent, render, screen } from '@testing-library/react';
 import { mock } from 'jest-mock-extended';
-
 import { PopoverButton } from './px-popover-button';
 import { PopoverInput } from './px-popover-input';
 import { PopoverInputContextProvider } from './px-popover-input-context';
 
 beforeEach(() => {
-  jest.resetModules();
-  jest.mock(
+  vi.resetModules();
+  vi.mock(
     'popper.js',
     () =>
       class Popper {

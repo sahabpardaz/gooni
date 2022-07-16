@@ -9,10 +9,9 @@ import React, {
   useState,
 } from 'react';
 import ReactResizeDetector from 'react-resize-detector';
+import { Styles } from 'src/react-types';
+import { makeStyles } from 'src/tss-mui';
 import { useMergedClasses } from 'tss-react';
-
-import { Styles } from '../react-types';
-import { makeStyles } from '../tss-mui';
 import { PopoverInputContextProvider } from './px-popover-input-context';
 
 interface RendererParams {

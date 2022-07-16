@@ -8,7 +8,6 @@ import {
 import classNames from 'clsx';
 import React, { useCallback } from 'react';
 import { useMergedClasses } from 'tss-react';
-
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 import { useToggleButtonContext } from './toggle-button-context';

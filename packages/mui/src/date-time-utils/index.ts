@@ -20,7 +20,7 @@ export {
 } from './date-time-utils';
 export {
   getRangeInputValue,
-  RangeInputFormatter,
-  RangeInputLabels,
+  type RangeInputFormatter,
+  type RangeInputLabels,
 } from './range-input-utils';
-export { TimeRange } from './time-range-type';
+export { type TimeRange } from './time-range-type';

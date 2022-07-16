@@ -1,26 +1,22 @@
 {
   "name": "@my-sahab/mui",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publishConfig": {
     "access": "public"
   },
-  "module": "dist/mui.esm.js",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/mui.js",
+  "module": "dist/mui.mjs",
+  "typings": "dist/mui.d.ts",
   "files": [
     "dist",
     "src"
   ],
-  "engines": {
-    "node": ">=12"
-  },
   "scripts": {
-    "start": "utsdx watch",
-    "build": "utsdx build",
-    "test:all": "utsdx test --passWithNoTests --testPathIgnorePatterns=\"/popover-input/|/check-list-filter/|/date-picker/|/date-range-picker/|/date-range-input/|/time-picker/|/time-range-input/|/time-range-picker/|/toggle-button-input/\"",
-    "test": "yarn test:all --env=jsdom && yarn test:all",
-    "prepublishOnly": "yarn test && yarn build",
+    "start": "vite build --mode=development --watch",
+    "build": "vite build",
+    "test": "vitest",
+    "prepublishOnly": "yarn test --run && yarn build",
     "type:check": "yarn tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -45,20 +41,12 @@
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.5.5",
     "@storybook/addons": "^6.5.5",
-    "@storybook/builder-webpack5": "^6.5.5",
-    "@storybook/manager-webpack5": "^6.5.5",
+    "@storybook/builder-vite": "^0.2.0",
     "@storybook/preset-create-react-app": "^4.1.1",
     "@storybook/react": "^6.5.5",
-    "@testing-library/dom": "^8.11.1",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "27.0.3",
-    "@types/react": "^17.0.38",
-    "@types/react-dom": "^17.0.11",
     "@types/react-resize-detector": "^6.1.0",
     "chromatic": "^6.5.4",
+    "happy-dom": "^6.0.2",
     "jest-environment-jsdom": "^27.0.6",
     "jest-mock-extended": "^2.0.4",
     "popper.js": "1.16.1",
@@ -72,7 +60,7 @@
     "@date-io/date-fns-jalali": "^2.14.0",
     "@my-sahab/react": "^0.1.0",
     "@my-sahab/utils": "^0.1.0",
-    "react-resize-detector": "^6.7.7",
+    "react-resize-detector": "^7.1.2",
     "tss-react": "^3.3.2"
   }
 }

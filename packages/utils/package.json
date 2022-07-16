@@ -4,33 +4,28 @@
   "publishConfig": {
     "access": "public"
   },
-  "module": "dist/utils.esm.js",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/utils.js",
+  "module": "dist/utils.mjs",
+  "typings": "dist/utils.d.ts",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "start": "utsdx watch",
-    "build": "utsdx build",
-    "test": "utsdx test",
-    "prepublishOnly": "yarn test && yarn build",
+    "start": "vite build --mode=development --watch",
+    "build": "vite build",
+    "test": "vitest",
+    "prepublishOnly": "yarn test --run && yarn build",
     "type:check": "yarn tsc"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^7.0.2",
     "@types/ramda": "^0.27.62",
-    "ramda": "^0.27.1",
-    "react-test-renderer": "^17.0.2"
+    "ramda": "^0.27.1"
   },
   "peerDependencies": {
     "ramda": "^0.25.0",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
-  },
-  "dependencies": {
-    "@react-stately/utils": "^3.2.1"
   }
 }

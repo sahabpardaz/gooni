@@ -1,11 +1,10 @@
 import { Box, Paper, TextFieldProps } from '@mui/material';
 import React, { useCallback, useRef } from 'react';
-
 import {
   formatDateRange,
   getRangeInputValue,
-  RangeInputFormatter,
   TimeRange,
+  type RangeInputFormatter,
 } from '../date-time-utils';
 import { useRangeInputI18nContext } from '../pickers-common';
 import { ClickAwayClose, PopoverInput } from '../popover-input';

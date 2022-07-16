@@ -1,7 +1,6 @@
 import { Checkbox, CheckboxProps, ListItem, ListItemIcon } from '@mui/material';
 import React from 'react';
 import { useMergedClasses } from 'tss-react';
-
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 

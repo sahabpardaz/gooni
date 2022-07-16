@@ -11,5 +11,5 @@
 
 export {
   DateRangeInput,
-  Props as DateRangeInputProps,
+  type Props as DateRangeInputProps,
 } from './date-range-input';
