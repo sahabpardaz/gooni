@@ -5,8 +5,8 @@
     "access": "public"
   },
   "license": "MIT",
-  "main": "dist/react.cjs.js",
-  "module": "dist/react.es.js",
+  "main": "dist/react.js",
+  "module": "dist/react.mjs",
   "typings": "dist/react.d.ts",
   "files": [
     "dist",

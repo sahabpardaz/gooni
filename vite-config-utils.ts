@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { mergeConfig, UserConfigExport } from 'vite';
+import { defineConfig, mergeConfig, UserConfigExport } from 'vite';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -9,7 +9,7 @@ const testSetup = path.resolve(process.cwd(), './test.setup.ts');
 
 export const createConfig = (config: UserConfigExport) =>
   mergeConfig(
-    {
+    defineConfig({
       plugins: [tsconfigPaths(), dts({ insertTypesEntry: true })],
       build: {
         lib: {
@@ -25,6 +25,6 @@ export const createConfig = (config: UserConfigExport) =>
         environment: 'jsdom',
         setupFiles: fs.existsSync(testSetup) ? testSetup : '',
       },
-    },
+    }),
     config,
   );

@@ -5,8 +5,8 @@
     "access": "public"
   },
   "license": "MIT",
-  "main": "dist/utils.cjs.js",
-  "module": "dist/utils.es.js",
+  "main": "dist/utils.js",
+  "module": "dist/utils.mjs",
   "typings": "dist/utils.d.ts",
   "files": [
     "dist",
