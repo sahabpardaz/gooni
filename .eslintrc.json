@@ -4,7 +4,7 @@
     "dist",
     "build",
     "node_modules",
-    ".storybook",
+    "!.storybook",
     "storybook-static"
   ]
 }

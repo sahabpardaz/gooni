@@ -1,15 +1,25 @@
 import { DecoratorFunction } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
-import { DefaultMuiPickerLocalization } from '../../pickers-common/default-mui-picker-localization';
+import {
+  Locale,
+  MultiLocalizationProvider,
+  MultiLocalizationProviderProps,
+} from '../..';
 
 export const calendarDecorator =
-  (lang?: 'en' | 'fa'): DecoratorFunction<StoryFnReactReturnType> =>
+  (
+    localeOptions?: MultiLocalizationProviderProps['localeOptions'],
+  ): DecoratorFunction<StoryFnReactReturnType> =>
   (Story, context) => {
-    const locale = lang ?? context?.globals.locale ?? 'fa';
-
+    let defaultLocaleOptions =
+      context.globals.locale === 'en'
+        ? [Locale.en, Locale.fa]
+        : [Locale.fa, Locale.en];
     return (
-      <DefaultMuiPickerLocalization locale={locale}>
+      <MultiLocalizationProvider
+        localeOptions={localeOptions || defaultLocaleOptions}
+      >
         <Story />
-      </DefaultMuiPickerLocalization>
+      </MultiLocalizationProvider>
     );
   };

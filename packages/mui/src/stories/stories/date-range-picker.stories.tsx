@@ -1,7 +1,6 @@
 import { Paper, Typography } from '@mui/material';
 import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
-
 import { DateRangePicker, TimeRange } from '../..';
 import { calendarDecorator } from '../decorators';
 
@@ -33,12 +32,6 @@ const Template: Story = (args) => {
     </Fragment>
   );
 };
-
-export const PersianJalaaliCalendar: Story = Template.bind({});
-PersianJalaaliCalendar.decorators = [calendarDecorator('fa')];
-
-export const EnglishGregorianCalendar: Story = Template.bind({});
-EnglishGregorianCalendar.decorators = [calendarDecorator('en')];
 
 export const PrimaryColor: Story = Template.bind({});
 PrimaryColor.args = { color: 'primary' };

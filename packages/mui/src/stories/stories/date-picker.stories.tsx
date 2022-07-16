@@ -17,6 +17,11 @@ export default {
         type: 'inline-radio',
       },
     },
+    multiLocale: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -26,12 +31,6 @@ const Template = (args: Omit<DatePickerProps<Date>, 'value' | 'onChange'>) => {
 };
 
 export const SimpleCalender: Story = Template.bind({});
-
-export const EnglishCalender: Story = Template.bind({});
-EnglishCalender.decorators = [calendarDecorator('en')];
-
-export const PersianCalender: Story = Template.bind({});
-PersianCalender.decorators = [calendarDecorator('fa')];
 
 export const CustomLocalization: Story<
   Omit<DatePickerProps<Date>, 'value' | 'onChange'> &
