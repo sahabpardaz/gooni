@@ -16,8 +16,7 @@
     "start": "vite build --mode=development --watch",
     "build": "vite build",
     "test": "vitest",
-    "prepublishOnly": "yarn test --run && yarn build",
-    "type:check": "yarn tsc",
+    "type-check": "yarn run -T tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "chromatic --exit-zero-on-changes"
@@ -36,7 +35,6 @@
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.83",
     "@mui/material": "^5.8.1",
-    "@mui/x-date-pickers": "^5.0.0-alpha.4",
     "@storybook/addon-essentials": "^6.5.5",
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.5.5",
@@ -58,6 +56,7 @@
   "dependencies": {
     "@date-io/date-fns": "^2.14.0",
     "@date-io/date-fns-jalali": "^2.14.0",
+    "@mui/x-date-pickers": "^5.0.0-beta.1",
     "@my-sahab/react": "^0.1.0",
     "@my-sahab/utils": "^0.1.0",
     "react-resize-detector": "^7.1.2",

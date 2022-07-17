@@ -25,8 +25,7 @@ jobs:
         with:
           node-version: '16'
           cache: 'yarn'
-      - run: yarn install --frozen-lockfile
+      - run: yarn install
       - run: yarn deduplicate:check
-      - run: yarn lerna bootstrap
       - run: yarn prepublishOnly
-      - run: yarn lerna run type:check --stream
+      - run: yarn type-check

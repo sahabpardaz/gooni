@@ -16,8 +16,7 @@
     "start": "vite build --mode=development --watch",
     "build": "vite build",
     "test": "vitest",
-    "prepublishOnly": "yarn test --run && yarn build",
-    "type:check": "yarn tsc"
+    "type-check": "yarn run -T tsc"
   },
   "devDependencies": {
     "@my-sahab/utils": "^0.1.0"

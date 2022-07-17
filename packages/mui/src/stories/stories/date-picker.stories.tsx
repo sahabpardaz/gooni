@@ -34,7 +34,7 @@ export const SimpleCalender: Story = Template.bind({});
 
 export const CustomLocalization: Story<
   Omit<DatePickerProps<Date>, 'value' | 'onChange'> &
-    Record<keyof PickersLocaleText, string>
+    Record<keyof PickersLocaleText<unknown>, string>
 > = (args) => {
   const { okButtonLabel } = args;
   const [value, setDateValue] = useState<Date | null>(parseISO('2019/1/1'));
