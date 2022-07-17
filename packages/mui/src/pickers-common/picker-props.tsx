@@ -30,7 +30,7 @@ export const pickerDefaultRenderInputFactory =
 export function usePickerProps<In, Out>() {
   const pickerLocalization =
     useContext(MuiPickersAdapterContext)?.localeText ||
-    ({} as PickersLocaleText);
+    ({} as PickersLocaleText<unknown>);
   const [error, setError] = useState<RenderInputFactoryProps['error']>();
   const onError: DateTimePickerProps<In, Out>['onError'] = (reason) => {
     setError(

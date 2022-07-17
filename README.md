@@ -24,12 +24,6 @@ After cloning the project, install dependencies in the root directory using yarn
 yarn install
 ```
 
-Manage dependencies and links
-
-```bash
-yarn lerna bootstrap
-```
-
 Build all packages
 
 ```bash

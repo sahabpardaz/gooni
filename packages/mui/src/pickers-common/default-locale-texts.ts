@@ -1,7 +1,7 @@
 import { PickersLocaleText } from '@mui/x-date-pickers';
 import { Locale } from '../constant-types';
 
-export const defaultEnglishLocaleTexts: Partial<PickersLocaleText> = {
+export const defaultEnglishLocaleTexts: Partial<PickersLocaleText<unknown>> = {
   localeButtonLabel: {
     [Locale.en]: 'Gregorian',
     [Locale.fa]: 'Jalali',
@@ -12,7 +12,7 @@ export const defaultEnglishLocaleTexts: Partial<PickersLocaleText> = {
   },
 };
 
-export const defaultPersianLocaleTexts: Partial<PickersLocaleText> = {
+export const defaultPersianLocaleTexts: Partial<PickersLocaleText<unknown>> = {
   localeButtonLabel: {
     [Locale.en]: 'میلادی',
     [Locale.fa]: 'شمسی',
