@@ -1,11 +1,8 @@
 import { TextField } from '@mui/material';
-import {
-  DateTimePickerProps,
-  MuiPickersAdapterContext,
-  PickersLocaleText,
-} from '@mui/x-date-pickers';
-import { DateTimeValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateTimeValidation';
-import { ReactNode, useContext, useState } from 'react';
+import { DateTimePickerProps } from '@mui/x-date-pickers';
+import { useLocaleText } from '@mui/x-date-pickers/internals';
+import type { DateTimeValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateTimeValidation';
+import { ReactNode, useState } from 'react';
 
 type RenderInput = DateTimePickerProps<unknown, unknown>['renderInput'];
 
@@ -28,9 +25,7 @@ export const pickerDefaultRenderInputFactory =
     );
 
 export function usePickerProps<In, Out>() {
-  const pickerLocalization =
-    useContext(MuiPickersAdapterContext)?.localeText ||
-    ({} as PickersLocaleText<unknown>);
+  const pickerLocalization = useLocaleText();
   const [error, setError] = useState<RenderInputFactoryProps['error']>();
   const onError: DateTimePickerProps<In, Out>['onError'] = (reason) => {
     setError(
