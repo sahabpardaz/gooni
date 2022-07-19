@@ -5,7 +5,7 @@ import {
   ToggleButtonGroup as MuiToggleButtonGroup,
 } from '@mui/material';
 import { styled } from '@mui/system';
-import { useLocaleText } from '@mui/x-date-pickers/internals/hooks/useUtils';
+import { useLocaleText } from '@mui/x-date-pickers/internals';
 import {
   PickersActionBar,
   PickersActionBarProps,

@@ -1,4 +1,4 @@
-import { DateTimeValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateTimeValidation';
+import type { DateTimeValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateTimeValidation';
 import { GeneralizedLocale } from './MultiLocalizationProvider';
 
 declare module '@mui/x-date-pickers' {
