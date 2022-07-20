@@ -1,13 +1,13 @@
 {
   "name": "@my-sahab/mui",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
-  "main": "dist/mui.js",
-  "module": "dist/mui.mjs",
-  "typings": "dist/mui.d.ts",
+  "main": "dist/index.common.js",
+  "module": "dist/index.module.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
