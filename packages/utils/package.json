@@ -1,13 +1,13 @@
 {
   "name": "@my-sahab/utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
-  "main": "dist/utils.js",
-  "module": "dist/utils.mjs",
-  "typings": "dist/utils.d.ts",
+  "main": "dist/index.common.js",
+  "module": "dist/index.module.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"

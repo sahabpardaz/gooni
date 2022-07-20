@@ -1,13 +1,13 @@
 {
   "name": "@my-sahab/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
-  "main": "dist/react.js",
-  "module": "dist/react.mjs",
-  "typings": "dist/react.d.ts",
+  "main": "dist/index.common.js",
+  "module": "dist/index.module.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"

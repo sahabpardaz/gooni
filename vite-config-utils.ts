@@ -15,6 +15,13 @@ export const createConfig = (config: UserConfigExport) =>
         lib: {
           entry: srcEntry,
           formats: ['es', 'cjs'],
+          fileName(format) {
+            const formatsName = {
+              es: 'module',
+              cjs: 'common',
+            };
+            return `index.${formatsName[format]}.js`;
+          },
         },
         rollupOptions: {
           external: (id) =>
