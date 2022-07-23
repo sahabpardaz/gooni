@@ -1,9 +1,9 @@
 import DateFnsJalaliAdapter from '@date-io/date-fns-jalali';
 import { LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
+import { DatePicker, DatePickerProps } from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import { parseISO } from 'date-fns-jalali';
 import { useState } from 'react';
-import { DatePicker, DatePickerProps } from '../..';
 import { calendarDecorator } from '../decorators';
 
 export default {

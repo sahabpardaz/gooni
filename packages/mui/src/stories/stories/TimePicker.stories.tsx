@@ -1,10 +1,11 @@
-import { Meta, Story } from '@storybook/react';
-import * as React from 'react';
-import { TimePicker as PxTimePicker, TimePickerProps } from '../..';
 import {
   ThemeColorSwapper,
   ThemeColorSwapperProps,
-} from '../../pickers-common';
+  TimePicker as PxTimePicker,
+  TimePickerProps,
+} from '@my-sahab/mui';
+import { Meta, Story } from '@storybook/react';
+import * as React from 'react';
 import { calendarDecorator } from '../decorators';
 
 export default {
