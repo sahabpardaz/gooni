@@ -7,7 +7,7 @@ import {
 } from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
-import { calendarDecorator } from '../decorators';
+import { calendarDecorator } from 'src/@storybook/decorators';
 
 export default {
   title: 'Time Picker/Time Range Picker',

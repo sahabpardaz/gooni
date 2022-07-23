@@ -2,7 +2,7 @@ import { Paper, Typography } from '@mui/material';
 import { DateRangePicker, TimeRange } from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
-import { calendarDecorator } from '../decorators';
+import { calendarDecorator } from 'src/@storybook/decorators';
 
 export default {
   title: 'Date Picker/DateRangePicker',

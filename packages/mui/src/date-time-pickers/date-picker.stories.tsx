@@ -4,7 +4,7 @@ import { DatePicker, DatePickerProps } from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import { parseISO } from 'date-fns-jalali';
 import { useState } from 'react';
-import { calendarDecorator } from '../decorators';
+import { calendarDecorator } from 'src/@storybook/decorators';
 
 export default {
   title: 'Date Picker/Date Picker',

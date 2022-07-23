@@ -1,4 +1,13 @@
-import { Box, Button, Divider, Grid, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  outlinedInputClasses,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { styled } from '@mui/system';
 import {
   CustomTextFieldProps,
   ToggleButton,
@@ -13,9 +22,27 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { storyWrapperDecorator } from '../decorators';
-import { LeftInput } from './left-input';
-import { RightInput } from './right-input';
+import { storyWrapperDecorator } from 'src/@storybook/decorators';
+// import { LeftInput } from 'src/@storybook/stories/left-input';
+// import { RightInput } from 'src/@storybook/stories/right-input';
+
+console.log(outlinedInputClasses.notchedOutline);
+
+const LeftInput = styled(TextField)({
+  width: '50%',
+  ['& .' + outlinedInputClasses.notchedOutline]: {
+    borderLeft: 0,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+});
+const RightInput = styled(TextField)({
+  width: '50%',
+  ['& .' + outlinedInputClasses.notchedOutline]: {
+    borderRight: 0,
+    borderRadius: 0,
+  },
+});
 
 enum Type {
   'ITEM1' = 'ITEM1',

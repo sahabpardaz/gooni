@@ -6,7 +6,10 @@ import {
 import { Meta } from '@storybook/react';
 import { addDays } from 'date-fns-jalali';
 import { useCallback, useState } from 'react';
-import { calendarDecorator, storyWrapperDecorator } from '../decorators';
+import {
+  calendarDecorator,
+  storyWrapperDecorator,
+} from 'src/@storybook/decorators';
 
 const useDateRangeInput = () => {
   const [value, setValue] = useState<TimeRange>({ from: null, to: null });

@@ -50,7 +50,6 @@
     "jest-environment-jsdom": "^27.0.6",
     "jest-mock-extended": "^2.0.4",
     "popper.js": "1.16.1",
-    "react-lorem-component": "^0.13.0",
     "react-scripts": "5.0.0",
     "resize-observer-polyfill": "^1.5.1",
     "stylis-plugin-rtl": "^2.1.1"
