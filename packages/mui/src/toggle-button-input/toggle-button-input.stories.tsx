@@ -23,14 +23,10 @@ import React, {
   useState,
 } from 'react';
 import { storyWrapperDecorator } from 'src/@storybook/decorators';
-// import { LeftInput } from 'src/@storybook/stories/left-input';
-// import { RightInput } from 'src/@storybook/stories/right-input';
-
-console.log(outlinedInputClasses.notchedOutline);
 
 const LeftInput = styled(TextField)({
   width: '50%',
-  ['& .' + outlinedInputClasses.notchedOutline]: {
+  [`& .${outlinedInputClasses.notchedOutline}`]: {
     borderLeft: 0,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
@@ -38,7 +34,7 @@ const LeftInput = styled(TextField)({
 });
 const RightInput = styled(TextField)({
   width: '50%',
-  ['& .' + outlinedInputClasses.notchedOutline]: {
+  [`& .${outlinedInputClasses.notchedOutline}`]: {
     borderRight: 0,
     borderRadius: 0,
   },
