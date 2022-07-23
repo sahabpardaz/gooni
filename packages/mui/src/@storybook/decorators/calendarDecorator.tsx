@@ -1,10 +1,10 @@
-import { DecoratorFunction } from '@storybook/addons';
-import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
 import {
   Locale,
   MultiLocalizationProvider,
   MultiLocalizationProviderProps,
-} from '../..';
+} from '@my-sahab/mui';
+import { DecoratorFunction } from '@storybook/addons';
+import { StoryFnReactReturnType } from '@storybook/react/dist/ts3.9/client/preview/types';
 
 export const calendarDecorator =
   (

@@ -1,8 +1,15 @@
+import {
+  DateRangeInput,
+  RangeInputI18nProvider,
+  TimeRange,
+} from '@my-sahab/mui';
 import { Meta } from '@storybook/react';
 import { addDays } from 'date-fns-jalali';
 import { useCallback, useState } from 'react';
-import { DateRangeInput, RangeInputI18nProvider, TimeRange } from '../..';
-import { calendarDecorator, storyWrapperDecorator } from '../decorators';
+import {
+  calendarDecorator,
+  storyWrapperDecorator,
+} from 'src/@storybook/decorators';
 
 const useDateRangeInput = () => {
   const [value, setValue] = useState<TimeRange>({ from: null, to: null });

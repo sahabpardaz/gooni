@@ -3250,7 +3250,6 @@ __metadata:
     jest-environment-jsdom: ^27.0.6
     jest-mock-extended: ^2.0.4
     popper.js: 1.16.1
-    react-lorem-component: ^0.13.0
     react-resize-detector: ^7.1.2
     react-scripts: 5.0.0
     resize-observer-polyfill: ^1.5.1
@@ -9087,16 +9086,6 @@ __metadata:
     safe-buffer: ^5.0.1
     sha.js: ^2.4.8
   checksum: ba12bb2257b585a0396108c72830e85f882ab659c3320c83584b1037f8ab72415095167ced80dc4ce8e446a8ecc4b2acf36d87befe0707d73b26cf9dc77440ed
-  languageName: node
-  linkType: hard
-
-"create-react-class@npm:^15.5.3":
-  version: 15.7.0
-  resolution: "create-react-class@npm:15.7.0"
-  dependencies:
-    loose-envify: ^1.3.1
-    object-assign: ^4.1.1
-  checksum: 0c5f43da705fa9f67ec289051dd5780792652d440dfa17cd2c7d8423c1f604609596f895dabf46fda1960ddd93ee96fe1b61ef4d55a94fc4271b07d515486714
   languageName: node
   linkType: hard
 
@@ -15373,17 +15362,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lorem-ipsum@npm:^1.0.3":
-  version: 1.0.6
-  resolution: "lorem-ipsum@npm:1.0.6"
-  dependencies:
-    minimist: ~1.2.0
-  bin:
-    lorem-ipsum: bin/lorem-ipsum.bin.js
-  checksum: 393ab55d6353af11eeb1bd94d572f207dd13c621816fb65dc827c334edc9c7aa578db0cd07856afd0263dae5d67485c990198c3a95979951105a9698a34ce74d
-  languageName: node
-  linkType: hard
-
 "loud-rejection@npm:^1.0.0":
   version: 1.6.0
   resolution: "loud-rejection@npm:1.6.0"
@@ -16010,7 +15988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:^1.1.1, minimist@npm:^1.1.3, minimist@npm:^1.2.0, minimist@npm:^1.2.5, minimist@npm:^1.2.6, minimist@npm:~1.2.0":
+"minimist@npm:^1.1.1, minimist@npm:^1.1.3, minimist@npm:^1.2.0, minimist@npm:^1.2.5, minimist@npm:^1.2.6":
   version: 1.2.6
   resolution: "minimist@npm:1.2.6"
   checksum: d15428cd1e11eb14e1233bcfb88ae07ed7a147de251441d61158619dfb32c4d7e9061d09cab4825fdee18ecd6fce323228c8c47b5ba7cd20af378ca4048fb3fb
@@ -19079,20 +19057,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-lorem-component@npm:^0.13.0":
-  version: 0.13.0
-  resolution: "react-lorem-component@npm:0.13.0"
-  dependencies:
-    create-react-class: ^15.5.3
-    lorem-ipsum: ^1.0.3
-    object-assign: ^4.1.0
-    seedable-random: 0.0.1
-  peerDependencies:
-    react: 16.x
-  checksum: 175b950ec7009b56994d7b2cccc82a5ea3aadf7370ad82c033e9b89788acd2fbac2ebb6b5e66c4b5fcd521eb01eba6646b4760f6860745b8656deb3af533fc69
-  languageName: node
-  linkType: hard
-
 "react-popper-tooltip@npm:^2.8.3":
   version: 2.11.1
   resolution: "react-popper-tooltip@npm:2.11.1"
@@ -20221,13 +20185,6 @@ __metadata:
     ajv-formats: ^2.1.1
     ajv-keywords: ^5.0.0
   checksum: c843e92fdd1a5c145dbb6ffdae33e501867f9703afac67bdf35a685e49f85b1dcc10ea250033175a64bd9d31f0555bc6785b8359da0c90bcea30cf6dfbb55a8f
-  languageName: node
-  linkType: hard
-
-"seedable-random@npm:0.0.1":
-  version: 0.0.1
-  resolution: "seedable-random@npm:0.0.1"
-  checksum: a9584c6e8197d8a52a942a6012a614c7955bf07f7a347a4cf74df40ae115e2a35b283c184d3521078b2c64e000fbf0c58eb29088f5b1815bae3c1a768c2b4419
   languageName: node
   linkType: hard
 
