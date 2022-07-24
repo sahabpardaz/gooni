@@ -7,15 +7,6 @@ export {
 } from './MultiLocalizationProvider';
 export * from './picker-props';
 export {
-  RangeInputI18nProvider,
-  useRangeInputI18nContext,
-} from './px-range-input-i18n-provider';
-export {
-  RangePickerI18nProvider,
-  useRangePickerI18nContext,
-  type RangePickerLabel,
-} from './px-range-picker-i18n-provider';
-export {
   ThemeColorSwapper,
   type ThemeColorSwapperProps,
 } from './theme-color-swapper';

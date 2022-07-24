@@ -1,31 +1,6 @@
+import { RangeInputLabels } from 'src/pickers-common/localization-provider';
 import { formatDateRange } from './date-time-utils';
 import { TimeRange } from './time-range-type';
-
-/**
- * Contract for range input label translation.
- *
- * @interface RangeInputLabel
- */
-export interface RangeInputLabels {
-  /**
-   * translated for `from`
-   *
-   * @type {string}
-   */
-  from?: string;
-  /**
-   * translated for `to`
-   *
-   * @type {string}
-   */
-  to?: string;
-  /**
-   * custom text shown in input instead of default behavior
-   *
-   *  @type {string | function}
-   */
-  customText?: string | ((timeRange: TimeRange) => string);
-}
 
 /**
  * Contract for range input formatter.
@@ -52,24 +27,14 @@ export function getRangeInputValue(
   formatter: RangeInputFormatter = formatDateRange,
 ): string {
   if (!!labels.customText) {
-    if (typeof labels.customText == 'function') {
-      return labels.customText(timeRange);
-    }
-    return labels.customText;
+    return typeof labels.customText == 'function'
+      ? labels.customText(timeRange)
+      : labels.customText;
   }
   const value = formatter(timeRange);
 
-  if (!value.from && !value.to) {
-    return '';
-  }
-
-  if (!value.from) {
-    return `${labels.to} ${value.to}`;
-  }
-
-  if (!value.to) {
-    return `${labels.from} ${value.from}`;
-  }
-
-  return `${labels.from} ${value.from} ${labels.to} ${value.to}`;
+  return (
+    (value.from ? `${labels.from} ${value.from} ` : '') +
+    (value.to ? `${labels.to} ${value.to}` : '')
+  ).trim();
 }

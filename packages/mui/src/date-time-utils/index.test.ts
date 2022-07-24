@@ -1,3 +1,4 @@
+import { RangeInputLabels } from 'src/pickers-common/localization-provider';
 import { Locale } from '../constant-types';
 import { formatDate } from './date-time-utils';
 import {
@@ -6,7 +7,6 @@ import {
   formatTime,
   getRangeInputValue,
 } from './index';
-import { RangeInputLabels } from './range-input-utils';
 import { TimeRange } from './time-range-type';
 
 describe('DateTimeUtils', () => {

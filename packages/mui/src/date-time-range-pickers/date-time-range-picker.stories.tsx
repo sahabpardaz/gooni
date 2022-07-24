@@ -1,12 +1,27 @@
 import { Paper, Typography } from '@mui/material';
-import { DateRangePicker, TimeRange } from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
+import { TimeRange } from 'src/date-time-utils';
+import { DateTimeRangePicker } from './range-pickers';
 
 export default {
-  title: 'Date Picker/DateRangePicker',
+  title: 'Date Time Picker/Date Time Range Picker',
   decorators: [calendarDecorator()],
+  argTypes: {
+    color: {
+      defaultValue: 'primary',
+      options: ['primary', 'secondary'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+    multiLocale: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story = (args) => {
@@ -15,7 +30,12 @@ const Template: Story = (args) => {
   return (
     <Fragment>
       <Paper style={{ width: 400, margin: 32 }}>
-        <DateRangePicker value={value} onChange={onChange} {...args} />
+        <DateTimeRangePicker
+          value={value}
+          onChange={onChange}
+          {...args}
+          pickerProps={{ hideTabs: true }}
+        />
       </Paper>
 
       <Paper style={{ width: 400, margin: 32, padding: 16 }}>
@@ -35,6 +55,3 @@ const Template: Story = (args) => {
 
 export const PrimaryColor: Story = Template.bind({});
 PrimaryColor.args = { color: 'primary' };
-
-export const SecondaryColor: Story = Template.bind({});
-SecondaryColor.args = { color: 'secondary' };
