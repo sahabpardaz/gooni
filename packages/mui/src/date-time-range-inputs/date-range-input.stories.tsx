@@ -1,10 +1,11 @@
 import { Meta, Story } from '@storybook/react';
 import { useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
-import { DatePicker, DatePickerProps } from './pickers';
+import { TimeRange } from 'src/date-time-utils';
+import { DateRangeInput } from './range-inputs';
 
 export default {
-  title: 'Date Picker/Date Picker',
+  title: 'Date Picker/Date Range Input',
   decorators: [calendarDecorator()],
   argTypes: {
     color: {
@@ -22,10 +23,10 @@ export default {
   },
 } as Meta;
 
-const Template = (args: Omit<DatePickerProps<Date>, 'value' | 'onChange'>) => {
-  const [value, setDateValue] = useState<Date | null>(null);
+const Template: Story = (args) => {
+  const [value, onChange] = useState<TimeRange>({ to: null, from: null });
 
-  return <DatePicker value={value} onChange={setDateValue} {...args} />;
+  return <DateRangeInput value={value} onChange={onChange} {...args} />;
 };
 
 export const PrimaryColor: Story = Template.bind({});
