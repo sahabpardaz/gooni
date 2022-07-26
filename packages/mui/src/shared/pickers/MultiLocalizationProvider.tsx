@@ -3,8 +3,8 @@ import {
   LocalizationProviderProps,
 } from '@mui/x-date-pickers';
 import * as React from 'react';
-import { Locale } from '../constant-types';
-import { getLocalizedDateFnsAdapter } from '../date-time-utils';
+import { Locale } from '../../constant-types';
+import { getLocalizedDateFnsAdapter } from '../../date-time-utils';
 import {
   defaultEnglishLocaleTexts,
   defaultPersianLocaleTexts,

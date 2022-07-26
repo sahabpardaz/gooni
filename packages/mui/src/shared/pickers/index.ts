@@ -6,7 +6,3 @@ export {
   type MultiLocalizationProviderProps,
 } from './MultiLocalizationProvider';
 export * from './picker-props';
-export {
-  ThemeColorSwapper,
-  type ThemeColorSwapperProps,
-} from './theme-color-swapper';

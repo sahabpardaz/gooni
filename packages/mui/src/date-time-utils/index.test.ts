@@ -1,4 +1,4 @@
-import { RangeInputLabels } from 'src/pickers-common/localization-provider';
+import { RangeInputLabels } from 'src/shared/pickers/localization-provider';
 import { Locale } from '../constant-types';
 import { formatDate } from './date-time-utils';
 import {
