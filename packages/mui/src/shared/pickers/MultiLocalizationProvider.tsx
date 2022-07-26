@@ -2,9 +2,10 @@ import {
   LocalizationProvider,
   LocalizationProviderProps,
 } from '@mui/x-date-pickers';
+import { mergeDeepRight } from 'ramda';
 import * as React from 'react';
-import { Locale } from '../../constant-types';
-import { getLocalizedDateFnsAdapter } from '../../date-time-utils';
+import { Locale } from 'src/constant-types';
+import { getLocalizedDateFnsAdapter } from 'src/date-time-utils';
 import {
   defaultEnglishLocaleTexts,
   defaultPersianLocaleTexts,
@@ -38,7 +39,7 @@ function isLocale(
 
 interface Props
   extends Pick<LocalizationProviderProps, 'dateFormats' | 'localeText'> {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** locale options array to be available for the project
    *
    * first locale in the array would be the default locale
@@ -90,8 +91,8 @@ export function MultiLocalizationProvider(props: Props) {
     ];
   }, [localeOptions]);
 
-  const defaultLocale = locales[0];
-  const [currentLocale, setCurrentLocale] = React.useState(defaultLocale);
+  // locales[0] is considered `defaultLocale`
+  const [currentLocale, setCurrentLocale] = React.useState(locales[0]);
 
   const contextValue: MultiLocalizationContextValue = React.useMemo(
     () => ({
@@ -103,16 +104,21 @@ export function MultiLocalizationProvider(props: Props) {
     [locales, defaultMultiLocale, currentLocale, setCurrentLocale],
   );
 
+  const finalLocaleText = React.useMemo(() => {
+    const defaultLocaleTexts = {
+      [Locale.en]: defaultEnglishLocaleTexts,
+      [Locale.fa]: defaultPersianLocaleTexts,
+    }[locales[0]];
+    return localeText && defaultLocaleTexts
+      ? mergeDeepRight(defaultLocaleTexts, localeText)
+      : defaultLocaleTexts ?? localeText;
+  }, [localeText, locales]);
+
   return (
     <MultiLocalizationContext.Provider value={contextValue}>
       <LocalizationProvider
         dateAdapter={localesWithAdapters[currentLocale]}
-        localeText={
-          localeText ||
-          (defaultLocale === Locale.en
-            ? defaultEnglishLocaleTexts
-            : defaultPersianLocaleTexts)
-        }
+        localeText={finalLocaleText}
         dateFormats={dateFormats}
       >
         {children}
