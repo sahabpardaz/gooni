@@ -8,8 +8,9 @@ import {
   TimeRangePicker,
 } from 'src/date-time-range-pickers';
 import { WrappedRangePickerProps } from 'src/date-time-range-pickers/wrapper';
-import { getRangeInputValue, PickerTypes } from 'src/date-time-utils';
+import { getRangeInputValue } from 'src/date-time-utils';
 import { ClickAwayClose, PopoverInput } from 'src/popover-input';
+import { PickerTypes } from 'src/shared/pickers';
 
 type PopoverInputProps = Omit<TextFieldProps, 'value' | 'onChange' | 'color'>;
 

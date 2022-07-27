@@ -6,3 +6,4 @@ export {
   type MultiLocalizationProviderProps,
 } from './MultiLocalizationProvider';
 export * from './picker-props';
+export * from './types';

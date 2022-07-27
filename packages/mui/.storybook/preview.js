@@ -3,6 +3,11 @@ import { themeDecorator } from '../src/@storybook/decorators';
 export const parameters = {
   // https://storybook.js.org/docs/react/essentials/actions#automatically-matching-args
   actions: { argTypesRegex: '^on.*' },
+  options: {
+    storySort: {
+      order: ['Intro', '*'],
+    },
+  },
 };
 
 export const globalTypes = {

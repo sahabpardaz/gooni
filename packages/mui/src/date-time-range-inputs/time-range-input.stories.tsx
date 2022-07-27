@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
-import { TimeRange } from 'src/date-time-utils';
+import { TimeRange } from 'src/shared/pickers';
 import { TimeRangeInput } from './range-inputs';
 
 export default {
