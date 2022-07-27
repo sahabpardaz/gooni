@@ -2,7 +2,7 @@ import { Paper, Typography } from '@mui/material';
 import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
-import { TimeRange } from 'src/date-time-utils';
+import { TimeRange } from 'src/shared/pickers';
 import { DateTimeRangePicker } from './range-pickers';
 
 export default {
@@ -30,12 +30,7 @@ const Template: Story = (args) => {
   return (
     <Fragment>
       <Paper style={{ width: 400, margin: 32 }}>
-        <DateTimeRangePicker
-          value={value}
-          onChange={onChange}
-          {...args}
-          pickerProps={{ hideTabs: true }}
-        />
+        <DateTimeRangePicker value={value} onChange={onChange} {...args} />
       </Paper>
 
       <Paper style={{ width: 400, margin: 32, padding: 16 }}>

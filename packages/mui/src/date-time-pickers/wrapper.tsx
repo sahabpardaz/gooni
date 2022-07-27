@@ -14,7 +14,7 @@ import {
 import { SubsetPartial } from '@my-sahab/utils';
 import { mergeDeepRight } from 'ramda';
 import * as React from 'react';
-import { PickerTypes } from 'src/date-time-utils';
+import { PickerTypes } from 'src/shared/pickers';
 
 type PickerProps<P extends PickerTypes, In, Out = In> = P extends 'TIME'
   ? MuiTimePickerProps<In, Out>

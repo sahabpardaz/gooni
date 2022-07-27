@@ -1,6 +1,6 @@
 import type { DateTimeValidationError } from '@mui/x-date-pickers/internals/hooks/validation/useDateTimeValidation';
-import { RangeInputLabels, RangePickerLabels } from 'src/date-time-utils';
 import { GeneralizedLocale } from './MultiLocalizationProvider';
+import { RangeInputLabels, RangePickerLabels } from './types';
 
 declare module '@mui/x-date-pickers' {
   export interface PickersLocaleText {

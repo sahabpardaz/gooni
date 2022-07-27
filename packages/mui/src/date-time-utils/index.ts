@@ -20,4 +20,3 @@ export {
   getRangeInputValue,
   type RangeInputFormatter,
 } from './date-time-utils';
-export * from './types';

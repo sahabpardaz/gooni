@@ -2,7 +2,7 @@ import { Paper, Typography } from '@mui/material';
 import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
-import { TimeRange } from 'src/date-time-utils';
+import { TimeRange } from 'src/shared/pickers';
 import { DateRangePicker } from './range-pickers';
 
 export default {

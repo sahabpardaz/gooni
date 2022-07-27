@@ -2,9 +2,9 @@ import DateFnsBaseAdapter from '@date-io/date-fns';
 import DateFnsJalaliAdapterBase from '@date-io/date-fns-jalali';
 import * as DateFnsBase from 'date-fns';
 import * as DateFnsJalali from 'date-fns-jalali';
-import { RangeInputLabels } from 'src/date-time-utils';
+import { RangeInputLabels } from 'src/shared/pickers';
 import { Locale } from '../constant-types';
-import { TimeRange } from './types';
+import { TimeRange } from '../shared/pickers/types';
 
 class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
   public getWeekdays = () => {
