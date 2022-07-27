@@ -1,7 +1,5 @@
 import { WrappedPickerProps, WrapPicker } from './wrapper';
 
-export * from '@mui/x-date-pickers';
-
 export const TimePicker = WrapPicker('TIME');
 export type TimePickerProps<In, Out = In> = WrappedPickerProps<'TIME', In, Out>;
 

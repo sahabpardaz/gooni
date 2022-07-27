@@ -1,6 +1,6 @@
 import { PickersLocaleText } from '@mui/x-date-pickers';
 import { Locale } from 'src/constant-types';
-import { PickerTypes } from 'src/date-time-pickers/wrapper';
+import { PickerTypes } from 'src/date-time-utils';
 
 const pickerTypesPersianMapping: Record<PickerTypes, string> = {
   TIME: 'زمان',
