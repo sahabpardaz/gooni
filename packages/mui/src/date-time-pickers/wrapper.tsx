@@ -1,10 +1,10 @@
 import {
-  DatePicker,
-  DatePickerProps,
-  DateTimePicker,
-  DateTimePickerProps,
-  TimePicker,
-  TimePickerProps,
+  DatePicker as MuiDatePicker,
+  DatePickerProps as MuiDatePickerProps,
+  DateTimePicker as MuiDateTimePicker,
+  DateTimePickerProps as MuiDateTimePickerProps,
+  TimePicker as MuiTimePicker,
+  TimePickerProps as MuiTimePickerProps,
 } from '@mui/x-date-pickers';
 import {
   MultiLocalePickersActionBar,
@@ -14,15 +14,14 @@ import {
 import { SubsetPartial } from '@my-sahab/utils';
 import { mergeDeepRight } from 'ramda';
 import * as React from 'react';
-
-export type PickerTypes = 'TIME' | 'DATE' | 'DATETIME';
+import { PickerTypes } from 'src/date-time-utils';
 
 type PickerProps<P extends PickerTypes, In, Out = In> = P extends 'TIME'
-  ? TimePickerProps<In, Out>
+  ? MuiTimePickerProps<In, Out>
   : P extends 'DATE'
-  ? DatePickerProps<In, Out>
+  ? MuiDatePickerProps<In, Out>
   : P extends 'DATETIME'
-  ? DateTimePickerProps<In, Out>
+  ? MuiDateTimePickerProps<In, Out>
   : never;
 
 type Props<P extends PickerTypes, In, Out> = SubsetPartial<
@@ -34,9 +33,9 @@ type Props<P extends PickerTypes, In, Out> = SubsetPartial<
 export { Props as WrappedPickerProps };
 
 const pickers: Record<PickerTypes, React.ElementType> = {
-  TIME: TimePicker,
-  DATE: DatePicker,
-  DATETIME: DateTimePicker,
+  TIME: MuiTimePicker,
+  DATE: MuiDatePicker,
+  DATETIME: MuiDateTimePicker,
 };
 
 export function WrapPicker<P extends PickerTypes>(pickerType: P) {

@@ -8,8 +8,8 @@ import {
 import { endOfDay, startOfDay } from 'date-fns-jalali';
 import * as React from 'react';
 import { DatePicker, DateTimePicker, TimePicker } from 'src/date-time-pickers';
-import { PickerTypes, WrappedPickerProps } from 'src/date-time-pickers/wrapper';
-import { TimeRange } from 'src/date-time-utils';
+import { WrappedPickerProps } from 'src/date-time-pickers/wrapper';
+import { PickerTypes, TimeRange } from 'src/date-time-utils';
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 
