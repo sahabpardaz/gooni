@@ -2,14 +2,14 @@ import { Paper, TextFieldProps } from '@mui/material';
 import { useLocalizationContext } from '@mui/x-date-pickers/internals/hooks/useUtils';
 import { useMultiLocalizationContext } from '@my-sahab/mui';
 import { useCallback, useRef } from 'react';
+import { getRangeInputValue } from 'src/date-time-utils';
+import { ClickAwayClose, PopoverInput } from 'src/popover-input';
 import {
   DateRangePicker,
   DateTimeRangePicker,
   TimeRangePicker,
-} from 'src/date-time-range-pickers';
-import { WrappedRangePickerProps } from 'src/date-time-range-pickers/wrapper';
-import { getRangeInputValue } from 'src/date-time-utils';
-import { ClickAwayClose, PopoverInput } from 'src/popover-input';
+} from 'src/range-pickers';
+import { WrappedRangePickerProps } from 'src/range-pickers/wrapper';
 import { PickerTypes } from 'src/shared/pickers';
 
 type PopoverInputProps = Omit<TextFieldProps, 'value' | 'onChange' | 'color'>;
@@ -20,7 +20,7 @@ type Props<P extends PickerTypes, In, Out> = WrappedRangePickerProps<
   Out
 > & { popoverInputProps?: PopoverInputProps };
 
-export { Props as WrappedRangeInputProps };
+export { Props as WrappedRangePickerInputProps };
 
 const rangePickers: Record<PickerTypes, React.ElementType> = {
   TIME: TimeRangePicker,
@@ -28,10 +28,10 @@ const rangePickers: Record<PickerTypes, React.ElementType> = {
   DATETIME: DateTimeRangePicker,
 };
 
-export function WrapRangeInput<P extends PickerTypes>(pickerType: P) {
+export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
   const RangePicker = rangePickers[pickerType];
 
-  function WrappedRangeInput<In, Out>(props: Props<P, In, Out>) {
+  function WrappedRangePickerInput<In, Out>(props: Props<P, In, Out>) {
     const {
       classes,
       value,
@@ -95,5 +95,5 @@ export function WrapRangeInput<P extends PickerTypes>(pickerType: P) {
     );
   }
 
-  return WrappedRangeInput;
+  return WrappedRangePickerInput;
 }

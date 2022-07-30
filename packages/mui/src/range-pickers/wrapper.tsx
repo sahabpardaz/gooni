@@ -7,9 +7,9 @@ import {
 } from '@my-sahab/mui';
 import { endOfDay, startOfDay } from 'date-fns-jalali';
 import * as React from 'react';
-import { DatePicker, DateTimePicker, TimePicker } from 'src/date-time-pickers';
-import { WrappedPickerProps } from 'src/date-time-pickers/wrapper';
 import { PickerTypes, TimeRange } from 'src/shared/pickers';
+import { DatePicker, DateTimePicker, TimePicker } from 'src/simple-pickers';
+import { WrappedPickerProps } from 'src/simple-pickers/wrapper';
 import { Styles } from '../react-types';
 import { makeStyles } from '../tss-mui';
 
