@@ -5,7 +5,7 @@ import { Meta, Story } from '@storybook/react';
 import * as React from 'react';
 
 export default {
-  title: 'Check List Filter',
+  title: 'Components/Check List Filter',
 } as Meta;
 
 const ITEMS: SelectOption[] = [

@@ -18,7 +18,7 @@ const Sample = () => {
 };
 
 export default {
-  title: 'Popover Input',
+  title: 'Components/Popover Input',
 } as Meta;
 
 export const PopoverInput = () => {

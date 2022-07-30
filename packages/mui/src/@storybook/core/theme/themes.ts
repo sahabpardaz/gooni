@@ -36,7 +36,6 @@ export function getThemeOptions(
         light: '#27B2EC',
       },
       error: red,
-      background: { default: grey[100] },
       mode: paletteType,
     },
     typography: {
