@@ -1,12 +1,12 @@
 import { Button, Grid } from '@mui/material';
-import { useLocalizationContext } from '@mui/x-date-pickers/internals/hooks/useUtils';
+import { useLocaleText } from '@mui/x-date-pickers/internals';
+import { endOfDay, startOfDay } from 'date-fns-jalali';
+import * as React from 'react';
 import {
   ThemeColorSwapper,
   ThemeColorSwapperProps,
   useMultiLocalizationContext,
-} from '@my-sahab/mui';
-import { endOfDay, startOfDay } from 'date-fns-jalali';
-import * as React from 'react';
+} from 'src/shared';
 import { PickerTypes, TimeRange } from 'src/shared/pickers';
 import { DatePicker, DateTimePicker, TimePicker } from 'src/simple-pickers';
 import { WrappedPickerProps } from 'src/simple-pickers/wrapper';
@@ -86,7 +86,7 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
       onChange({ from: null, to: null });
     }, [onChange]);
 
-    const { rangePickerLabels: labels } = useLocalizationContext().localeText;
+    const { rangePickerLabels: labels } = useLocaleText();
 
     const { fromLimits, toLimits } = React.useMemo(() => {
       const propsNameMap: Record<PickerTypes, Record<'min' | 'max', string>> = {

@@ -1,6 +1,5 @@
 import { Paper, TextFieldProps } from '@mui/material';
-import { useLocalizationContext } from '@mui/x-date-pickers/internals/hooks/useUtils';
-import { useMultiLocalizationContext } from '@my-sahab/mui';
+import { useLocaleText } from '@mui/x-date-pickers/internals';
 import { useCallback, useRef } from 'react';
 import { getRangeInputValue } from 'src/date-time-utils';
 import { ClickAwayClose, PopoverInput } from 'src/popover-input';
@@ -10,7 +9,7 @@ import {
   TimeRangePicker,
 } from 'src/range-pickers';
 import { WrappedRangePickerProps } from 'src/range-pickers/wrapper';
-import { PickerTypes } from 'src/shared/pickers';
+import { PickerTypes, useMultiLocalizationContext } from 'src/shared/pickers';
 
 type PopoverInputProps = Omit<TextFieldProps, 'value' | 'onChange' | 'color'>;
 
@@ -48,7 +47,7 @@ export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
       pickerType !== 'TIME' &&
       ('multiLocale' in props ? props['multiLocale'] : defaultMultiLocale);
 
-    const { rangeInputLabels: labels } = useLocalizationContext().localeText;
+    const { rangeInputLabels: labels } = useLocaleText();
 
     const inputValue = getRangeInputValue(value, labels!);
 

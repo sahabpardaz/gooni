@@ -1,13 +1,13 @@
 import { Paper, Typography } from '@mui/material';
-import { Meta, Story } from '@storybook/react';
-import { Fragment, useState } from 'react';
-import { calendarDecorator } from 'src/@storybook/decorators';
-import { TimeRange } from 'src/shared/pickers';
 import {
   DateRangePicker,
   DateTimeRangePicker,
+  TimeRange,
   TimeRangePicker,
-} from './range-pickers';
+} from '@my-sahab/mui';
+import { Meta, Story } from '@storybook/react';
+import { Fragment, useState } from 'react';
+import { calendarDecorator } from 'src/@storybook/decorators';
 
 export default {
   title: 'Components/Pickers/Range Pickers',

@@ -1,7 +1,7 @@
+import { DatePicker, DateTimePicker, TimePicker } from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
-import { DatePicker, DateTimePicker, TimePicker } from './pickers';
 
 export default {
   title: 'Components/Pickers/Simple Pickers',
