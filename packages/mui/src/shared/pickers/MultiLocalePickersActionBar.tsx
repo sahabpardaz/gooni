@@ -4,7 +4,7 @@ import {
   ToggleButton as MuiToggleButton,
   ToggleButtonGroup as MuiToggleButtonGroup,
 } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
 import { useLocaleText } from '@mui/x-date-pickers/internals';
 import {
   PickersActionBar,
@@ -64,6 +64,7 @@ export const MultiLocalePickersActionBar = (props: PickersActionBarProps) => {
           value={currentLocale}
           exclusive
           onChange={handleLocaleChange}
+          data-testid="multi-locale-toggle-button-group"
         >
           {locales.map((locale) => (
             <ToggleButton key={locale} value={locale}>
