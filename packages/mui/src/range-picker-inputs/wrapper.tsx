@@ -9,7 +9,7 @@ import {
   TimeRangePicker,
 } from 'src/range-pickers';
 import { WrappedRangePickerProps } from 'src/range-pickers/wrapper';
-import { PickerTypes, useMultiLocalizationContext } from 'src/shared/pickers';
+import { PickerTypes } from 'src/shared/pickers';
 
 type PopoverInputProps = Omit<TextFieldProps, 'value' | 'onChange' | 'color'>;
 
@@ -41,11 +41,6 @@ export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
       color = 'secondary',
       popoverInputProps,
     } = props;
-
-    const { defaultMultiLocale } = useMultiLocalizationContext();
-    const multiLocale =
-      pickerType !== 'TIME' &&
-      ('multiLocale' in props ? props['multiLocale'] : defaultMultiLocale);
 
     const { rangeInputLabels: labels } = useLocaleText();
 
@@ -83,9 +78,11 @@ export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
                 }}
                 fromPickerProps={fromPickerProps}
                 toPickerProps={toPickerProps}
-                multiLocale={multiLocale}
                 classes={classes}
                 color={color}
+                {...('multiLocale' in props && {
+                  multiLocale: props['multiLocale'],
+                })}
               />
             </div>
           </ClickAwayClose>

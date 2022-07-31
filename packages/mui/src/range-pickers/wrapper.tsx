@@ -2,11 +2,7 @@ import { Button, Grid } from '@mui/material';
 import { useLocaleText } from '@mui/x-date-pickers/internals';
 import { endOfDay, startOfDay } from 'date-fns-jalali';
 import * as React from 'react';
-import {
-  ThemeColorSwapper,
-  ThemeColorSwapperProps,
-  useMultiLocalizationContext,
-} from 'src/shared';
+import { ThemeColorSwapper, ThemeColorSwapperProps } from 'src/shared';
 import { PickerTypes, TimeRange } from 'src/shared/pickers';
 import { DatePicker, DateTimePicker, TimePicker } from 'src/simple-pickers';
 import { WrappedPickerProps } from 'src/simple-pickers/wrapper';
@@ -54,11 +50,6 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
 
     const { from, to } = value;
 
-    const { defaultMultiLocale } = useMultiLocalizationContext();
-    const multiLocale =
-      pickerType !== 'TIME' &&
-      ('multiLocale' in props ? props['multiLocale'] : defaultMultiLocale);
-
     const onChangeFrom = React.useCallback(
       (fromValue: Date | null) => {
         onChange({
@@ -104,7 +95,12 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
       <div className={classes.root}>
         <Grid className={classes.container} container>
           <Grid item xs={12} className={classes.header}>
-            <Button size="small" onClick={onReset} className={classes.resetBtn}>
+            <Button
+              size="small"
+              onClick={onReset}
+              className={classes.resetBtn}
+              data-testid="resetBtn"
+            >
               {labels?.resetLabel}
             </Button>
           </Grid>
@@ -119,7 +115,9 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
                 {...fromPickerProps}
                 value={from}
                 onChange={onChangeFrom}
-                multiLocale={multiLocale}
+                {...('multiLocale' in props && {
+                  multiLocale: props['multiLocale'],
+                })}
               />
             </Grid>
 
@@ -132,7 +130,9 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
                 {...toPickerProps}
                 value={to}
                 onChange={onChangeTo}
-                multiLocale={multiLocale}
+                {...('multiLocale' in props && {
+                  multiLocale: props['multiLocale'],
+                })}
               />
             </Grid>
           </ThemeColorSwapper>
