@@ -45,6 +45,20 @@ export function formatDateTimeRange(dateRange: TimeRange, locale?: Locale) {
 
 /**
  *
+ * converts a timeRange object to time format
+ * @param {TimeRange} timeRange
+ * @param {Locale} [locale]
+ *
+ * @returns {TimeRange}
+ */
+export function formatTimeRange(timeRange: TimeRange, locale?: Locale) {
+  const from = timeRange.from ? formatTime(timeRange.from, locale) : null;
+  const to = timeRange.to ? formatTime(timeRange.to, locale) : null;
+  return { from, to };
+}
+
+/**
+ *
  * converts a timeRange object to date format.
  * @param {TimeRange} dateRange
  * @param {string} [format]
