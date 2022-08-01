@@ -1,7 +1,13 @@
 import { Paper, TextFieldProps } from '@mui/material';
 import { useLocaleText } from '@mui/x-date-pickers/internals';
 import { useCallback, useRef } from 'react';
-import { getRangeInputValue } from 'src/date-time-utils';
+import {
+  formatDateRange,
+  formatDateTimeRange,
+  formatTimeRange,
+  getRangeInputValue,
+  RangeInputFormatter,
+} from 'src/date-time-utils';
 import { ClickAwayClose, PopoverInput } from 'src/popover-input';
 import {
   DateRangePicker,
@@ -27,8 +33,15 @@ const rangePickers: Record<PickerTypes, React.ElementType> = {
   DATETIME: DateTimeRangePicker,
 };
 
+const formatters: Record<PickerTypes, RangeInputFormatter> = {
+  TIME: formatTimeRange,
+  DATE: formatDateRange,
+  DATETIME: formatDateTimeRange,
+};
+
 export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
   const RangePicker = rangePickers[pickerType];
+  const formatter = formatters[pickerType];
 
   function WrappedRangePickerInput<In, Out>(props: Props<P, In, Out>) {
     const {
@@ -44,7 +57,7 @@ export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
 
     const { rangeInputLabels: labels } = useLocaleText();
 
-    const inputValue = getRangeInputValue(value, labels!);
+    const inputValue = getRangeInputValue(value, labels!, formatter);
 
     const ignoreClickRef = useRef(false);
 

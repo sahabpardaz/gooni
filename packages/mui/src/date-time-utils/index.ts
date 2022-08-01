@@ -15,6 +15,7 @@ export {
   formatDateTime,
   formatDateTimeRange,
   formatTime,
+  formatTimeRange,
   getLocalizedDateFns,
   getLocalizedDateFnsAdapter,
   getRangeInputValue,
