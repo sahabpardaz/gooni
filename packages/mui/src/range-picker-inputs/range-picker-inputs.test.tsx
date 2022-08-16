@@ -31,7 +31,7 @@ const rendererFactory =
 
     render(
       <MultiLocalizationProvider
-        localeOptions={[Locale.fa, Locale.en]}
+        localeOptions={[Locale.en, Locale.fa]}
         {...providerProps}
       >
         {/* @ts-ignore */}
@@ -44,336 +44,252 @@ const rendererFactory =
     return { rangePickerInput };
   };
 
-describe('date range picker input', () => {
-  const renderer = rendererFactory(DateRangePickerInput);
-  it('should render empty input', () => {
-    const { rangePickerInput } = renderer();
+interface TestType<P extends RangePickerInputComponentTypes> {
+  name: string;
+  pickerProps?: Partial<React.ComponentProps<P>>;
+  providerProps?: Partial<MultiLocalizationProviderProps>;
+  expected: string | boolean;
+}
 
-    expect(rangePickerInput.value).toBe('');
-  });
+interface TestSuiteTableType<P extends RangePickerInputComponentTypes> {
+  name: string;
+  RangePickerInput: P;
+  tests: TestType<P>[];
+  multiLocaleTest: TestType<P>;
+}
 
-  it('should render correct value when there is only from value provided', () => {
-    const { rangePickerInput } = renderer({
-      value: { from: new Date('2022/07/30'), to: null },
-    });
-
-    expect(rangePickerInput.value).toBe('از 1401/05/08');
-  });
-
-  it('should render correct value when there is only to value provided', () => {
-    const { rangePickerInput } = renderer({
-      value: { from: null, to: new Date('2022/07/30') },
-    });
-
-    expect(rangePickerInput.value).toBe('تا 1401/05/08');
-  });
-
-  it('should render correct value when both from and to are provided', () => {
-    const { rangePickerInput } = renderer({
-      value: { from: new Date('2022/07/29'), to: new Date('2022/07/30') },
-    });
-
-    expect(rangePickerInput.value).toBe('از 1401/05/07 تا 1401/05/08');
-  });
-
-  it('should take custom label from provider', () => {
-    const { rangePickerInput } = renderer(
-      { value: { from: new Date('2022/07/29'), to: new Date('2022/07/30') } },
-      { localeText: { rangeInputLabels: { from: 'شروع', to: 'پایان' } } },
-    );
-
-    expect(rangePickerInput.value).toBe('شروع 1401/05/07 پایان 1401/05/08');
-  });
-
-  it('should render customText from custom label of provider', () => {
-    const { rangePickerInput } = renderer(
-      { value: { from: new Date('2022/07/29'), to: new Date('2022/07/30') } },
+describe.each<TestSuiteTableType<RangePickerInputComponentTypes>>([
+  {
+    name: 'Date Range Picker Input',
+    RangePickerInput: DateRangePickerInput,
+    tests: [
       {
-        localeText: {
-          rangeInputLabels: {
-            customText: (range) =>
-              `شروع بازه ${formatDate(range.from!)} پایان بازه ${formatDate(
-                range.to!,
-              )}`,
+        name: 'should render empty input',
+        expected: '',
+      },
+      {
+        name: 'should render correct value when there is only from value provided',
+        pickerProps: { value: { from: new Date('2022/07/30'), to: null } },
+        expected: 'From 1401/05/08',
+      },
+      {
+        name: 'should render correct value when there is only to value provided',
+        pickerProps: { value: { from: null, to: new Date('2022/07/30') } },
+        expected: 'To 1401/05/08',
+      },
+      {
+        name: 'should render correct value when both from and to are provided',
+        pickerProps: {
+          value: { from: new Date('2022/07/29'), to: new Date('2022/07/30') },
+        },
+        expected: 'From 1401/05/07 To 1401/05/08',
+      },
+      {
+        name: 'should take custom label from provider',
+        pickerProps: {
+          value: { from: new Date('2022/07/29'), to: new Date('2022/07/30') },
+        },
+        providerProps: {
+          localeText: { rangeInputLabels: { from: 'Start', to: 'End' } },
+        },
+        expected: 'Start 1401/05/07 End 1401/05/08',
+      },
+      {
+        name: 'should render customText from custom label of provider',
+        pickerProps: {
+          value: { from: new Date('2022/07/29'), to: new Date('2022/07/30') },
+        },
+        providerProps: {
+          localeText: {
+            rangeInputLabels: {
+              customText: (range) =>
+                `Start Range ${formatDate(range.from!)} End Range ${formatDate(
+                  range.to!,
+                )}`,
+            },
           },
         },
+        expected: 'Start Range 1401/05/07 End Range 1401/05/08',
       },
-    );
-
-    expect(rangePickerInput.value).toBe(
-      'شروع بازه 1401/05/07 پایان بازه 1401/05/08',
-    );
-  });
-
-  describe('should render multi locale toggle buttons when multiLocale is true', () => {
-    it('on from input', async () => {
-      const { rangePickerInput } = renderer({ multiLocale: true });
-      await userEvent.click(rangePickerInput);
-
-      const [, fromInput] = screen.getAllByRole('textbox') as [
-        HTMLInputElement,
-        HTMLInputElement,
-        HTMLInputElement,
-      ];
-
-      await userEvent.click(fromInput);
-
-      let fromMultiLocaleToggleButtonGroup = screen.getByTestId(
-        'multi-locale-toggle-button-group',
-      );
-
-      expect(fromMultiLocaleToggleButtonGroup).toBeTruthy();
-    });
-
-    it('on to input', async () => {
-      const { rangePickerInput } = renderer({ multiLocale: true });
-      await userEvent.click(rangePickerInput);
-
-      const [, , toInput] = screen.getAllByRole('textbox') as [
-        HTMLInputElement,
-        HTMLInputElement,
-        HTMLInputElement,
-      ];
-
-      await userEvent.click(toInput);
-
-      let toMultiLocaleToggleButtonGroup = screen.getByTestId(
-        'multi-locale-toggle-button-group',
-      );
-
-      expect(toMultiLocaleToggleButtonGroup).toBeTruthy();
-    });
-  });
-});
-
-describe('date time range picker input', () => {
-  const renderer = rendererFactory(DateTimeRangePickerInput);
-  it('should render empty input', () => {
-    const { rangePickerInput } = renderer();
-
-    expect(rangePickerInput.value).toBe('');
-  });
-
-  it('should render correct value when there is only from value provided', () => {
-    const { rangePickerInput } = renderer({
-      value: { from: new Date('2022-07-30T03:30:00'), to: null },
-    });
-
-    expect(rangePickerInput.value).toBe('از 1401/05/08 03:30');
-  });
-
-  it('should render correct value when there is only to value provided', () => {
-    const { rangePickerInput } = renderer({
-      value: { from: null, to: new Date('2022-07-30T03:30:00') },
-    });
-
-    expect(rangePickerInput.value).toBe('تا 1401/05/08 03:30');
-  });
-
-  it('should render correct value when both from and to are provided', () => {
-    const { rangePickerInput } = renderer({
-      value: {
-        from: new Date('2022-07-29T03:30:00'),
-        to: new Date('2022-07-30T03:30:00'),
-      },
-    });
-
-    expect(rangePickerInput.value).toBe(
-      'از 1401/05/07 03:30 تا 1401/05/08 03:30',
-    );
-  });
-
-  it('should take custom label from provider', () => {
-    const { rangePickerInput } = renderer(
+    ],
+    multiLocaleTest: {
+      name: 'should render multi locale toggle buttons when multiLocale is true',
+      pickerProps: { multiLocale: true },
+      expected: true,
+    },
+  },
+  {
+    name: 'Date Time Range Picker Input',
+    RangePickerInput: DateTimeRangePickerInput,
+    tests: [
       {
-        value: {
-          from: new Date('2022-07-29T03:30:00'),
-          to: new Date('2022-07-30T03:30:00'),
+        name: 'should render empty input',
+        expected: '',
+      },
+      {
+        name: 'should render correct value when there is only from value provided',
+        pickerProps: {
+          value: { from: new Date('2022-07-30T03:30:00'), to: null },
         },
+        expected: 'From 1401/05/08 03:30',
       },
-      { localeText: { rangeInputLabels: { from: 'شروع', to: 'پایان' } } },
-    );
-
-    expect(rangePickerInput.value).toBe(
-      'شروع 1401/05/07 03:30 پایان 1401/05/08 03:30',
-    );
-  });
-
-  it('should render customText from custom label of provider', () => {
-    const { rangePickerInput } = renderer(
       {
-        value: {
-          from: new Date('2022-07-29T03:30:00'),
-          to: new Date('2022-07-30T03:30:00'),
+        name: 'should render correct value when there is only to value provided',
+        pickerProps: {
+          value: { from: null, to: new Date('2022-07-30T03:30:00') },
         },
+        expected: 'To 1401/05/08 03:30',
       },
       {
-        localeText: {
-          rangeInputLabels: {
-            customText: (range) =>
-              `شروع بازه ${formatDateTime(
-                range.from!,
-              )} پایان بازه ${formatDateTime(range.to!)}`,
+        name: 'should render correct value when both from and to are provided',
+        pickerProps: {
+          value: {
+            from: new Date('2022-07-29T03:30:00'),
+            to: new Date('2022-07-30T03:30:00'),
           },
         },
-      },
-    );
-
-    expect(rangePickerInput.value).toBe(
-      'شروع بازه 1401/05/07 03:30 پایان بازه 1401/05/08 03:30',
-    );
-  });
-
-  describe('should render multi locale toggle buttons when multiLocale is true', () => {
-    it('on from input', async () => {
-      const { rangePickerInput } = renderer({ multiLocale: true });
-      await userEvent.click(rangePickerInput);
-
-      const [, fromInput] = screen.getAllByRole('textbox') as [
-        HTMLInputElement,
-        HTMLInputElement,
-        HTMLInputElement,
-      ];
-
-      await userEvent.click(fromInput);
-
-      let fromMultiLocaleToggleButtonGroup = screen.getByTestId(
-        'multi-locale-toggle-button-group',
-      );
-
-      expect(fromMultiLocaleToggleButtonGroup).toBeTruthy();
-    });
-
-    it('on to input', async () => {
-      const { rangePickerInput } = renderer({ multiLocale: true });
-      await userEvent.click(rangePickerInput);
-
-      const [, , toInput] = screen.getAllByRole('textbox') as [
-        HTMLInputElement,
-        HTMLInputElement,
-        HTMLInputElement,
-      ];
-
-      await userEvent.click(toInput);
-
-      let toMultiLocaleToggleButtonGroup = screen.getByTestId(
-        'multi-locale-toggle-button-group',
-      );
-
-      expect(toMultiLocaleToggleButtonGroup).toBeTruthy();
-    });
-  });
-});
-
-describe('time range picker input', () => {
-  const renderer = rendererFactory(TimeRangePickerInput);
-  it('should render empty input', () => {
-    const { rangePickerInput } = renderer();
-
-    expect(rangePickerInput.value).toBe('');
-  });
-
-  it('should render correct value when there is only from value provided', () => {
-    const { rangePickerInput } = renderer({
-      value: { from: new Date('2022-07-30T03:30:00'), to: null },
-    });
-
-    expect(rangePickerInput.value).toBe('از 03:30');
-  });
-
-  it('should render correct value when there is only to value provided', () => {
-    const { rangePickerInput } = renderer({
-      value: { from: null, to: new Date('2022-07-30T03:30:00') },
-    });
-
-    expect(rangePickerInput.value).toBe('تا 03:30');
-  });
-
-  it('should render correct value when both from and to are provided', () => {
-    const { rangePickerInput } = renderer({
-      value: {
-        from: new Date('2022-07-29T03:30:00'),
-        to: new Date('2022-07-30T03:30:00'),
-      },
-    });
-
-    expect(rangePickerInput.value).toBe('از 03:30 تا 03:30');
-  });
-
-  it('should take custom label from provider', () => {
-    const { rangePickerInput } = renderer(
-      {
-        value: {
-          from: new Date('2022-07-29T03:30:00'),
-          to: new Date('2022-07-30T03:30:00'),
-        },
-      },
-      { localeText: { rangeInputLabels: { from: 'شروع', to: 'پایان' } } },
-    );
-
-    expect(rangePickerInput.value).toBe('شروع 03:30 پایان 03:30');
-  });
-
-  it('should render customText from custom label of provider', () => {
-    const { rangePickerInput } = renderer(
-      {
-        value: {
-          from: new Date('2022-07-29T03:30:00'),
-          to: new Date('2022-07-30T03:30:00'),
-        },
+        expected: 'From 1401/05/07 03:30 To 1401/05/08 03:30',
       },
       {
-        localeText: {
-          rangeInputLabels: {
-            customText: (range) =>
-              `شروع بازه ${formatTime(range.from!)} پایان بازه ${formatTime(
-                range.to!,
-              )}`,
+        name: 'should take custom label from provider',
+        pickerProps: {
+          value: {
+            from: new Date('2022-07-29T03:30:00'),
+            to: new Date('2022-07-30T03:30:00'),
           },
         },
+        providerProps: {
+          localeText: { rangeInputLabels: { from: 'Start', to: 'End' } },
+        },
+        expected: 'Start 1401/05/07 03:30 End 1401/05/08 03:30',
       },
-    );
+      {
+        name: 'should render customText from custom label of provider',
+        pickerProps: {
+          value: {
+            from: new Date('2022-07-29T03:30:00'),
+            to: new Date('2022-07-30T03:30:00'),
+          },
+        },
+        providerProps: {
+          localeText: {
+            rangeInputLabels: {
+              customText: (range) =>
+                `Start Range ${formatDateTime(
+                  range.from!,
+                )} End Range ${formatDateTime(range.to!)}`,
+            },
+          },
+        },
+        expected: 'Start Range 1401/05/07 03:30 End Range 1401/05/08 03:30',
+      },
+    ],
+    multiLocaleTest: {
+      name: 'should render multi locale toggle buttons when multiLocale is true',
+      pickerProps: { multiLocale: true },
+      expected: true,
+    },
+  },
+  {
+    name: 'Time Range Picker Input',
+    RangePickerInput: TimeRangePickerInput,
+    tests: [
+      {
+        name: 'should render empty input',
+        expected: '',
+      },
+      {
+        name: 'should render correct value when there is only from value provided',
+        pickerProps: {
+          value: { from: new Date('2022-07-30T03:30:00'), to: null },
+        },
+        expected: 'From 03:30',
+      },
+      {
+        name: 'should render correct value when there is only to value provided',
+        pickerProps: {
+          value: { from: null, to: new Date('2022-07-30T03:30:00') },
+        },
+        expected: 'To 03:30',
+      },
+      {
+        name: 'should render correct value when both from and to are provided',
+        pickerProps: {
+          value: {
+            from: new Date('2022-07-29T03:30:00'),
+            to: new Date('2022-07-30T03:40:00'),
+          },
+        },
+        expected: 'From 03:30 To 03:40',
+      },
+      {
+        name: 'should take custom label from provider',
+        pickerProps: {
+          value: {
+            from: new Date('2022-07-29T03:30:00'),
+            to: new Date('2022-07-30T03:40:00'),
+          },
+        },
+        providerProps: {
+          localeText: { rangeInputLabels: { from: 'Start', to: 'End' } },
+        },
+        expected: 'Start 03:30 End 03:40',
+      },
+      {
+        name: 'should render customText from custom label of provider',
+        pickerProps: {
+          value: {
+            from: new Date('2022-07-29T03:30:00'),
+            to: new Date('2022-07-30T03:40:00'),
+          },
+        },
+        providerProps: {
+          localeText: {
+            rangeInputLabels: {
+              customText: (range) =>
+                `Start Range ${formatTime(range.from!)} End Range ${formatTime(
+                  range.to!,
+                )}`,
+            },
+          },
+        },
+        expected: 'Start Range 03:30 End Range 03:40',
+      },
+    ],
+    multiLocaleTest: {
+      name: 'should not render multi locale toggle buttons when defaultMultiLocale of provider is true',
+      providerProps: { defaultMultiLocale: true },
+      expected: false,
+    },
+  },
+])('$name', ({ RangePickerInput, tests, multiLocaleTest }) => {
+  const renderer = rendererFactory(RangePickerInput);
+  it.each(tests)('$name', ({ pickerProps, providerProps, expected }) => {
+    const { rangePickerInput } = renderer(pickerProps, providerProps);
 
-    expect(rangePickerInput.value).toBe('شروع بازه 03:30 پایان بازه 03:30');
+    expect(rangePickerInput.value).toBe(expected);
   });
 
-  describe('should render multi locale toggle buttons when defaultMultiLocale of provider is true', () => {
-    it('on from input', async () => {
-      const { rangePickerInput } = renderer({}, { defaultMultiLocale: true });
+  it.each([
+    { input: 'from', ...multiLocaleTest },
+    { input: 'to', ...multiLocaleTest },
+  ])(
+    '$name ($input input)',
+    async ({ input, pickerProps, providerProps, expected }) => {
+      const { rangePickerInput } = renderer(pickerProps, providerProps);
       await userEvent.click(rangePickerInput);
 
-      const [, fromInput] = screen.getAllByRole('textbox') as [
-        HTMLInputElement,
-        HTMLInputElement,
-        HTMLInputElement,
-      ];
+      const [, fromInput, toInput] = screen.getAllByRole('textbox');
 
-      await userEvent.click(fromInput);
+      await userEvent.click(input === 'from' ? fromInput : toInput);
 
-      let fromMultiLocaleToggleButtonGroup = screen.queryByTestId(
+      let multiLocaleToggleButtonGroup = screen.queryByTestId(
         'multi-locale-toggle-button-group',
       );
 
-      expect(fromMultiLocaleToggleButtonGroup).toBeNull();
-    });
-
-    it('on to input', async () => {
-      const { rangePickerInput } = renderer({}, { defaultMultiLocale: true });
-      await userEvent.click(rangePickerInput);
-
-      const [, , toInput] = screen.getAllByRole('textbox') as [
-        HTMLInputElement,
-        HTMLInputElement,
-        HTMLInputElement,
-      ];
-
-      await userEvent.click(toInput);
-
-      let toMultiLocaleToggleButtonGroup = screen.queryByTestId(
-        'multi-locale-toggle-button-group',
-      );
-
-      expect(toMultiLocaleToggleButtonGroup).toBeNull();
-    });
-  });
+      expected
+        ? expect(multiLocaleToggleButtonGroup).toBeTruthy()
+        : expect(multiLocaleToggleButtonGroup).toBeNull();
+    },
+  );
 });

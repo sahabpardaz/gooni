@@ -1,9 +1,9 @@
 import { Paper, Typography } from '@mui/material';
 import {
-  DateRangePicker,
-  DateTimeRangePicker,
+  DateRangePicker as DateRangePickerComponent,
+  DateTimeRangePicker as DateTimeRangePickerComponent,
   TimeRange,
-  TimeRangePicker,
+  TimeRangePicker as TimeRangePickerComponent,
 } from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import { Fragment, useState } from 'react';
@@ -24,14 +24,15 @@ export default {
 } as Meta;
 
 type RangePickerComponentTypes =
-  | typeof DateRangePicker
-  | typeof DateTimeRangePicker
-  | typeof TimeRangePicker;
+  | typeof DateRangePickerComponent
+  | typeof DateTimeRangePickerComponent
+  | typeof TimeRangePickerComponent;
 
-const Template =
-  <P extends RangePickerComponentTypes>(RangePicker: P) =>
-  (args: Omit<React.ComponentProps<P>, 'value' | 'onChange'>) => {
-    const [value, onChange] = useState<TimeRange>({ to: null, from: null }); // eslint-disable-line react-hooks/rules-of-hooks
+const Template = <P extends RangePickerComponentTypes>(RangePicker: P) =>
+  function WrappedTemplate(
+    args: Omit<React.ComponentProps<P>, 'value' | 'onChange'>,
+  ) {
+    const [value, onChange] = useState<TimeRange>({ to: null, from: null });
 
     return (
       <Fragment>
@@ -55,9 +56,10 @@ const Template =
     );
   };
 
-export const DateRangePickerStory: Story = Template(DateRangePicker).bind({});
-DateRangePickerStory.storyName = 'Date Range Picker';
-DateRangePickerStory.argTypes = {
+export const DateRangePicker: Story = Template(DateRangePickerComponent).bind(
+  {},
+);
+DateRangePicker.argTypes = {
   multiLocale: {
     control: {
       type: 'boolean',
@@ -65,11 +67,10 @@ DateRangePickerStory.argTypes = {
   },
 };
 
-export const DateTimeRangePickerStory: Story = Template(
-  DateTimeRangePicker,
+export const DateTimeRangePicker: Story = Template(
+  DateTimeRangePickerComponent,
 ).bind({});
-DateTimeRangePickerStory.storyName = 'Date Time Range Picker';
-DateTimeRangePickerStory.argTypes = {
+DateTimeRangePicker.argTypes = {
   multiLocale: {
     control: {
       type: 'boolean',
@@ -77,5 +78,6 @@ DateTimeRangePickerStory.argTypes = {
   },
 };
 
-export const TimeRangePickerStory: Story = Template(TimeRangePicker).bind({});
-TimeRangePickerStory.storyName = 'Time Range Picker';
+export const TimeRangePicker: Story = Template(TimeRangePickerComponent).bind(
+  {},
+);

@@ -53,6 +53,7 @@ export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
       toPickerProps,
       color = 'secondary',
       popoverInputProps,
+      ...rest
     } = props;
 
     const { rangeInputLabels: labels } = useLocaleText();
@@ -93,9 +94,7 @@ export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
                 toPickerProps={toPickerProps}
                 classes={classes}
                 color={color}
-                {...('multiLocale' in props && {
-                  multiLocale: props['multiLocale'],
-                })}
+                {...rest}
               />
             </div>
           </ClickAwayClose>

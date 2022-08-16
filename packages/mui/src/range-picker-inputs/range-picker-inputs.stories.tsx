@@ -1,8 +1,8 @@
 import {
-  DateRangePickerInput,
-  DateTimeRangePickerInput,
+  DateRangePickerInput as DateRangePickerInputComponent,
+  DateTimeRangePickerInput as DateTimeRangePickerInputComponent,
   TimeRange,
-  TimeRangePickerInput,
+  TimeRangePickerInput as TimeRangePickerInputComponent,
 } from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import { useState } from 'react';
@@ -23,14 +23,17 @@ export default {
 } as Meta;
 
 type RangePickerInputComponentTypes =
-  | typeof DateRangePickerInput
-  | typeof DateTimeRangePickerInput
-  | typeof TimeRangePickerInput;
+  | typeof DateRangePickerInputComponent
+  | typeof DateTimeRangePickerInputComponent
+  | typeof TimeRangePickerInputComponent;
 
-const Template =
-  <P extends RangePickerInputComponentTypes>(RangePickerInput: P) =>
-  (args: Omit<React.ComponentProps<P>, 'value' | 'onChange'>) => {
-    const [value, onChange] = useState<TimeRange>({ to: null, from: null }); // eslint-disable-line react-hooks/rules-of-hooks
+const Template = <P extends RangePickerInputComponentTypes>(
+  RangePickerInput: P,
+) =>
+  function WrappedTemplate(
+    args: Omit<React.ComponentProps<P>, 'value' | 'onChange'>,
+  ) {
+    const [value, onChange] = useState<TimeRange>({ to: null, from: null });
 
     return (
       // @ts-ignore
@@ -38,11 +41,10 @@ const Template =
     );
   };
 
-export const DateRangePickerInputStory: Story = Template(
-  DateRangePickerInput,
+export const DateRangePickerInput: Story = Template(
+  DateRangePickerInputComponent,
 ).bind({});
-DateRangePickerInputStory.storyName = 'Date Range Picker Input';
-DateRangePickerInputStory.argTypes = {
+DateRangePickerInput.argTypes = {
   multiLocale: {
     control: {
       type: 'boolean',
@@ -50,11 +52,10 @@ DateRangePickerInputStory.argTypes = {
   },
 };
 
-export const DateTimeRangePickerInputStory: Story = Template(
-  DateTimeRangePickerInput,
+export const DateTimeRangePickerInput: Story = Template(
+  DateTimeRangePickerInputComponent,
 ).bind({});
-DateTimeRangePickerInputStory.storyName = 'Date Time Range Picker Input';
-DateTimeRangePickerInputStory.argTypes = {
+DateTimeRangePickerInput.argTypes = {
   multiLocale: {
     control: {
       type: 'boolean',
@@ -62,7 +63,6 @@ DateTimeRangePickerInputStory.argTypes = {
   },
 };
 
-export const TimeRangePickerInputStory: Story = Template(
-  TimeRangePickerInput,
+export const TimeRangePickerInput: Story = Template(
+  TimeRangePickerInputComponent,
 ).bind({});
-TimeRangePickerInputStory.storyName = 'Time Range Picker Input';

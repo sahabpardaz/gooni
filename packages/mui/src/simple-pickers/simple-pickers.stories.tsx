@@ -1,4 +1,8 @@
-import { DatePicker, DateTimePicker, TimePicker } from '@my-sahab/mui';
+import {
+  DatePicker as DatePickerComponent,
+  DateTimePicker as DateTimePickerComponent,
+  TimePicker as TimePickerComponent,
+} from '@my-sahab/mui';
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
@@ -9,14 +13,15 @@ export default {
 } as Meta;
 
 type PickerComponentTypes =
-  | typeof DatePicker
-  | typeof DateTimePicker
-  | typeof TimePicker;
+  | typeof DatePickerComponent
+  | typeof DateTimePickerComponent
+  | typeof TimePickerComponent;
 
-const Template =
-  <P extends PickerComponentTypes>(Picker: P) =>
-  (args: Omit<React.ComponentProps<P>, 'value' | 'onChange'>) => {
-    const [value, setDateValue] = useState<Date | null>(null); // eslint-disable-line react-hooks/rules-of-hooks
+const Template = <P extends PickerComponentTypes>(Picker: P) =>
+  function WrappedTemplate(
+    args: Omit<React.ComponentProps<P>, 'value' | 'onChange'>,
+  ) {
+    const [value, setDateValue] = useState<Date | null>(null);
 
     return (
       // @ts-ignore
@@ -24,9 +29,8 @@ const Template =
     );
   };
 
-export const DatePickerStory: Story = Template(DatePicker).bind({});
-DatePickerStory.storyName = 'Date Picker';
-DatePickerStory.argTypes = {
+export const DatePicker: Story = Template(DatePickerComponent).bind({});
+DatePicker.argTypes = {
   multiLocale: {
     control: {
       type: 'boolean',
@@ -34,9 +38,8 @@ DatePickerStory.argTypes = {
   },
 };
 
-export const DateTimePickerStory: Story = Template(DateTimePicker).bind({});
-DateTimePickerStory.storyName = 'Date Time Picker';
-DateTimePickerStory.argTypes = {
+export const DateTimePicker: Story = Template(DateTimePickerComponent).bind({});
+DateTimePicker.argTypes = {
   multiLocale: {
     control: {
       type: 'boolean',
@@ -44,5 +47,4 @@ DateTimePickerStory.argTypes = {
   },
 };
 
-export const TimePickerStory: Story = Template(TimePicker).bind({});
-TimePickerStory.storyName = 'Time Picker';
+export const TimePicker: Story = Template(TimePickerComponent).bind({});

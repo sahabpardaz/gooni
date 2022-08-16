@@ -46,6 +46,7 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
       fromPickerProps,
       toPickerProps,
       color = 'secondary',
+      ...rest
     } = props;
 
     const { from, to } = value;
@@ -99,7 +100,7 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
               size="small"
               onClick={onReset}
               className={classes.resetBtn}
-              data-testid="resetBtn"
+              data-testid="reset-btn"
             >
               {labels?.resetLabel}
             </Button>
@@ -110,14 +111,16 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
               {/* @ts-ignore */}
               <Picker
                 {...fromLimits}
-                label={labels?.fromLabel?.(pickerType)}
+                label={
+                  typeof labels?.fromLabel === 'function'
+                    ? labels?.fromLabel?.(pickerType)
+                    : labels?.fromLabel
+                }
                 {...pickerProps}
                 {...fromPickerProps}
                 value={from}
                 onChange={onChangeFrom}
-                {...('multiLocale' in props && {
-                  multiLocale: props['multiLocale'],
-                })}
+                {...rest}
               />
             </Grid>
 
@@ -125,14 +128,16 @@ export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
               {/* @ts-ignore */}
               <Picker
                 {...toLimits}
-                label={labels?.toLabel?.(pickerType)}
+                label={
+                  typeof labels?.toLabel === 'function'
+                    ? labels?.toLabel?.(pickerType)
+                    : labels?.toLabel
+                }
                 {...pickerProps}
                 {...toPickerProps}
                 value={to}
                 onChange={onChangeTo}
-                {...('multiLocale' in props && {
-                  multiLocale: props['multiLocale'],
-                })}
+                {...rest}
               />
             </Grid>
           </ThemeColorSwapper>

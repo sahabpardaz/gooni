@@ -22,7 +22,7 @@ const rendererFactory =
 
     render(
       <MultiLocalizationProvider
-        localeOptions={[Locale.fa, Locale.en]}
+        localeOptions={[Locale.en, Locale.fa]}
         {...providerProps}
       >
         {/* @ts-ignore */}
@@ -46,7 +46,7 @@ describe('date picker', () => {
   it('should render input with proper value', () => {
     const { pickerInput } = renderer({ value: new Date('2022/07/30') });
 
-    expect(pickerInput.value).toBe('۱۴۰۱/۰۵/۰۸');
+    expect(pickerInput.value).toBe('07/30/2022');
   });
 
   describe('multiLocale feature', () => {
@@ -96,19 +96,19 @@ describe('date picker', () => {
       );
 
       const jalaliButton = within(toggleButtonGroup).getByRole('button', {
-        name: 'شمسی',
+        name: 'Jalali',
       });
       const gregorianButton = within(toggleButtonGroup).getByRole('button', {
-        name: 'میلادی',
+        name: 'Gregorian',
       });
 
-      expect(jalaliButton).toHaveAttribute('aria-pressed', 'true');
-      expect(gregorianButton).toHaveAttribute('aria-pressed', 'false');
-
-      await userEvent.click(gregorianButton);
-
-      expect(jalaliButton).toHaveAttribute('aria-pressed', 'false');
       expect(gregorianButton).toHaveAttribute('aria-pressed', 'true');
+      expect(jalaliButton).toHaveAttribute('aria-pressed', 'false');
+
+      await userEvent.click(jalaliButton);
+
+      expect(gregorianButton).toHaveAttribute('aria-pressed', 'false');
+      expect(jalaliButton).toHaveAttribute('aria-pressed', 'true');
     });
   });
 });
@@ -125,7 +125,7 @@ describe('date time picker', () => {
       value: new Date('2022-07-30T03:30:00'),
     });
 
-    expect(pickerInput.value).toBe('۱۴۰۱/۰۵/۰۸ ۰۳:۳۰ ق.ظ.');
+    expect(pickerInput.value).toBe('07/30/2022 03:30 am');
   });
 
   describe('multiLocale feature', () => {
@@ -175,19 +175,19 @@ describe('date time picker', () => {
       );
 
       const jalaliButton = within(toggleButtonGroup).getByRole('button', {
-        name: 'شمسی',
+        name: 'Jalali',
       });
       const gregorianButton = within(toggleButtonGroup).getByRole('button', {
-        name: 'میلادی',
+        name: 'Gregorian',
       });
 
-      expect(jalaliButton).toHaveAttribute('aria-pressed', 'true');
-      expect(gregorianButton).toHaveAttribute('aria-pressed', 'false');
-
-      await userEvent.click(gregorianButton);
-
-      expect(jalaliButton).toHaveAttribute('aria-pressed', 'false');
       expect(gregorianButton).toHaveAttribute('aria-pressed', 'true');
+      expect(jalaliButton).toHaveAttribute('aria-pressed', 'false');
+
+      await userEvent.click(jalaliButton);
+
+      expect(gregorianButton).toHaveAttribute('aria-pressed', 'false');
+      expect(jalaliButton).toHaveAttribute('aria-pressed', 'true');
     });
   });
 });
@@ -204,7 +204,7 @@ describe('time picker', () => {
       value: new Date('2022-07-30T03:30:00'),
     });
 
-    expect(pickerInput.value).toBe('۰۳:۳۰ ق.ظ.');
+    expect(pickerInput.value).toBe('03:30 am');
   });
 
   describe('multiLocale feature', () => {

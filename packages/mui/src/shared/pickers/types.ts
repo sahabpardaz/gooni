@@ -30,11 +30,11 @@ export interface RangePickerLabels {
   /**
    * translated for `fromLabel`
    */
-  fromLabel?: (pickerType: PickerTypes) => string;
+  fromLabel?: string | ((pickerType: PickerTypes) => string);
   /**
    * translated for `toLabel`
    */
-  toLabel?: (pickerType: PickerTypes) => string;
+  toLabel?: string | ((pickerType: PickerTypes) => string);
 }
 
 export interface RangeInputLabels {
