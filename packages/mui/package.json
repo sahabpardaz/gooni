@@ -1,6 +1,6 @@
 {
   "name": "@my-sahab/mui",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "publishConfig": {
     "access": "public"
   },
