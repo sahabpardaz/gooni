@@ -137,13 +137,13 @@ export function getRangeInputValue(
   labels: RangeInputLabels,
   formatter: RangeInputFormatter = formatDateRange,
 ): string {
-  const value = formatter(timeRange);
-
   if (!!labels.customText) {
     return typeof labels.customText == 'function'
-      ? labels.customText(value)
+      ? labels.customText(timeRange)
       : labels.customText;
   }
+
+  const value = formatter(timeRange);
 
   return (
     (value.from ? `${labels.from} ${value.from} ` : '') +

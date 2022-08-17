@@ -1,5 +1,3 @@
-import { RangeInputFormatter } from 'src/date-time-utils';
-
 /**
  * TimeRange contract)
  * @interface TimeRange
@@ -51,5 +49,5 @@ export interface RangeInputLabels {
   /**
    * custom text shown in input instead of default behavior
    */
-  customText?: string | ((value: ReturnType<RangeInputFormatter>) => string);
+  customText?: string | ((range: TimeRange) => string);
 }
