@@ -2,8 +2,9 @@ import DateFnsBaseAdapter from '@date-io/date-fns';
 import DateFnsJalaliAdapterBase from '@date-io/date-fns-jalali';
 import * as DateFnsBase from 'date-fns';
 import * as DateFnsJalali from 'date-fns-jalali';
-import { Locale } from '../constant-types';
-import { TimeRange } from './time-range-type';
+import { Locale } from 'src/constant-types';
+import { RangeInputLabels } from 'src/shared/pickers';
+import { TimeRange } from 'src/shared/pickers/types';
 
 class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
   public getWeekdays = () => {
@@ -39,6 +40,20 @@ export const getLocalizedDateFnsAdapter = (
 export function formatDateTimeRange(dateRange: TimeRange, locale?: Locale) {
   const from = dateRange.from ? formatDateTime(dateRange.from, locale) : null;
   const to = dateRange.to ? formatDateTime(dateRange.to, locale) : null;
+  return { from, to };
+}
+
+/**
+ *
+ * converts a timeRange object to time format
+ * @param {TimeRange} timeRange
+ * @param {Locale} [locale]
+ *
+ * @returns {TimeRange}
+ */
+export function formatTimeRange(timeRange: TimeRange, locale?: Locale) {
+  const from = timeRange.from ? formatTime(timeRange.from, locale) : null;
+  const to = timeRange.to ? formatTime(timeRange.to, locale) : null;
   return { from, to };
 }
 
@@ -97,5 +112,41 @@ export function formatDate(
   format: string = 'yyyy/MM/dd',
   locale: Locale = Locale.defaultLocale,
 ) {
+  // TODO: new Date('') will throw error, try to fix this problem.
   return getLocalizedDateFns(locale).format(new Date(date), format);
+}
+
+/**
+ * Contract for range input formatter.
+ * @type RangeInputFormatter
+ */
+export type RangeInputFormatter = (value: TimeRange) => TimeRange<string>;
+
+/**
+ * Converts `value` to text.
+ * You can override this behavior by passing `customText` to `labels`.
+ *
+ * @public
+ * @param {TimeRange} timeRange
+ * @param {RangeInputLabels} labels
+ * @param {RangeInputFormatter} formatter
+ * @returns {string}
+ */
+export function getRangeInputValue(
+  timeRange: TimeRange,
+  labels: RangeInputLabels,
+  formatter: RangeInputFormatter = formatDateRange,
+): string {
+  if (!!labels.customText) {
+    return typeof labels.customText == 'function'
+      ? labels.customText(timeRange)
+      : labels.customText;
+  }
+
+  const value = formatter(timeRange);
+
+  return (
+    (value.from ? `${labels.from} ${value.from} ` : '') +
+    (value.to ? `${labels.to} ${value.to}` : '')
+  ).trim();
 }

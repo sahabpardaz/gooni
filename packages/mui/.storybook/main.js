@@ -2,7 +2,7 @@ const { defineConfig, mergeConfig } = require('vite');
 const { default: tsconfigPaths } = require('vite-tsconfig-paths');
 
 module.exports = {
-  stories: ['../src/**/*.stories.@(ts|tsx|js|jsx)'],
+  stories: ['../src/**/*.stories.@(ts|tsx|js|jsx|mdx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
