@@ -76,23 +76,23 @@ const rendererFactory =
     return { fromInput, toInput, fromLabel, toLabel, resetBtn };
   };
 
-interface TestType<P extends RangePickerComponentTypes> {
+interface TestType {
   name: string;
-  pickerProps?: Partial<React.ComponentProps<P>>;
+  pickerProps?: Partial<React.ComponentProps<RangePickerComponentTypes>>;
   providerProps?: Partial<MultiLocalizationProviderProps>;
   expected: string | boolean;
 }
 
-interface TestSuiteTableType<P extends RangePickerComponentTypes> {
+interface TestSuiteTableType {
   name: string;
-  RangePicker: P;
+  RangePicker: RangePickerComponentTypes;
   inputs: { value: Date; text: string }[];
   defaultLabels: RangePickerLabels;
   customLabels: RangePickerLabels;
-  multiLocaleTest: TestType<P>;
+  multiLocaleTest: TestType;
 }
 
-describe.each<TestSuiteTableType<RangePickerComponentTypes>>([
+describe.each<TestSuiteTableType>([
   {
     name: 'Date Range Picker',
     RangePicker: DateRangePicker,

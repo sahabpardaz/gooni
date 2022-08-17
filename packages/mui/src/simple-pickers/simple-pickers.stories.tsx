@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
 
 export default {
-  title: 'Components/Pickers/Simple Pickers',
+  title: 'Pickers/Simple Pickers',
   decorators: [calendarDecorator()],
 } as Meta;
 
@@ -17,7 +17,7 @@ type PickerComponentTypes =
   | typeof DateTimePickerComponent
   | typeof TimePickerComponent;
 
-const Template = <P extends PickerComponentTypes>(Picker: P) =>
+const templateFactory = <P extends PickerComponentTypes>(Picker: P) =>
   function WrappedTemplate(
     args: Omit<React.ComponentProps<P>, 'value' | 'onChange'>,
   ) {
@@ -29,7 +29,7 @@ const Template = <P extends PickerComponentTypes>(Picker: P) =>
     );
   };
 
-export const DatePicker: Story = Template(DatePickerComponent).bind({});
+export const DatePicker: Story = templateFactory(DatePickerComponent).bind({});
 DatePicker.argTypes = {
   multiLocale: {
     control: {
@@ -38,7 +38,9 @@ DatePicker.argTypes = {
   },
 };
 
-export const DateTimePicker: Story = Template(DateTimePickerComponent).bind({});
+export const DateTimePicker: Story = templateFactory(
+  DateTimePickerComponent,
+).bind({});
 DateTimePicker.argTypes = {
   multiLocale: {
     control: {
@@ -47,4 +49,4 @@ DateTimePicker.argTypes = {
   },
 };
 
-export const TimePicker: Story = Template(TimePickerComponent).bind({});
+export const TimePicker: Story = templateFactory(TimePickerComponent).bind({});

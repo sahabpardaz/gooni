@@ -67,7 +67,7 @@ const getLabel = (type: Type | null) => {
 };
 
 export default {
-  title: 'Components/Toggle Button Input',
+  title: 'Toggle Button Input',
   decorators: [storyWrapperDecorator()],
 } as Meta;
 

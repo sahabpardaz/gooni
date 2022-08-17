@@ -2,9 +2,9 @@ import DateFnsBaseAdapter from '@date-io/date-fns';
 import DateFnsJalaliAdapterBase from '@date-io/date-fns-jalali';
 import * as DateFnsBase from 'date-fns';
 import * as DateFnsJalali from 'date-fns-jalali';
+import { Locale } from 'src/constant-types';
 import { RangeInputLabels } from 'src/shared/pickers';
-import { Locale } from '../constant-types';
-import { TimeRange } from '../shared/pickers/types';
+import { TimeRange } from 'src/shared/pickers/types';
 
 class DateFnsJalaliAdapter extends DateFnsJalaliAdapterBase {
   public getWeekdays = () => {
@@ -112,6 +112,7 @@ export function formatDate(
   format: string = 'yyyy/MM/dd',
   locale: Locale = Locale.defaultLocale,
 ) {
+  // TODO: new Date('') will throw error, try to fix this problem.
   return getLocalizedDateFns(locale).format(new Date(date), format);
 }
 
@@ -119,10 +120,7 @@ export function formatDate(
  * Contract for range input formatter.
  * @type RangeInputFormatter
  */
-export type RangeInputFormatter = (value: TimeRange) => {
-  to: string | null;
-  from: string | null;
-};
+export type RangeInputFormatter = (value: TimeRange) => TimeRange<string>;
 
 /**
  * Converts `value` to text.
@@ -139,12 +137,13 @@ export function getRangeInputValue(
   labels: RangeInputLabels,
   formatter: RangeInputFormatter = formatDateRange,
 ): string {
+  const value = formatter(timeRange);
+
   if (!!labels.customText) {
     return typeof labels.customText == 'function'
-      ? labels.customText(timeRange)
+      ? labels.customText(value)
       : labels.customText;
   }
-  const value = formatter(timeRange);
 
   return (
     (value.from ? `${labels.from} ${value.from} ` : '') +

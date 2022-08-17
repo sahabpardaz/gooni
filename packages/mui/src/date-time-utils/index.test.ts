@@ -1,6 +1,6 @@
+import { Locale } from 'src/constant-types';
 import { RangeInputLabels } from 'src/shared/pickers';
-import { Locale } from '../constant-types';
-import { TimeRange } from '../shared/pickers/types';
+import { TimeRange } from 'src/shared/pickers/types';
 import { formatDate } from './date-time-utils';
 import {
   formatDateRange,

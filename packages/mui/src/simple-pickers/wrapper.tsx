@@ -38,7 +38,7 @@ const pickers: Record<PickerTypes, React.ElementType> = {
   DATETIME: MuiDateTimePicker,
 };
 
-export function WrapPicker<P extends PickerTypes>(pickerType: P) {
+export function wrapPicker<P extends PickerTypes>(pickerType: P) {
   const Picker = pickers[pickerType];
 
   function WrappedPicker<In, Out>(props: Props<P, In, Out>) {

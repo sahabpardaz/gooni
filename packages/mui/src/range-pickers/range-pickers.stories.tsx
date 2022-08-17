@@ -10,7 +10,7 @@ import { Fragment, useState } from 'react';
 import { calendarDecorator } from 'src/@storybook/decorators';
 
 export default {
-  title: 'Components/Pickers/Range Pickers',
+  title: 'Pickers/Range Pickers',
   decorators: [calendarDecorator()],
   argTypes: {
     color: {
@@ -28,7 +28,7 @@ type RangePickerComponentTypes =
   | typeof DateTimeRangePickerComponent
   | typeof TimeRangePickerComponent;
 
-const Template = <P extends RangePickerComponentTypes>(RangePicker: P) =>
+const templateFactory = <P extends RangePickerComponentTypes>(RangePicker: P) =>
   function WrappedTemplate(
     args: Omit<React.ComponentProps<P>, 'value' | 'onChange'>,
   ) {
@@ -56,9 +56,9 @@ const Template = <P extends RangePickerComponentTypes>(RangePicker: P) =>
     );
   };
 
-export const DateRangePicker: Story = Template(DateRangePickerComponent).bind(
-  {},
-);
+export const DateRangePicker: Story = templateFactory(
+  DateRangePickerComponent,
+).bind({});
 DateRangePicker.argTypes = {
   multiLocale: {
     control: {
@@ -67,7 +67,7 @@ DateRangePicker.argTypes = {
   },
 };
 
-export const DateTimeRangePicker: Story = Template(
+export const DateTimeRangePicker: Story = templateFactory(
   DateTimeRangePickerComponent,
 ).bind({});
 DateTimeRangePicker.argTypes = {
@@ -78,6 +78,6 @@ DateTimeRangePicker.argTypes = {
   },
 };
 
-export const TimeRangePicker: Story = Template(TimeRangePickerComponent).bind(
-  {},
-);
+export const TimeRangePicker: Story = templateFactory(
+  TimeRangePickerComponent,
+).bind({});

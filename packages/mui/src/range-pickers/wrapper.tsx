@@ -33,7 +33,7 @@ const pickers: Record<PickerTypes, React.ElementType> = {
   DATETIME: DateTimePicker,
 };
 
-export function WrapRangePicker<P extends PickerTypes>(pickerType: P) {
+export function wrapRangePicker<P extends PickerTypes>(pickerType: P) {
   const Picker = pickers[pickerType];
 
   function WrappedRangePicker<In, Out>(props: Props<P, In, Out>) {

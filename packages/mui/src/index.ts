@@ -2,7 +2,7 @@ export * from './check-list-filter';
 export * from './constant-types';
 export * from './date-time-utils';
 export * from './popover-input';
-export * from './range-picker-inputs';
+export * from './range-inputs';
 export * from './range-pickers';
 export * from './react-types';
 export * from './shared';

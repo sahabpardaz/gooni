@@ -25,7 +25,7 @@ type Props<P extends PickerTypes, In, Out> = WrappedRangePickerProps<
   Out
 > & { popoverInputProps?: PopoverInputProps };
 
-export { Props as WrappedRangePickerInputProps };
+export { Props as WrappedRangeInputProps };
 
 const rangePickers: Record<PickerTypes, React.ElementType> = {
   TIME: TimeRangePicker,
@@ -39,11 +39,11 @@ const formatters: Record<PickerTypes, RangeInputFormatter> = {
   DATETIME: formatDateTimeRange,
 };
 
-export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
+export function wrapRangeInput<P extends PickerTypes>(pickerType: P) {
   const RangePicker = rangePickers[pickerType];
   const formatter = formatters[pickerType];
 
-  function WrappedRangePickerInput<In, Out>(props: Props<P, In, Out>) {
+  function WrappedRangeInput<In, Out>(props: Props<P, In, Out>) {
     const {
       classes,
       value,
@@ -103,5 +103,5 @@ export function WrapRangePickerInput<P extends PickerTypes>(pickerType: P) {
     );
   }
 
-  return WrappedRangePickerInput;
+  return WrappedRangeInput;
 }

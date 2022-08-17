@@ -211,15 +211,14 @@ describe('time picker', () => {
     describe('multiLocale prop of picker & defaultMultiLocale prop of provider', () => {
       it.each([
         {
-          multiLocale: undefined,
           defaultMultiLocale: undefined,
           expected: false,
         },
-        { multiLocale: undefined, defaultMultiLocale: false, expected: false },
-        { multiLocale: undefined, defaultMultiLocale: true, expected: false },
+        { defaultMultiLocale: false, expected: false },
+        { defaultMultiLocale: true, expected: false },
       ])(
-        'show multiLocale toggle button: $expected, when multiLocale=$multiLocale & defaultMultiLocale=$defaultMultiLocale',
-        async ({ multiLocale, defaultMultiLocale, expected }) => {
+        'show multiLocale toggle button: $expected, when defaultMultiLocale=$defaultMultiLocale',
+        async ({ defaultMultiLocale, expected }) => {
           const { pickerInput } = renderer(
             {},
             defaultMultiLocale !== undefined ? { defaultMultiLocale } : {},
