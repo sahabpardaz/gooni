@@ -30,7 +30,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install Dependencies & Build & Validate
-      - run: |
+        run: |
           yarn
           yarn deduplicate:check
           yarn prepublishOnly
@@ -55,7 +55,7 @@ jobs:
           registry-url: 'https://registry.yarnpkg.com'
 
       - name: Install Dependencies & Build
-      - run: |
+        run: |
           yarn
           yarn prepublishOnly
 
