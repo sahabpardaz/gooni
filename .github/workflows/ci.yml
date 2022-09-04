@@ -57,7 +57,7 @@ jobs:
       - name: Install Dependencies & Build
         run: |
           yarn
-          yarn prepublishOnly
+          yarn build
 
       - name: Create Pull Request or Publish to npm
         id: changesets
