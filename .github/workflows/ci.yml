@@ -1,0 +1,97 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout The Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Commit linting
+        uses: wagoid/commitlint-github-action@v4
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout The Repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js version 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'yarn'
+
+      - name: Install Dependencies & Build & Validate
+      - run: |
+          yarn
+          yarn deduplicate:check
+          yarn prepublishOnly
+          yarn type-check
+
+  release:
+    needs: [commitlint, validate]
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
+      publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
+
+    steps:
+      - name: Checkout The Repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js version 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.yarnpkg.com'
+
+      - name: Install Dependencies & Build
+      - run: |
+          yarn
+          yarn prepublishOnly
+
+      - name: Create Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: yarn changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.HUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  send-telegram-message:
+    needs: release
+    if: needs.release.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: get-current-Date
+        id: current-date
+        run: echo ::set-output name=now::$(TZ='Iran' date +"%A %Y/%m/%d - %H:%M")
+      - name: send-message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: html
+          disable_web_page_preview: true
+          message: |
+            👊🌟 <b>Gooni New Version Released</b> 🌟👊
+
+            📌 <b>Release Tag</b>: ${{ github.event.release.tag_name }}
+            📆 <b>Release Date</b>: ${{ steps.current-date.outputs.now }}
+            🧔 Release Creator: <a href="${{ github.event.release.author.html_url }}">${{ github.actor }}</a>
+
+            🔴 <b>Release Title</b>: ${{ github.event.release.name }}
+
+            📎 Visit <a href="${{ github.event.release.html_url }}">The Release</a> for more details.
+
+            📍 Also Visit <a href="${{ github.event.repository.html_url }}">The Repository</a>!
