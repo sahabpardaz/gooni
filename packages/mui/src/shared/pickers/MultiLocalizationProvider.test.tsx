@@ -1,6 +1,6 @@
 import { useLocaleText, useUtils } from '@mui/x-date-pickers/internals';
 import { act, renderHook } from '@testing-library/react-hooks';
-import { enUS } from 'date-fns/locale';
+import { enCA } from 'date-fns/locale';
 import { mergeDeepRight } from 'ramda';
 import { Locale } from 'src/constant-types';
 import { getLocalizedDateFnsAdapter } from 'src/date-time-utils';
@@ -77,7 +77,7 @@ describe('MultiLocalizationProvider', () => {
           {
             locale: 'en',
             adapter: getLocalizedDateFnsAdapter(Locale.en),
-            adapterLocale: enUS,
+            adapterLocale: enCA,
           },
         ],
         defaultMultiLocale: true,
@@ -99,6 +99,7 @@ describe('MultiLocalizationProvider', () => {
 
       expect(result.current.multiContext.currentLocale).toEqual('en');
       expect(result.current.muiUtils.lib).toEqual('date-fns');
+      expect(result.current.muiUtils.locale).toEqual(enCA);
       expect(result.current.muiLocaleTexts).toMatchObject(
         defaultPersianLocaleTexts,
       );

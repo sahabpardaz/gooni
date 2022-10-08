@@ -1,5 +1,5 @@
 ---
-'@my-sahab/mui': patch
+'@my-sahab/mui': minor
 ---
 
-feat: pass adapterLocale to adapter
+feat: add "adapterLocale" property to "localeOptions" of "MultiLocalizationProvider"
