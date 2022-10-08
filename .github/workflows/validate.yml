@@ -1,0 +1,37 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout The Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Commit linting
+        uses: wagoid/commitlint-github-action@v4
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout The Repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js version 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'yarn'
+
+      - name: Install Dependencies & Build & Validate
+        run: |
+          yarn
+          yarn deduplicate:check
+          yarn prepublishOnly
+          yarn type-check

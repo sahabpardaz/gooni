@@ -1,0 +1,36 @@
+name: publish
+
+on:
+  workflow_run:
+    workflows: [validate]
+    types:
+      - completed
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name == 'push' }}
+
+    steps:
+      - name: Checkout The Repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js version 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.yarnpkg.com'
+
+      - name: Install Dependencies & Build
+        run: |
+          yarn
+          yarn build
+
+      - name: Create Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: yarn changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
