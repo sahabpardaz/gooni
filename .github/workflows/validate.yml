@@ -1,4 +1,4 @@
-name: Validate Repo
+name: validate
 
 on:
   push:

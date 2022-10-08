@@ -1,4 +1,4 @@
-name: Publish Packages if Any
+name: publish
 
 on:
   workflow_run:
