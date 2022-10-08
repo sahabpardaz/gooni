@@ -16,15 +16,11 @@ export type GeneralizedLocale = Locale | string;
 /**
  * type for locales with custom adapter taken from the user
  */
-export type LocaleWithCustomAdapter = {
+export type FullLocaleAdapterObject = {
   locale: GeneralizedLocale;
   adapter: LocalizationProviderProps['dateAdapter'];
+  adapterLocale?: LocalizationProviderProps['adapterLocale'];
 };
-
-export type LocalesWithAdaptersEntries = [
-  GeneralizedLocale,
-  LocalizationProviderProps['dateAdapter'],
-][];
 
 /**
  * type guard for Locale type
@@ -32,7 +28,7 @@ export type LocalesWithAdaptersEntries = [
  * @returns whether localeOption is of type Locale(`true`) or LocaleWithCustomAdapter(`false`)
  */
 function isLocale(
-  localeOption: Locale | LocaleWithCustomAdapter,
+  localeOption: Locale | FullLocaleAdapterObject,
 ): localeOption is Locale {
   return typeof localeOption === 'string';
 }
@@ -50,7 +46,7 @@ interface Props
    *
    * If you pass different adapters, beware that they should be compatible with each other
    */
-  localeOptions: (Locale | LocaleWithCustomAdapter)[];
+  localeOptions: (Locale | FullLocaleAdapterObject)[];
   /** default `multiLocale` to be used for all date & date-time pickers in the children tree
    *  unless mentioned otherwise on the component itself */
   defaultMultiLocale?: boolean;
@@ -79,12 +75,20 @@ export function MultiLocalizationProvider(props: Props) {
   } = props;
 
   const [locales, localesWithAdapters] = React.useMemo(() => {
-    const localesWithAdaptersEntries: LocalesWithAdaptersEntries =
-      localeOptions.map((localeOption) =>
-        isLocale(localeOption)
-          ? [localeOption, getLocalizedDateFnsAdapter(localeOption)]
-          : [localeOption.locale, localeOption.adapter],
-      );
+    const localesWithAdaptersEntries: [
+      GeneralizedLocale,
+      FullLocaleAdapterObject,
+    ][] = localeOptions.map((localeOption) =>
+      isLocale(localeOption)
+        ? [
+            localeOption,
+            {
+              locale: localeOption,
+              adapter: getLocalizedDateFnsAdapter(localeOption),
+            },
+          ]
+        : [localeOption.locale, localeOption],
+    );
     return [
       localesWithAdaptersEntries.map((entry) => entry[0]),
       Object.fromEntries(localesWithAdaptersEntries),
@@ -117,7 +121,8 @@ export function MultiLocalizationProvider(props: Props) {
   return (
     <MultiLocalizationContext.Provider value={contextValue}>
       <LocalizationProvider
-        dateAdapter={localesWithAdapters[currentLocale]}
+        dateAdapter={localesWithAdapters[currentLocale].adapter}
+        adapterLocale={localesWithAdapters[currentLocale].adapterLocale}
         localeText={finalLocaleText}
         dateFormats={dateFormats}
       >

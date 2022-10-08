@@ -1,5 +1,6 @@
 import { useLocaleText, useUtils } from '@mui/x-date-pickers/internals';
 import { act, renderHook } from '@testing-library/react-hooks';
+import { enUS } from 'date-fns/locale';
 import { mergeDeepRight } from 'ramda';
 import { Locale } from 'src/constant-types';
 import { getLocalizedDateFnsAdapter } from 'src/date-time-utils';
@@ -73,7 +74,11 @@ describe('MultiLocalizationProvider', () => {
       const { result } = renderAllContextHooksWithProps({
         localeOptions: [
           { locale: 'fa', adapter: getLocalizedDateFnsAdapter(Locale.fa) },
-          { locale: 'en', adapter: getLocalizedDateFnsAdapter(Locale.en) },
+          {
+            locale: 'en',
+            adapter: getLocalizedDateFnsAdapter(Locale.en),
+            adapterLocale: enUS,
+          },
         ],
         defaultMultiLocale: true,
       });
