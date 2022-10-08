@@ -1,5 +1,11 @@
 # @my-sahab/mui
 
+## 0.5.0
+
+### Minor Changes
+
+- fc61ac9: feat: add "adapterLocale" property to "localeOptions" of "MultiLocalizationProvider"
+
 ## 0.4.0
 
 ### Minor Changes
