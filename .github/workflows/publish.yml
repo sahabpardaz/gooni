@@ -2,15 +2,16 @@
 name: publish
 
 on:
-  workflow_run:
-    workflows: [validate]
-    types:
-      - completed
+  push:
+    branches: [main]
 
 jobs:
+  validate:
+    uses: ./.github/workflows/validate.yml
+
   publish:
+    needs: [validate]
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' }}
 
     steps:
       - name: Checkout The Repository
