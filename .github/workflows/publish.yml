@@ -1,3 +1,4 @@
+# Publish if there's any
 name: publish
 
 on:
