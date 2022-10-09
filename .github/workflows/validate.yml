@@ -27,9 +27,7 @@ jobs:
           node-version: '16.x'
           cache: 'yarn'
 
-      - name: Install Dependencies & Build & Validate
-        run: |
-          yarn
-          yarn deduplicate:check
-          yarn prepublishOnly
-          yarn type-check
+      - run: yarn
+      - run: yarn deduplicate:check
+      - run: yarn prepublishOnly
+      - run: yarn type-check
