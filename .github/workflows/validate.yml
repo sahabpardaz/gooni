@@ -1,8 +1,6 @@
 name: validate
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -10,22 +8,26 @@ jobs:
   commitlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout The Repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@v4
+      - name: Commit linting
+        uses: wagoid/commitlint-github-action@v4
 
   validate:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js version 16
+      - name: Checkout The Repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js version 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '16.x'
           cache: 'yarn'
-      - run: yarn install
+
+      - run: yarn
       - run: yarn deduplicate:check
       - run: yarn prepublishOnly
       - run: yarn type-check
